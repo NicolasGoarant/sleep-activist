@@ -1,2 +1,126 @@
-<h1>Pages#apropos</h1>
-<p>Find me in app/views/pages/apropos.html.erb</p>
+<%# Team Header %>
+<%= content_tag :section, class: "hero", style: "min-height: 60vh; padding-top: 100px;" do %>
+  <%= content_tag :div, class: "hero-content" do %>
+    <%= content_tag :div, "👥 Équipe", class: "hero-tag" %>
+    <%= content_tag :h1, "L'équipe Sleep Activists", style: "font-size: 3.5rem;" %>
+    <%= content_tag :p, class: "hero-subtitle" do %>
+      Nicolas Goarant et Sofiia Popova : ensemble, nous avons créé Sleep Activists
+      pour donner une voix à celles et ceux dont le sommeil est malmené, invisibilisé, jugé.
+    <% end %>
+  <% end %>
+<% end %>
+
+<%# Founders Section %>
+<%= content_tag :section, class: "mission" do %>
+  <%= content_tag :div, style: "max-width: 1000px; margin: 0 auto;" do %>
+
+    <%# Nicolas %>
+    <%= content_tag :div, style: "margin-bottom: 6rem; display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: start;" do %>
+      <%= content_tag :div, style: "text-align: center;" do %>
+        <%= content_tag :div, style: "width: 200px; height: 200px; border-radius: 50%; background: linear-gradient(135deg, var(--moon-yellow), var(--soft-lavender)); margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 5rem;" do %>
+          👤
+        <% end %>
+        <%= content_tag :p, "📧 nicolas@sleep-activist.fr", style: "color: var(--soft-lavender); font-size: 0.9rem; margin-top: 0.5rem;" %>
+      <% end %>
+      <%= content_tag :div do %>
+        <%= content_tag :h2, "Nicolas Goarant", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 2.5rem; margin-bottom: 1rem;" %>
+        <%= content_tag :p, "Co-fondateur • Auteur • Analyste financier", style: "color: var(--moon-yellow); font-size: 1.2rem; margin-bottom: 2rem;" %>
+        <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8; margin-bottom: 1.5rem;" do %>
+          Auteur du livre <em>Le Sommeil Malmené</em> (Éditions de l'Aube, 2020), Nicolas a été interviewé
+          par une quinzaine de médias nationaux (France 2, RTL, RFI, Brut, Ouest-France...) sur le sommeil
+          comme enjeu de société.
+        <% end %>
+        <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8; margin-bottom: 1.5rem;" do %>
+          Le jour, il travaille comme analyste financier pour les collectivités locales à Nancy, où il évalue
+          la santé financière des associations et organisations. Cette double casquette — auteur engagé et
+          analyste rigoureux — nourrit sa vision du sommeil comme phénomène à la fois intime et collectif.
+        <% end %>
+        <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8;" do %>
+          Avec Sleep Activists, Nicolas souhaite aller plus loin que le livre : créer un véritable écosystème
+          médiatique qui traite le sommeil sans injonctions, avec curiosité et liberté de ton.
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%# Sofiia %>
+    <%= content_tag :div, style: "margin-bottom: 4rem; display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: start;" do %>
+      <%= content_tag :div, style: "text-align: center;" do %>
+        <%= content_tag :div, style: "width: 200px; height: 200px; border-radius: 50%; background: linear-gradient(135deg, var(--soft-lavender), var(--moon-yellow)); margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 5rem;" do %>
+          👤
+        <% end %>
+      <% end %>
+      <%= content_tag :div do %>
+        <%= content_tag :h2, "Sofiia Popova", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 2.5rem; margin-bottom: 1rem;" %>
+        <%= content_tag :p, "Co-fondatrice", style: "color: var(--moon-yellow); font-size: 1.2rem; margin-bottom: 2rem;" %>
+        <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8; margin-bottom: 1.5rem;" do %>
+          Sofiia est co-fondatrice de Sleep Activists et apporte une perspective internationale au projet.
+        <% end %>
+        <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8; margin-bottom: 1.5rem;" do %>
+          Son expérience de l'Ukraine en temps de guerre — où le sommeil devient un temps de vulnérabilité,
+          où les nuits sont scandées par les alertes — a profondément nourri la réflexion de Sleep Activists
+          sur le sommeil comme phénomène politique et culturel.
+        <% end %>
+        <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8;" do %>
+          Avec Nicolas, elle a notamment conçu l'épisode de podcast <em>"Dormir en temps de guerre"</em>,
+          qui explore comment on dort quand les nuits deviennent dangereuses.
+        <% end %>
+      <% end %>
+    <% end %>
+
+  <% end %>
+<% end %>
+
+<%# Notre histoire %>
+<%= content_tag :section, class: "content-grid", style: "background: linear-gradient(to bottom, rgba(26, 20, 100, 0.3), transparent);" do %>
+  <%= content_tag :div, class: "section-header" do %>
+    <%= content_tag :h2, "Notre histoire" %>
+    <%= content_tag :p, "Du livre au média" %>
+  <% end %>
+
+  <%= content_tag :div, style: "max-width: 800px; margin: 0 auto;" do %>
+    <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2); padding: 3rem;" do %>
+      <%= content_tag :h3, "2020 : Le livre \"Le Sommeil Malmené\"", style: "color: var(--moon-yellow); font-family: 'Crimson Pro', serif; font-size: 1.8rem; margin-bottom: 1.5rem;" %>
+      <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8; margin-bottom: 2rem;" do %>
+        Tout commence avec la publication du livre de Nicolas aux Éditions de l'Aube. L'accueil
+        dépasse nos attentes : des milliers de personnes nous contactent — parents épuisés,
+        insomniaques isolés, travailleurs de nuit invisibilisés.
+      <% end %>
+
+      <%= content_tag :h3, "2020-2024 : Médias et légitimité", style: "color: var(--moon-yellow); font-family: 'Crimson Pro', serif; font-size: 1.8rem; margin-bottom: 1.5rem; margin-top: 2rem;" %>
+      <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8; margin-bottom: 2rem;" do %>
+        France 2, RTL, RFI, Brut, Ouest-France... Une quinzaine de médias nous interviewent.
+        Ces apparitions confirment que notre vision du sommeil comme enjeu de société résonne.
+      <% end %>
+
+      <%= content_tag :h3, "2025 : Naissance de Sleep Activists", style: "color: var(--moon-yellow); font-family: 'Crimson Pro', serif; font-size: 1.8rem; margin-bottom: 1.5rem; margin-top: 2rem;" %>
+      <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8;" do %>
+        Le livre ne suffit plus. Nous voulons créer un véritable écosystème médiatique : podcast,
+        blog, réseaux sociaux, événements. Sleep Activists est né pour porter cette ambition :
+        un média qui traite le sommeil sans moralisation, avec curiosité et engagement.
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%# CTA %>
+<%= content_tag :section, class: "newsletter-cta" do %>
+  <%= content_tag :div, class: "newsletter-box" do %>
+    <%= content_tag :h2, "Nous contacter" %>
+    <%= content_tag :p do %>
+      Une question ? Une proposition de collaboration ? Un témoignage à partager ?
+    <% end %>
+    <%= content_tag :div, style: "margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;" do %>
+      <%= link_to "📧 nicolas@sleep-activist.fr", "mailto:nicolas@sleep-activist.fr", class: "cta-primary" %>
+      <%= link_to "Recevoir la newsletter", newsletter_path, class: "cta-secondary" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<style>
+@media (max-width: 768px) {
+  .mission > div > div {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+}
+</style>

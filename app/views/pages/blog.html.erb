@@ -1,13 +1,170 @@
-Rails.application.routes.draw do
-  root "pages#home"
+<%# Blog Header %>
+<%= content_tag :section, class: "hero", style: "min-height: 60vh; padding-top: 8rem;" do %>
+  <%= content_tag :div, class: "hero-content" do %>
+    <%= content_tag :div, "✍️ Blog", class: "hero-tag" %>
+    <%= content_tag :h1, "Le blog Sleep Activists", style: "font-size: 3.5rem;" %>
+    <%= content_tag :p, class: "hero-subtitle" do %>
+      Analyses, récits, conseils. Pour repenser le sommeil sans injonctions,
+      avec curiosité et engagement.
+    <% end %>
+  <% end %>
+<% end %>
 
-  get 'mission', to: 'pages#mission'
-  get 'contenus', to: 'pages#contenus'
-  get 'presse', to: 'pages#presse'
-  get 'apropos', to: 'pages#apropos'
-  get 'newsletter', to: 'pages#newsletter'
+<%# Articles Grid %>
+<%= content_tag :section, class: "content-grid", style: "padding: 4rem 5%;" do %>
+  <%= content_tag :div, style: "max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem;" do %>
 
-  # Nouvelles routes
-  get 'podcast', to: 'pages#podcast'
-  get 'blog', to: 'pages#blog'
-end
+    <%# Article 1 : Apnée du sommeil %>
+    <%= content_tag :article, style: "background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2); padding: 2.5rem; transition: all 0.3s; cursor: pointer;" do %>
+      <%= content_tag :div, "😴", style: "font-size: 3rem; margin-bottom: 1.5rem;" %>
+      <%= content_tag :h2, "L'apnée du sommeil : au-delà du diagnostic médical", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.8rem; margin-bottom: 1rem;" %>
+      <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8; margin-bottom: 1.5rem;" do %>
+        L'apnée du sommeil touche des millions de personnes. Mais au-delà des chiffres et du diagnostic,
+        que signifie vivre avec ce syndrome ? Comment éviter la stigmatisation ?
+      <% end %>
+      <%= content_tag :div, class: "article-content", style: "color: var(--soft-lavender); line-height: 1.9;" do %>
+        <%= content_tag :h3, "Un syndrome mal compris", style: "color: var(--moon-yellow); font-size: 1.3rem; margin: 2rem 0 1rem;" %>
+        <%= content_tag :p, style: "margin-bottom: 1.5rem;" do %>
+          L'apnée obstructive du sommeil (AOS) se caractérise par des arrêts respiratoires répétés pendant le sommeil.
+          Souvent réduite à un "problème de ronflement", elle cache une réalité bien plus complexe : fatigue chronique,
+          risques cardiovasculaires, impact sur la vie sociale et professionnelle.
+        <% end %>
+
+        <%= content_tag :h3, "Le poids du regard des autres", style: "color: var(--moon-yellow); font-size: 1.3rem; margin: 2rem 0 1rem;" %>
+        <%= content_tag :p, style: "margin-bottom: 1.5rem;" do %>
+          Porter un masque CPAP (ventilation en pression positive continue) la nuit peut être vécu comme une épreuve.
+          "Mon conjoint va me trouver ridicule", "Je ne peux plus dormir ailleurs que chez moi" : ces craintes sont légitimes.
+          Sleep Activists refuse de moraliser : oui, c'est difficile. Non, vous n'êtes pas seul.
+        <% end %>
+
+        <%= content_tag :h3, "Au-delà du traitement : repenser son sommeil", style: "color: var(--moon-yellow); font-size: 1.3rem; margin: 2rem 0 1rem;" %>
+        <%= content_tag :p, style: "margin-bottom: 1.5rem;" do %>
+          Le traitement médical est essentiel. Mais il ne suffit pas. Il faut aussi :
+        <% end %>
+        <%= content_tag :ul, style: "list-style: none; padding-left: 0; margin-bottom: 1.5rem;" do %>
+          <%= content_tag :li, "🌙 Aménager sa chambre pour rendre le masque moins invasif", style: "margin-bottom: 0.8rem;" %>
+          <%= content_tag :li, "💬 En parler librement avec ses proches", style: "margin-bottom: 0.8rem;" %>
+          <%= content_tag :li, "🤝 Rejoindre des communautés de soutien", style: "margin-bottom: 0.8rem;" %>
+          <%= content_tag :li, "📖 Se réapproprier son sommeil, sans culpabilité", style: "margin-bottom: 0.8rem;" %>
+        <% end %>
+
+        <%= content_tag :p, style: "font-style: italic; color: var(--moon-yellow); margin-top: 2rem;" do %>
+          L'apnée du sommeil n'est pas une fatalité. C'est un phénomène médical, certes, mais aussi social :
+          il interroge notre rapport au corps, à la nuit, au regard des autres.
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%# Article 2 : Choisir son matelas %>
+    <%= content_tag :article, style: "background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2); padding: 2.5rem; transition: all 0.3s; cursor: pointer;" do %>
+      <%= content_tag :div, "🛏️", style: "font-size: 3rem; margin-bottom: 1.5rem;" %>
+      <%= content_tag :h2, "Comment choisir son matelas sans se perdre", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.8rem; margin-bottom: 1rem;" %>
+      <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8; margin-bottom: 1.5rem;" do %>
+        Mousse, ressorts, latex, mémoire de forme : le choix d'un matelas peut vite devenir un casse-tête.
+        Voici nos conseils pour y voir plus clair, sans tomber dans le piège du marketing.
+      <% end %>
+      <%= content_tag :div, class: "article-content", style: "color: var(--soft-lavender); line-height: 1.9;" do %>
+        <%= content_tag :h3, "Oubliez les promesses miracles", style: "color: var(--moon-yellow); font-size: 1.3rem; margin: 2rem 0 1rem;" %>
+        <%= content_tag :p, style: "margin-bottom: 1.5rem;" do %>
+          "Le meilleur matelas pour votre dos", "Révolutionnaire", "Recommandé par les ostéopathes" :
+          le marketing de la literie joue sur vos craintes. La vérité ? Il n'existe pas de matelas universel.
+          Chaque corps, chaque sommeil est unique.
+        <% end %>
+
+        <%= content_tag :h3, "Les vraies questions à se poser", style: "color: var(--moon-yellow); font-size: 1.3rem; margin: 2rem 0 1rem;" %>
+        <%= content_tag :ul, style: "list-style: none; padding-left: 0; margin-bottom: 1.5rem;" do %>
+          <%= content_tag :li, "🌡️ Avez-vous chaud la nuit ? (Préférez latex ou ressorts)", style: "margin-bottom: 0.8rem;" %>
+          <%= content_tag :li, "💪 Dormez-vous sur le dos, le côté, le ventre ? (Fermeté différente)", style: "margin-bottom: 0.8rem;" %>
+          <%= content_tag :li, "🏋️ Votre morphologie : un matelas ferme n'est pas toujours mieux", style: "margin-bottom: 0.8rem;" %>
+          <%= content_tag :li, "👥 Dormez-vous seul ou à deux ? (Indépendance de couchage)", style: "margin-bottom: 0.8rem;" %>
+          <%= content_tag :li, "💰 Votre budget : un bon matelas coûte entre 500€ et 1500€", style: "margin-bottom: 0.8rem;" %>
+        <% end %>
+
+        <%= content_tag :h3, "Nos conseils pratiques", style: "color: var(--moon-yellow); font-size: 1.3rem; margin: 2rem 0 1rem;" %>
+        <%= content_tag :p, style: "margin-bottom: 1.5rem;" do %>
+          <strong>Testez !</strong> Les 100 nuits d'essai sont une vraie opportunité. Un matelas, ça se teste allongé,
+          pas en 2 minutes dans un magasin.
+        <% end %>
+        <%= content_tag :p, style: "margin-bottom: 1.5rem;" do %>
+          <strong>Changez régulièrement.</strong> Un matelas se garde 7 à 10 ans maximum. Au-delà, il perd ses propriétés.
+        <% end %>
+        <%= content_tag :p, style: "margin-bottom: 1.5rem;" do %>
+          <strong>Le sommier compte aussi.</strong> Un bon matelas sur un mauvais sommier, c'est 50% de confort perdu.
+        <% end %>
+
+        <%= content_tag :p, style: "font-style: italic; color: var(--moon-yellow); margin-top: 2rem;" do %>
+          Votre lit n'est pas un accessoire. C'est l'endroit où vous passez un tiers de votre vie.
+          Investir dans une literie de qualité, c'est investir dans votre sommeil.
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%# Article 3 : Parentalité et sommeil %>
+    <%= content_tag :article, style: "background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2); padding: 2.5rem; transition: all 0.3s; cursor: pointer;" do %>
+      <%= content_tag :div, "👶", style: "font-size: 3rem; margin-bottom: 1.5rem;" %>
+      <%= content_tag :h2, "Parentalité et sommeil : sortir de la culpabilité", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.8rem; margin-bottom: 1rem;" %>
+      <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8; margin-bottom: 1.5rem;" do %>
+        "Mon bébé ne fait pas ses nuits." Cette phrase, des millions de parents la prononcent chaque jour,
+        souvent avec culpabilité. Et si on arrêtait de chercher des solutions miracles ?
+      <% end %>
+      <%= content_tag :div, class: "article-content", style: "color: var(--soft-lavender); line-height: 1.9;" do %>
+        <%= content_tag :h3, "Le mythe de la nuit complète", style: "color: var(--moon-yellow); font-size: 1.3rem; margin: 2rem 0 1rem;" %>
+        <%= content_tag :p, style: "margin-bottom: 1.5rem;" do %>
+          On vous dit : "À 6 mois, un bébé doit faire ses nuits." Faux. Biologiquement, un nourrisson a besoin
+          de se réveiller la nuit pour se nourrir, se rassurer, réguler sa température. Ce n'est pas un échec parental.
+          C'est une réalité physiologique.
+        <% end %>
+
+        <%= content_tag :h3, "L'épuisement parental : un tabou", style: "color: var(--moon-yellow); font-size: 1.3rem; margin: 2rem 0 1rem;" %>
+        <%= content_tag :p, style: "margin-bottom: 1.5rem;" do %>
+          "Profite, ça passe vite !" On minimise. On culpabilise. Pourtant, la fatigue parentale est réelle,
+          intense, parfois dangereuse. Sleep Activists refuse de vous dire "c'est normal, tiens bon".
+          Oui, c'est normal. Non, ce n'est pas facile. Et oui, vous avez le droit de craquer.
+        <% end %>
+
+        <%= content_tag :h3, "Des pistes concrètes (sans injonctions)", style: "color: var(--moon-yellow); font-size: 1.3rem; margin: 2rem 0 1rem;" %>
+        <%= content_tag :ul, style: "list-style: none; padding-left: 0; margin-bottom: 1.5rem;" do %>
+          <%= content_tag :li, "💤 Le cododo : pratique, sûr si bien fait, et vous sauve des nuits", style: "margin-bottom: 0.8rem;" %>
+          <%= content_tag :li, "🤝 Alternez avec votre conjoint.e : la fatigue ne doit pas être genrée", style: "margin-bottom: 0.8rem;" %>
+          <%= content_tag :li, "🆘 Demandez de l'aide : famille, amis, associations", style: "margin-bottom: 0.8rem;" %>
+          <%= content_tag :li, "🛏️ Dormez quand bébé dort : oui, vraiment", style: "margin-bottom: 0.8rem;" %>
+          <%= content_tag :li, "🧘 Lâchez prise sur le reste : le ménage peut attendre", style: "margin-bottom: 0.8rem;" %>
+        <% end %>
+
+        <%= content_tag :h3, "Et les méthodes miracles ?", style: "color: var(--moon-yellow); font-size: 1.3rem; margin: 2rem 0 1rem;" %>
+        <%= content_tag :p, style: "margin-bottom: 1.5rem;" do %>
+          "Laissez-le pleurer", "La méthode 5-10-15", "Les rituels infaillibles" : méfiez-vous des promesses.
+          Chaque enfant est unique. Ce qui marche pour l'un ne marchera pas pour l'autre.
+          Faites-vous confiance. Écoutez votre instinct.
+        <% end %>
+
+        <%= content_tag :p, style: "font-style: italic; color: var(--moon-yellow); margin-top: 2rem;" do %>
+          Être parent.e épuisé.e ne fait pas de vous un.e mauvais.e parent.e.
+          Ça fait de vous un être humain qui a besoin de dormir. Et c'est légitime.
+        <% end %>
+      <% end %>
+    <% end %>
+
+  <% end %>
+<% end %>
+
+<%# CTA %>
+<%= content_tag :section, class: "newsletter-cta" do %>
+  <%= content_tag :div, class: "newsletter-box" do %>
+    <%= content_tag :h2, "Plus d'articles bientôt" %>
+    <%= content_tag :p do %>
+      Nous publions régulièrement de nouveaux contenus. Suivez-nous pour ne rien manquer.
+    <% end %>
+    <%= content_tag :div, style: "margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;" do %>
+      <%= link_to "Recevoir la newsletter", newsletter_path, class: "cta-primary" %>
+      <%= link_to "Découvrir le podcast", podcast_path, class: "cta-secondary" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<style>
+article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(255, 217, 61, 0.2);
+}
+</style>
