@@ -1,0 +1,312 @@
+<%# Hero Section with Video %>
+<%= content_tag :section, class: "hero" do %>
+  <%= content_tag :div, class: "hero-content", style: "max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;" do %>
+    <%= content_tag :div do %>
+      <%= content_tag :div, "✨ Un média vivant • Podcast, Blog, Instagram", class: "hero-tag hide-on-mobile" %>
+      <%= content_tag :h1 do %>
+        Dormir est un <%= content_tag :span, "plaisir", class: "highlight" %>
+      <% end %>
+      <%= content_tag :p, "Le média du sommeil", style: "color: var(--moon-yellow); font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; font-family: 'Crimson Pro', serif;" %>
+      <%= content_tag :p, class: "hero-subtitle" do %>
+        Un média qui milite pour un sommeil libre, joyeux et réparateur.
+        Sans injonctions. Sans culpabilisation. Avec curiosité, humour et engagement.
+      <% end %>
+      <%= content_tag :div, class: "cta-group" do %>
+        <%= link_to "Découvrir l'écosystème", "#contenus", class: "cta-primary" %>
+        <%= link_to "Recevoir la newsletter", newsletter_path, class: "cta-secondary" %>
+      <% end %>
+    <% end %>
+
+    <%# Vidéo Élise Lucet à droite %>
+    <%= content_tag :div do %>
+      <%= content_tag :div, style: "position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.4);" do %>
+        <%= content_tag :iframe, "",
+            src: "https://www.youtube.com/embed/qBfHg9Hyehk",
+            style: "position: absolute; top: 0; left: 0; width: 100%; height: 100%;",
+            frameborder: "0",
+            allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+            allowfullscreen: true %>
+      <% end %>
+      <%= content_tag :p, style: "color: var(--soft-lavender); font-size: 0.9rem; margin-top: 1rem; text-align: center; font-style: italic;" do %>
+        📺 Nicolas Goarant chez Élise Lucet (France 2, 2021)
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%# Mission Section - Philosophie du média - ESPACE RÉDUIT %>
+<%= content_tag :section, class: "mission", id: "mission", style: "padding-top: 2rem;" do %>
+  <%= content_tag :div, class: "mission-container" do %>
+    <%= content_tag :div, class: "mission-text" do %>
+      <%= content_tag :h2, "Un média doux... mais engagé" %>
+      <%= content_tag :p do %>
+        Le sommeil est partout dans nos vies, mais rarement considéré comme il le mérite.
+        Souvent réduit à une donnée biologique ou à un problème médical, il est pourtant
+        un marqueur social, culturel et émotionnel.
+      <% end %>
+      <%= content_tag :p do %>
+        Les Sleep Activists proposent d'en changer le récit : parler du sommeil sans
+        injonctions, sans moralisation, mais avec curiosité, humour et liberté de ton.
+      <% end %>
+      <%= content_tag :p, style: "color: var(--moon-yellow); font-weight: 500; font-size: 1.2rem; margin-top: 2rem;" do %>
+        Plus qu'un média, Sleep Activists revendique une posture : celle du corps qui
+        dit stop, de l'esprit qui a besoin de nuit, du temps qu'on reprend.
+      <% end %>
+      <%= content_tag :p, style: "margin-top: 2rem; font-style: italic;" do %>
+        Nous croyons qu'un autre sommeil est possible : apaisé, désirable, collectif.
+      <% end %>
+    <% end %>
+<div class="mission-visual">
+      <div style="width: 100%; height: 100%; border-radius: 30px; overflow: hidden; position: relative; background: var(--deep-navy);">
+        <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <source src="/videos/femme_enfant_light.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<%# Community Section - À qui s'adresse le média %>
+<%= content_tag :section, class: "mission", style: "background: linear-gradient(to bottom, rgba(26, 20, 100, 0.3), transparent);" do %>
+  <%= content_tag :div, class: "section-header", style: "margin-bottom: 4rem;" do %>
+    <%= content_tag :h2, "À qui s'adresse Sleep Activists ?" %>
+    <%= content_tag :p, "Nos différentes communautés" %>
+  <% end %>
+
+  <%= content_tag :div, style: "max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;" do %>
+    <%= content_tag :div, style: "text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
+      <%= content_tag :div, "👶", style: "font-size: 3rem; margin-bottom: 1rem;" %>
+      <%= content_tag :h3, "Aux parents épuisés", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; margin-bottom: 1rem;" %>
+      <%= content_tag :p, "Parce que la fatigue parentale mérite d'être reconnue sans culpabilité", style: "color: var(--soft-lavender);" %>
+    <% end %>
+    <%= content_tag :div, style: "text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
+      <%= content_tag :div, "😴", style: "font-size: 3rem; margin-bottom: 1rem;" %>
+      <%= content_tag :h3, "Aux insomniaques", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; margin-bottom: 1rem;" %>
+      <%= content_tag :p, "Pour sortir de l'isolement et comprendre que vous n'êtes pas seuls", style: "color: var(--soft-lavender);" %>
+    <% end %>
+    <%= content_tag :div, style: "text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
+      <%= content_tag :div, "🐌", style: "font-size: 3rem; margin-bottom: 1rem;" %>
+      <%= content_tag :h3, "Aux militants du repos", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; margin-bottom: 1rem;" %>
+      <%= content_tag :p, "Pour ceux qui revendiquent le droit de ralentir dans un monde qui accélère", style: "color: var(--soft-lavender);" %>
+    <% end %>
+    <%= content_tag :div, style: "text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
+      <%= content_tag :div, "🌃", style: "font-size: 3rem; margin-bottom: 1rem;" %>
+      <%= content_tag :h3, "Aux travailleurs de nuit", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; margin-bottom: 1rem;" %>
+      <%= content_tag :p, "Votre rythme est différent, mais votre sommeil compte tout autant", style: "color: var(--soft-lavender);" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%# Ecosystem Section - L'écosystème complet %>
+<%= content_tag :section, class: "content-grid", id: "contenus" do %>
+  <%= content_tag :div, class: "section-header" do %>
+    <%= content_tag :h2, "Un écosystème complet" %>
+    <%= content_tag :p, "Podcast, blog, réseaux sociaux, livre, événements" %>
+  <% end %>
+  <%= content_tag :div, class: "cards-grid" do %>
+    <%= link_to podcast_path, style: "text-decoration: none;" do %>
+      <%= content_tag :div, class: "content-card", style: "cursor: pointer;" do %>
+        <%= content_tag :div, "🎙️", class: "card-image" %>
+        <%= content_tag :div, class: "card-content" do %>
+          <%= content_tag :span, "Audio", class: "card-tag" %>
+          <%= content_tag :h3, "Podcast \"La Sieste\"" %>
+          <%= content_tag :p, "Et si dormir n'était pas seulement une affaire de santé, mais aussi une affaire de culture, de société, d'humanité ? Histoires, réflexions, témoignages." %>
+          <%= content_tag :span, "→ Écouter", style: "color: var(--moon-yellow); text-decoration: none;" %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= link_to blog_path, style: "text-decoration: none;" do %>
+      <%= content_tag :div, class: "content-card", style: "cursor: pointer;" do %>
+        <%= content_tag :div, "✍️", class: "card-image" %>
+        <%= content_tag :div, class: "card-content" do %>
+          <%= content_tag :span, "Écrit", class: "card-tag" %>
+          <%= content_tag :h3, "Le blog" %>
+          <%= content_tag :p, "Analyses, récits, témoignages. Les bouleversements du sommeil, les solutions sans injonctions, nos objectifs." %>
+          <%= content_tag :span, "→ Lire", style: "color: var(--moon-yellow); text-decoration: none;" %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= link_to "https://instagram.com/sleep_activists", target: "_blank", style: "text-decoration: none;" do %>
+      <%= content_tag :div, class: "content-card", style: "cursor: pointer;" do %>
+        <%= content_tag :div, "📱", class: "card-image" %>
+        <%= content_tag :div, class: "card-content" do %>
+          <%= content_tag :span, "Social", class: "card-tag" %>
+          <%= content_tag :h3, "Instagram" %>
+          <%= content_tag :p, "Carrousels doux, série \"Sommeil dans le monde\", déconstructions quotidiennes du discours dominant sur le sommeil." %>
+          <%= content_tag :span, "→ Suivre", style: "color: var(--moon-yellow); text-decoration: none;" %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= link_to "https://www.amazon.fr/sommeil-malmené-Nicolas-Goarant/dp/2815936690", target: "_blank", style: "text-decoration: none;" do %>
+      <%= content_tag :div, class: "content-card", style: "cursor: pointer;" do %>
+        <%= content_tag :div, "📚", class: "card-image" %>
+        <%= content_tag :div, class: "card-content" do %>
+          <%= content_tag :span, "Livre", class: "card-tag" %>
+          <%= content_tag :h3, "Le Sommeil Malmené" %>
+          <%= content_tag :p, "Le livre fondateur (2020) qui a tout déclenché. Comment retrouver le goût de la nuit. Éditions de l'Aube." %>
+          <%= content_tag :span, "→ Commander", style: "color: var(--moon-yellow); text-decoration: none;" %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= link_to newsletter_path, style: "text-decoration: none;" do %>
+      <%= content_tag :div, class: "content-card", style: "cursor: pointer;" do %>
+        <%= content_tag :div, "💌", class: "card-image" %>
+        <%= content_tag :div, class: "card-content" do %>
+          <%= content_tag :span, "Newsletter", class: "card-tag" %>
+          <%= content_tag :h3, "Sleep Stories" %>
+          <%= content_tag :p, "Chaque lundi : une histoire inspirante, des analyses sans moralisation, des pistes pour repenser votre sommeil." %>
+          <%= content_tag :span, "→ S'abonner", style: "color: var(--moon-yellow); text-decoration: none;" %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= content_tag :div, class: "content-card", style: "opacity: 0.7;" do %>
+      <%= content_tag :div, "🤝", class: "card-image" %>
+      <%= content_tag :div, class: "card-content" do %>
+        <%= content_tag :span, "Bientôt", class: "card-tag" %>
+        <%= content_tag :h3, "Ateliers & rencontres" %>
+        <%= content_tag :p, "Dès 2026 : événements physiques pour penser le repos ensemble, créer du lien, échanger sur nos vécus." %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%# Stats Section - Chiffres clés %>
+<%= content_tag :section, class: "stats" do %>
+  <%= content_tag :div, class: "stats-grid" do %>
+    <%= content_tag :div, class: "stat-card" do %>
+      <%= content_tag :div, "2020", class: "stat-number" %>
+      <%= content_tag :div, class: "stat-label" do %>
+        Livre "Le Sommeil Malmené"<br>publié aux éditions de l'Aube
+      <% end %>
+    <% end %>
+    <%= content_tag :div, class: "stat-card" do %>
+      <%= content_tag :div, "15+", class: "stat-number" %>
+      <%= content_tag :div, class: "stat-label" do %>
+        Médias nationaux<br>(France 2, RTL, Brut, RFI...)
+      <% end %>
+    <% end %>
+    <%= content_tag :div, class: "stat-card" do %>
+      <%= content_tag :div, "4", class: "stat-number" %>
+      <%= content_tag :div, class: "stat-label" do %>
+        Épisodes de podcast<br>"La Sieste"
+      <% end %>
+    <% end %>
+    <%= content_tag :div, class: "stat-card" do %>
+      <%= content_tag :div, "2025", class: "stat-number" %>
+      <%= content_tag :div, class: "stat-label" do %>
+        Lancement du média<br>Sleep Activists
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%# Press Section %>
+<%= content_tag :section, class: "press", id: "presse", style: "padding: 4rem 5%;" do %>
+  <%= content_tag :div, class: "section-header" do %>
+    <%= content_tag :h2, "Ils nous ont interviewés" %>
+    <%= content_tag :p, "Le livre \"Le Sommeil Malmené\" dans les médias" %>
+  <% end %>
+  <%= content_tag :div, class: "press-logos", style: "max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 3rem;" do %>
+    <%# France 2 %>
+    <%= content_tag :div, style: "text-align: center; opacity: 0.7; transition: all 0.3s; filter: grayscale(100%); cursor: pointer;" do %>
+      <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/France_2_2018.svg/320px-France_2_2018.svg.png",
+          style: "height: 60px; width: auto;",
+          alt: "France 2" %>
+    <% end %>
+
+    <%# RTL %>
+    <%= content_tag :div, style: "text-align: center; opacity: 0.7; transition: all 0.3s; filter: grayscale(100%); cursor: pointer;" do %>
+      <%= image_tag "https://upload.wikimedia.org/wikipedia/fr/thumb/d/d8/RTL_logo_2015.svg/320px-RTL_logo_2015.svg.png",
+          style: "height: 60px; width: auto;",
+          alt: "RTL" %>
+    <% end %>
+
+    <%# RFI %>
+    <%= content_tag :div, style: "text-align: center; opacity: 0.7; transition: all 0.3s; filter: grayscale(100%); cursor: pointer;" do %>
+      <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Logo_RFI_2013.svg/320px-Logo_RFI_2013.svg.png",
+          style: "height: 60px; width: auto;",
+          alt: "RFI" %>
+    <% end %>
+
+    <%# Brut %>
+    <%= content_tag :div, style: "text-align: center; opacity: 0.7; transition: all 0.3s; filter: grayscale(100%); cursor: pointer;" do %>
+      <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Brut_logo.svg/320px-Brut_logo.svg.png",
+          style: "height: 60px; width: auto;",
+          alt: "Brut" %>
+    <% end %>
+
+    <%# Ouest-France %>
+    <%= content_tag :div, style: "text-align: center; opacity: 0.7; transition: all 0.3s; filter: grayscale(100%); cursor: pointer;" do %>
+      <%= image_tag "https://upload.wikimedia.org/wikipedia/fr/thumb/5/56/Ouest-France_logo.svg/320px-Ouest-France_logo.svg.png",
+          style: "height: 60px; width: auto;",
+          alt: "Ouest-France" %>
+    <% end %>
+  <% end %>
+  <%= content_tag :div, style: "text-align: center; margin-top: 3rem;" do %>
+    <%= link_to "Voir toutes nos interventions médias →", presse_path, class: "cta-secondary" %>
+  <% end %>
+<% end %>
+
+<%# Newsletter CTA %>
+<%= content_tag :section, class: "newsletter-cta", id: "newsletter" do %>
+  <%= content_tag :div, class: "newsletter-box" do %>
+    <%= content_tag :h2, "Rejoignez les Sleep Activists" %>
+    <%= content_tag :p do %>
+      Chaque lundi, recevez une Sleep Story inspirante, des extraits de podcast,
+      des analyses sans moralisation et des pistes pour repenser votre sommeil.
+    <% end %>
+    <%= form_with url: "#", method: :post, class: "newsletter-form", local: true do |f| %>
+      <%= f.email_field :email, placeholder: "Votre email", required: true %>
+      <%= f.submit "S'inscrire" %>
+    <% end %>
+    <%= content_tag :p, style: "margin-top: 2rem; font-size: 0.9rem;" do %>
+      💌 Pas de spam. Désinscription en un clic. Vos données restent privées.
+    <% end %>
+  <% end %>
+<% end %>
+
+<%# Final Quote Section %>
+<%= content_tag :section, class: "mission", style: "padding: 6rem 5%; text-align: center;" do %>
+  <%= content_tag :div, style: "max-width: 800px; margin: 0 auto;" do %>
+    <%= content_tag :p, style: "font-family: 'Crimson Pro', serif; font-size: 2rem; font-style: italic; color: var(--moon-yellow); margin-bottom: 2rem;" do %>
+      "Dans le sommeil, nous voyageons plus loin que dans le monde entier"
+    <% end %>
+    <%= content_tag :p, "— Fernando Pessoa", style: "color: var(--soft-lavender); font-size: 1.2rem;" %>
+  <% end %>
+<% end %>
+
+<style>
+/* Hide hero-tag on mobile */
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  .hero .hero-content {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    padding-top: 6rem; /* Compenser la navbar */
+  }
+
+  .hero {
+    min-height: auto !important;
+    padding: 4rem 5% 2rem !important;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-20px) scale(1.05); }
+}
+
+/* Press logos hover effect */
+.press-logos > div:hover {
+  opacity: 1 !important;
+  filter: grayscale(0%) !important;
+  transform: translateY(-5px);
+}
+
+.press-logos > div {
+  transition: all 0.3s ease;
+}
+</style>

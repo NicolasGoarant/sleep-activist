@@ -1,0 +1,14 @@
+<nav>
+  <a href="<%= root_path %>" class="logo">
+    <div class="logo-icon">
+      <%= image_tag 'logo.jpg', alt: 'Sleep Activists' %>
+    </div>
+    <span>Sleep Activists</span>
+  </a>
+  <ul class="nav-links">
+    <li><%= link_to "Notre mission", mission_path %></li>
+    <li><%= link_to "Contenus", contenus_path %></li>
+    <li><%= link_to "Presse", presse_path %></li>
+    <li><%= link_to "À propos", apropos_path %></li>
+  </ul>
+</nav>

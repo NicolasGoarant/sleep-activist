@@ -1,0 +1,129 @@
+<%# Podcast Header %>
+<%= content_tag :section, class: "hero", style: "min-height: 60vh;" do %>
+  <%= content_tag :div, class: "hero-content" do %>
+    <%= content_tag :div, "🎙️ Audio", class: "hero-tag" %>
+    <%= content_tag :h1, "Le podcast La Sieste", style: "font-size: 3.5rem;" %>
+    <%= content_tag :p, class: "hero-subtitle" do %>
+      Et si dormir n'était pas seulement une affaire de santé, mais aussi une affaire de culture,
+      de société, d'humanité ? Avec La Sieste, nous donnons la parole à celles et ceux qui vivent,
+      étudient, questionnent ou bousculent notre rapport au sommeil.
+    <% end %>
+  <% end %>
+<% end %>
+
+<%# Épisodes Section %>
+<%= content_tag :section, class: "content-grid" do %>
+  <%= content_tag :div, class: "section-header" do %>
+    <%= content_tag :h2, "Tous les épisodes" %>
+    <%= content_tag :p, "4 conversations pour repenser le sommeil" %>
+  <% end %>
+
+  <%= content_tag :div, style: "max-width: 900px; margin: 0 auto;" do %>
+
+    <%# Épisode 1 : Entrepreneur du sommeil %>
+    <%= content_tag :div, style: "margin-bottom: 4rem; padding: 2rem; background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
+      <%= content_tag :div, style: "display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;" do %>
+        <%= content_tag :span, "💼", style: "font-size: 2.5rem;" %>
+        <%= content_tag :div do %>
+          <%= content_tag :h3, "Entrepreneur du sommeil", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 2rem; margin-bottom: 0.5rem;" %>
+          <%= content_tag :p, "Échanges avec Alexis Steiner, des lignes de lit Zébram", style: "color: var(--soft-lavender);" %>
+        <% end %>
+      <% end %>
+      <%= content_tag :p, style: "color: var(--soft-lavender); margin-bottom: 2rem; line-height: 1.8;" do %>
+        Le sommeil, c'est aussi de l'entrepreneuriat ! Échanges avec Alexis Steiner, créateur de Zébram,
+        sur l'aventure entrepreneuriale autour du lit et du repos.
+      <% end %>
+      <%= content_tag :iframe, "",
+          src: "https://open.spotify.com/embed/episode/6FehVZYZBjE3Xuf6enlqY4?utm_source=generator",
+          width: "100%",
+          height: "232",
+          frameBorder: "0",
+          allowfullscreen: "",
+          allow: "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture",
+          loading: "lazy" %>
+    <% end %>
+
+    <%# Épisode 2 : Dormir en temps de guerre %>
+    <%= content_tag :div, style: "margin-bottom: 4rem; padding: 2rem; background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
+      <%= content_tag :div, style: "display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;" do %>
+        <%= content_tag :span, "🌍", style: "font-size: 2.5rem;" %>
+        <%= content_tag :div do %>
+          <%= content_tag :h3, "Dormir en temps de guerre", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 2rem; margin-bottom: 0.5rem;" %>
+          <%= content_tag :p, "L'Ukraine, les nuits sans défense", style: "color: var(--soft-lavender);" %>
+        <% end %>
+      <% end %>
+      <%= content_tag :p, style: "color: var(--soft-lavender); margin-bottom: 2rem; line-height: 1.8;" do %>
+        Dormir, quand des drones rôdent. Dormir, quand le sommeil devient un temps sans défense.
+        Dormir en Ukraine, alors que les nuits deviennent des moments dangereux.
+      <% end %>
+      <%= content_tag :iframe, "",
+          src: "https://open.spotify.com/embed/episode/1WtMdHhPqNdIGx80dgxdr9?utm_source=generator",
+          width: "100%",
+          height: "232",
+          frameBorder: "0",
+          allowfullscreen: "",
+          allow: "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture",
+          loading: "lazy" %>
+    <% end %>
+
+    <%# Épisode 3 : Dormir dehors %>
+    <%= content_tag :div, style: "margin-bottom: 4rem; padding: 2rem; background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
+      <%= content_tag :div, style: "display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;" do %>
+        <%= content_tag :span, "🏡", style: "font-size: 2.5rem;" %>
+        <%= content_tag :div do %>
+          <%= content_tag :h3, "Dormir dehors", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 2rem; margin-bottom: 0.5rem;" %>
+          <%= content_tag :p, "Quand le sommeil se trouve autrement", style: "color: var(--soft-lavender);" %>
+        <% end %>
+      <% end %>
+      <%= content_tag :p, style: "color: var(--soft-lavender); margin-bottom: 2rem; line-height: 1.8;" do %>
+        Comment fait-on quand on n'a pas de chez-soi ? Comment trouve-t-on le sommeil quand il fait froid,
+        quand il y a du bruit, quand on a peur ? Quand le sommeil se trouve autrement.
+      <% end %>
+      <%= content_tag :iframe, "",
+          src: "https://open.spotify.com/embed/episode/0AUnATZehaDWLCikTujAeW?utm_source=generator",
+          width: "100%",
+          height: "232",
+          frameBorder: "0",
+          allowfullscreen: "",
+          allow: "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture",
+          loading: "lazy" %>
+    <% end %>
+
+    <%# Épisode 4 : La Sieste (épisode pilote) %>
+    <%= content_tag :div, style: "margin-bottom: 4rem; padding: 2rem; background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
+      <%= content_tag :div, style: "display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;" do %>
+        <%= content_tag :span, "🎬", style: "font-size: 2.5rem;" %>
+        <%= content_tag :div do %>
+          <%= content_tag :h3, "La Sieste", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 2rem; margin-bottom: 0.5rem;" %>
+          <%= content_tag :p, "En quelques mots, le principe de notre podcast", style: "color: var(--soft-lavender);" %>
+        <% end %>
+      <% end %>
+      <%= content_tag :p, style: "color: var(--soft-lavender); margin-bottom: 2rem; line-height: 1.8;" do %>
+        L'épisode pilote qui présente notre démarche : pourquoi parler du sommeil autrement ?
+        Pourquoi créer ce podcast ? Quelle vision portons-nous ?
+      <% end %>
+      <%= content_tag :iframe, "",
+          src: "https://open.spotify.com/embed/episode/1xULZshi2wVABgpZ6rcaYp?utm_source=generator",
+          width: "100%",
+          height: "232",
+          frameBorder: "0",
+          allowfullscreen: "",
+          allow: "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture",
+          loading: "lazy" %>
+    <% end %>
+
+  <% end %>
+<% end %>
+
+<%# Suivre le podcast %>
+<%= content_tag :section, class: "newsletter-cta" do %>
+  <%= content_tag :div, class: "newsletter-box" do %>
+    <%= content_tag :h2, "Suivre La Sieste sur Spotify" %>
+    <%= content_tag :p do %>
+      Pour être averti des prochains épisodes, suivez-nous sur Spotify ou votre plateforme d'écoute préférée.
+    <% end %>
+    <%= content_tag :div, style: "margin-top: 2rem;" do %>
+      <%= link_to "Suivre sur Spotify →", "https://open.spotify.com/show/0wmFVMpFG5uewnxN5MvIrN", class: "cta-primary", target: "_blank" %>
+    <% end %>
+  <% end %>
+<% end %>
