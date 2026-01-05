@@ -74,24 +74,54 @@ body {
 }
 
 /* Burger menu simple - caché sur desktop */
+/* Le conteneur du burger */
 .burger-menu {
-  display: none;
-  flex-direction: column;
-  gap: 6px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  z-index: 1001;
-  position: relative;
+    display: none; /* Caché sur desktop par défaut */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 35px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10001;
 }
 
+/* Stylisation des spans en "Oreillers" */
 .burger-menu span {
-  width: 28px;
-  height: 3px;
-  background: var(--moon-yellow);
-  border-radius: 3px;
-  transition: all 0.3s ease;
+    width: 100%;
+    height: 6px; /* Plus épais pour l'effet moelleux */
+    background: var(--soft-lavender);
+    /* Border-radius asymétrique pour simuler la forme d'un oreiller */
+    border-radius: 10px 15px 10px 15px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    /* Ombre légère pour donner du volume (bombé) */
+    box-shadow: inset -2px -2px 4px rgba(0,0,0,0.2),
+                2px 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Animation quand le menu est ouvert (les oreillers s'empilent ou tournent) */
+.burger-menu.active span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+    background: var(--moon-yellow);
+}
+
+.burger-menu.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.burger-menu.active span:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+    background: var(--moon-yellow);
+}
+
+/* On s'assure qu'il est visible sur mobile */
+@media (max-width: 768px) {
+    .burger-menu {
+        display: flex;
+    }
 }
 
 /* Animation simple du burger vers X */

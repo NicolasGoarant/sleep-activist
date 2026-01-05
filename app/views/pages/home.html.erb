@@ -1,5 +1,5 @@
 <%# Hero Section with Video %>
-<%= content_tag :section, class: "hero" do %>
+<%= content_tag :section, class: "hero home-hero", style: "display: block;" do %>
   <%= content_tag :div, class: "hero-content", style: "max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;" do %>
     <%= content_tag :div do %>
       <%= content_tag :div, "✨ Un média vivant • Podcast, Blog, Instagram", class: "hero-tag hide-on-mobile" %>
@@ -34,9 +34,26 @@
   <% end %>
 <% end %>
 
-<%# Mission Section - Philosophie du média - ESPACE RÉDUIT %>
-<%= content_tag :section, class: "mission", id: "mission", style: "padding-top: 2rem;" do %>
-  <%= content_tag :div, class: "mission-container" do %>
+<%# Mission Section - Philosophie du média - INVERSÉ %>
+<%= content_tag :section, class: "mission", id: "mission", style: "padding-top: 16rem;" do %>
+  <%= content_tag :div, class: "mission-container", style: "display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;" do %>
+    <%# VIDÉO À GAUCHE %>
+    <%= content_tag :div, class: "mission-visual" do %>
+      <%# Vidéo d'illustration %>
+      <%= content_tag :div, style: "width: 100%; height: 100%; border-radius: 30px; overflow: hidden; position: relative; background: var(--deep-navy);" do %>
+        <%= content_tag :video,
+            autoplay: true,
+            loop: true,
+            muted: true,
+            playsinline: true,
+            style: "width: 100%; height: 100%; object-fit: cover; display: block;",
+            class: "mission-video" do %>
+          <%= tag :source, src: "/videos/femme_enfant_light.mp4", type: "video/mp4" %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%# TEXTE À DROITE %>
     <%= content_tag :div, class: "mission-text" do %>
       <%= content_tag :h2, "Un média doux... mais engagé" %>
       <%= content_tag :p do %>
@@ -54,20 +71,6 @@
       <% end %>
       <%= content_tag :p, style: "margin-top: 2rem; font-style: italic;" do %>
         Nous croyons qu'un autre sommeil est possible : apaisé, désirable, collectif.
-      <% end %>
-    <% end %>
-    <%= content_tag :div, class: "mission-visual" do %>
-      <%# Vidéo d'illustration %>
-      <%= content_tag :div, style: "width: 100%; height: 100%; border-radius: 30px; overflow: hidden; position: relative; background: var(--deep-navy);" do %>
-        <%= content_tag :video,
-            autoplay: true,
-            loop: true,
-            muted: true,
-            playsinline: true,
-            style: "width: 100%; height: 100%; object-fit: cover; display: block;",
-            class: "mission-video" do %>
-          <%= tag :source, src: "/videos/femme_enfant_light.mp4", type: "video/mp4" %>
-        <% end %>
       <% end %>
     <% end %>
   <% end %>
@@ -288,6 +291,14 @@
 <% end %>
 
 <style>
+/* Hero de la home : centré verticalement SANS padding-top excessif */
+.home-hero {
+  padding-top: 80px !important; /* Juste pour compenser la navbar */
+  min-height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
 /* Hide hero-tag on mobile */
 @media (max-width: 768px) {
   .hide-on-mobile {
@@ -297,15 +308,36 @@
   .hero .hero-content {
     grid-template-columns: 1fr !important;
     gap: 2rem !important;
-    padding-top: 0; /* Pas de padding-top */
+    padding-top: 0 !important;
   }
 
   .hero {
     min-height: auto !important;
-    padding: 0 5% 2rem !important; /* Pas de padding-top */
-    margin-top: 80px; /* Marge pour compenser la navbar */
+    padding: 90px 5% 2rem !important; /* Seulement padding-top, pas de margin */
+  }
+
+  /* Mission sur mobile : remettre texte au-dessus, vidéo en-dessous */
+  .mission-container {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+  }
+
+  /* Forcer l'ordre : texte puis vidéo */
+  .mission-text {
+    order: 1 !important;
+  }
+
+  .mission-visual {
+    order: 2 !important;
+    height: 300px !important;
+  }
+
+  /* Réduire l'espacement de la mission sur mobile */
+  .mission {
+    padding-top: 3rem !important;
   }
 }
+
 
 @keyframes float {
   0%, 100% { transform: translateY(0px) scale(1); }

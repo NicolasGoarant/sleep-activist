@@ -20,7 +20,6 @@ body {
     color: var(--text-light);
     line-height: 1.6;
     overflow-x: hidden;
-    padding-top: 80px;
 }
 
 /* Animated stars background */
@@ -118,7 +117,7 @@ nav, .navbar {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 0 5%;
+    padding: 100px 5% 0; /* Padding-top pour compenser la navbar */
     z-index: 1;
 }
 
@@ -668,62 +667,118 @@ footer {
     filter: grayscale(1) brightness(2); opacity: 0.4;
 }
 
-/* --- Animation Mouton --- */
+/* --- Animation Mouton Améliorée --- */
 .walking-sheep {
     position: fixed; bottom: 40px; font-size: 2.5rem;
     z-index: 9999; pointer-events: none;
 }
 
-@keyframes walkAcross {
-    from { left: -100px; }
-    to { left: 110vw; }
+/* Gambader de gauche à droite (avec petits sauts) */
+@keyframes sheep-gambol {
+  0% {
+    left: -100px;
+    transform: scaleX(1) translateY(0);
+  }
+  10% { transform: scaleX(1) translateY(-20px); }
+  15% { transform: scaleX(1) translateY(0); }
+  25% { transform: scaleX(1) translateY(-20px); }
+  30% { transform: scaleX(1) translateY(0); }
+  40% { transform: scaleX(1) translateY(-20px); }
+  45% { transform: scaleX(1) translateY(0); }
+  60% {
+    left: 40%;
+    transform: scaleX(1) translateY(0);
+  }
+  100% {
+    left: 40%;
+    transform: scaleX(1) translateY(0);
+  }
 }
 
-/* Animation de "petit saut" quand il bouge */
-@keyframes sheep-hop {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+/* S'endormir (tombe doucement sur le côté) */
+@keyframes sheep-sleep {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(15deg) scale(0.95);
+  }
+  100% {
+    transform: rotate(90deg) scale(0.8);
+    opacity: 0.3;
+  }
 }
 
-.sheep-moving {
-  animation: sheep-hop 0.6s infinite ease-in-out !important;
+/* S'envoler (monte vers le ciel en tournant) */
+@keyframes sheep-fly {
+  0% {
+    bottom: 40px;
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+  100% {
+    bottom: 150vh;
+    opacity: 0;
+    transform: rotate(360deg) scale(1.5);
+  }
 }
 
-/* On rend le conteneur plus discret et crédible */
+/* Passer une tête depuis la GAUCHE */
+@keyframes sheep-peek-left {
+  0% { left: -100px; transform: scaleX(1); }
+  30% { left: 30px; transform: scaleX(1); }
+  70% { left: 30px; transform: scaleX(1); }
+  100% { left: -100px; transform: scaleX(1); }
+}
+
+/* Passer une tête depuis la DROITE */
+@keyframes sheep-peek-right {
+  0% { right: -100px; left: auto; transform: scaleX(-1); }
+  30% { right: 30px; transform: scaleX(-1); }
+  70% { right: 30px; transform: scaleX(-1); }
+  100% { right: -100px; transform: scaleX(-1); }
+}
+
+/* Classes pour appliquer les animations */
+.sheep-walking {
+  animation: sheep-gambol 6s ease-in-out forwards;
+}
+
+.sheep-sleeping {
+  animation: sheep-sleep 2s ease-out forwards;
+}
+
+.sheep-flying {
+  animation: sheep-fly 3s ease-in forwards;
+}
+
+.sheep-peeking-left {
+  animation: sheep-peek-left 4s ease-in-out;
+  top: 50% !important;
+  bottom: auto !important;
+}
+
+.sheep-peeking-right {
+  animation: sheep-peek-right 4s ease-in-out;
+  top: 50% !important;
+  bottom: auto !important;
+}
+
+/* Container du mouton */
 .sheep-container {
   cursor: pointer;
   z-index: 100;
   transition: all 0.5s ease;
   user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .zzz {
   color: var(--soft-lavender);
   opacity: 0.6;
-}
-
-/* La classe qui active le saut */
-.sheep-moving {
-  animation: sheep-hop 0.5s infinite ease-in-out !important;
-}
-
-
-
-
-/* Animation de gambade (saut) */
-@keyframes sheep-hop {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-
-
-
-/* Force les ZZZ à suivre le mouton */
-.sheep-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: left 2s ease-out, top 2s ease-out; /* Pour que tout le bloc bouge */
 }
 
 /* Empêche le contenu de pousser les bords du navigateur */
@@ -738,7 +793,7 @@ html, body {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
-    width: 100vw !important; /* Utilise vw pour ignorer les débordements de contenu */
+    width: 100vw !important;
     right: 0 !important;
     box-sizing: border-box;
 }
