@@ -35,7 +35,7 @@
 <% end %>
 
 <%# Mission Section - Philosophie du média - INVERSÉ %>
-<%= content_tag :section, class: "mission", id: "mission", style: "padding-top: 16rem;" do %>
+<%= content_tag :section, class: "mission", id: "mission", style: "padding-top: 10rem;" do %>
   <%= content_tag :div, class: "mission-container", style: "display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;" do %>
     <%# VIDÉO À GAUCHE %>
     <%= content_tag :div, class: "mission-visual" do %>
@@ -147,7 +147,7 @@
         <% end %>
       <% end %>
     <% end %>
-    <%= link_to "https://www.amazon.fr/sommeil-malmené-Nicolas-Goarant/dp/2815936690", target: "_blank", style: "text-decoration: none;" do %>
+    <%= link_to "https://editionsdelaube.fr/catalogue_de_livres/le-sommeil-malmene/", target: "_blank", style: "text-decoration: none;" do %>
       <%= content_tag :div, class: "content-card", style: "cursor: pointer;" do %>
         <%= content_tag :div, "📚", class: "card-image" %>
         <%= content_tag :div, class: "card-content" do %>
@@ -335,6 +335,12 @@
   /* Réduire l'espacement de la mission sur mobile */
   .mission {
     padding-top: 3rem !important;
+  }
+
+  /* Réduire l'interligne du titre mission sur mobile */
+  .mission-text h2 {
+    line-height: 1.2 !important;
+    font-size: 2.2rem !important;
   }
 }
 
