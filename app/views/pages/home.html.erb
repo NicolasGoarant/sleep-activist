@@ -120,7 +120,7 @@
         <%= content_tag :div, class: "card-content" do %>
           <%= content_tag :span, "Audio", class: "card-tag" %>
           <%= content_tag :h3, "Podcast \"La Sieste\"" %>
-          <%= content_tag :p, "Et si dormir n'était pas seulement une affaire de santé, mais aussi une affaire de culture, de société, d'humanité ? Histoires, réflexions, témoignages." %>
+          <%= content_tag :p, "Conversations profondes avec chercheurs, artistes, citoyens. Penser le sommeil autrement." %>
           <%= content_tag :span, "→ Écouter", style: "color: var(--moon-yellow); text-decoration: none;" %>
         <% end %>
       <% end %>
@@ -131,7 +131,7 @@
         <%= content_tag :div, class: "card-content" do %>
           <%= content_tag :span, "Écrit", class: "card-tag" %>
           <%= content_tag :h3, "Le blog" %>
-          <%= content_tag :p, "Analyses, récits, témoignages. Les bouleversements du sommeil, les solutions sans injonctions, nos objectifs." %>
+          <%= content_tag :p, "Analyses, récits, témoignages. Comprendre les enjeux. Agir sans culpabiliser." %>
           <%= content_tag :span, "→ Lire", style: "color: var(--moon-yellow); text-decoration: none;" %>
         <% end %>
       <% end %>
@@ -142,18 +142,18 @@
         <%= content_tag :div, class: "card-content" do %>
           <%= content_tag :span, "Social", class: "card-tag" %>
           <%= content_tag :h3, "Instagram" %>
-          <%= content_tag :p, "Carrousels doux, série \"Sommeil dans le monde\", déconstructions quotidiennes du discours dominant sur le sommeil." %>
+          <%= content_tag :p, "Carrousels pédagogiques, séries thématiques. Déconstruire le discours dominant." %>
           <%= content_tag :span, "→ Suivre", style: "color: var(--moon-yellow); text-decoration: none;" %>
         <% end %>
       <% end %>
     <% end %>
-    <%= link_to "https://editionsdelaube.fr/catalogue_de_livres/le-sommeil-malmene/", target: "_blank", style: "text-decoration: none;" do %>
+    <%= link_to "https://www.amazon.fr/sommeil-malmené-Nicolas-Goarant/dp/2815936690", target: "_blank", style: "text-decoration: none;" do %>
       <%= content_tag :div, class: "content-card", style: "cursor: pointer;" do %>
         <%= content_tag :div, "📚", class: "card-image" %>
         <%= content_tag :div, class: "card-content" do %>
           <%= content_tag :span, "Livre", class: "card-tag" %>
           <%= content_tag :h3, "Le Sommeil Malmené" %>
-          <%= content_tag :p, "Le livre fondateur (2020) qui a tout déclenché. Comment retrouver le goût de la nuit. Éditions de l'Aube." %>
+          <%= content_tag :p, "Le livre fondateur (2020). Retrouver le goût de la nuit. Éditions de l'Aube." %>
           <%= content_tag :span, "→ Commander", style: "color: var(--moon-yellow); text-decoration: none;" %>
         <% end %>
       <% end %>
@@ -164,7 +164,7 @@
         <%= content_tag :div, class: "card-content" do %>
           <%= content_tag :span, "Newsletter", class: "card-tag" %>
           <%= content_tag :h3, "Sleep Stories" %>
-          <%= content_tag :p, "Chaque lundi : une histoire inspirante, des analyses sans moralisation, des pistes pour repenser votre sommeil." %>
+          <%= content_tag :p, "Chaque lundi : une histoire inspirante, des clés pour agir, zéro moralisation." %>
           <%= content_tag :span, "→ S'abonner", style: "color: var(--moon-yellow); text-decoration: none;" %>
         <% end %>
       <% end %>
@@ -174,7 +174,7 @@
       <%= content_tag :div, class: "card-content" do %>
         <%= content_tag :span, "Bientôt", class: "card-tag" %>
         <%= content_tag :h3, "Ateliers & rencontres" %>
-        <%= content_tag :p, "Dès 2026 : événements physiques pour penser le repos ensemble, créer du lien, échanger sur nos vécus." %>
+        <%= content_tag :p, "Dès 2026 : événements physiques. Penser le repos ensemble, créer du lien." %>
       <% end %>
     <% end %>
   <% end %>
@@ -293,10 +293,51 @@
 <style>
 /* Hero de la home : centré verticalement SANS padding-top excessif */
 .home-hero {
-  padding-top: 80px !important; /* Juste pour compenser la navbar */
+  padding-top: 80px !important;
   min-height: 100vh !important;
   display: flex !important;
   align-items: center !important;
+}
+
+/* ============================================ */
+/* AMÉLIORATION 1 : LETTRINES (style journal) */
+/* ============================================ */
+.mission-text p:first-of-type::first-letter {
+  font-family: 'Crimson Pro', serif;
+  font-size: 4.5rem;
+  font-weight: 600;
+  float: left;
+  line-height: 0.85;
+  margin: 0.05em 0.15em 0 0;
+  color: var(--moon-yellow);
+}
+
+/* ================================================== */
+/* AMÉLIORATION 2 : MICRO-INTERACTIONS DOUCES */
+/* ================================================== */
+
+/* Hover cartes adouci */
+.content-card {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+
+.content-card:hover {
+  transform: translateY(-10px) scale(1.02) !important;
+  box-shadow: 0 30px 60px rgba(255, 217, 61, 0.3) !important;
+}
+
+/* Boutons CTA plus fluides */
+.cta-primary, .cta-secondary {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+
+.cta-primary:hover {
+  transform: translateY(-3px) !important;
+}
+
+/* Stats cards avec transition douce */
+.stat-card {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
 }
 
 /* Hide hero-tag on mobile */
@@ -700,6 +741,56 @@ function scheduleRandomWalk() {
   // Première vague
   setTimeout(createShootingStar, 5000);
   setTimeout(createFloatingMoon, 12000);
+})();
+</script>
+
+<!-- Script parallaxe étoiles (effet onirique doux) -->
+<script>
+(function() {
+  // Créer des étoiles fixes pour parallaxe
+  function createBackgroundStars() {
+    const container = document.body;
+    const starCount = 40;
+
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.className = 'parallax-star';
+      star.textContent = '·';
+      star.style.cssText = `
+        position: fixed;
+        color: rgba(255, 255, 255, ${0.2 + Math.random() * 0.3});
+        font-size: ${Math.random() * 2 + 1}px;
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        pointer-events: none;
+        z-index: 0;
+        transition: transform 0.3s ease-out;
+      `;
+      star.dataset.speed = (0.05 + (i % 5) * 0.03).toString();
+      container.appendChild(star);
+    }
+  }
+
+  // Parallaxe au scroll (optimisé)
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrolled = window.pageYOffset;
+        const stars = document.querySelectorAll('.parallax-star');
+
+        stars.forEach(star => {
+          const speed = parseFloat(star.dataset.speed);
+          star.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  createBackgroundStars();
 })();
 </script>
 
