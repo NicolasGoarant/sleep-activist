@@ -529,24 +529,29 @@
   }, 1000);
 
   // Fonction pour faire marcher le mouton de temps en temps
-  function scheduleRandomWalk() {
-    if (!isVisible) return;
+function scheduleRandomWalk() {
+  if (!isVisible) return;
+  const walkDelay = 5000 + Math.random() * 10000;
 
-    const walkDelay = 5000 + Math.random() * 10000; // Entre 5 et 15 secondes
+  setTimeout(() => {
+    if (isVisible) {
+      // 1. On fait sauter TOUT le conteneur (mouton + zzz)
+      sheep.classList.add('sheep-moving');
 
-    setTimeout(() => {
-      if (isVisible) {
-        // Marcher
-        sheep.style.animation = 'sheep-walk 2s ease-out forwards';
+      // 2. On calcule la nouvelle position horizontale
+      // On change le 'left' ou 'right' du conteneur entier
+      const currentLeft = sheep.offsetLeft;
+      const moveX = (Math.random() - 0.5) * 200;
+      sheep.style.left = (currentLeft + moveX) + 'px';
 
-        // Programmer la prochaine marche
-        setTimeout(() => {
-          sheep.style.animation = '';
-          scheduleRandomWalk();
-        }, 2000);
-      }
-    }, walkDelay);
-  }
+      // 3. On arrête de gambader après la fin du mouvement
+      setTimeout(() => {
+        sheep.classList.remove('sheep-moving');
+        scheduleRandomWalk();
+      }, 2000);
+    }
+  }, walkDelay);
+}
 
   // Fonction pour faire disparaître le mouton
   function hideSheep() {

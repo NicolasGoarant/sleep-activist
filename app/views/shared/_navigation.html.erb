@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar" id="main-navbar">
   <a href="<%= root_path %>" class="logo">
     <div class="logo-icon">
       <%= image_tag 'logo.jpg', alt: 'Sleep Activists' %>
@@ -35,28 +35,22 @@
 <style>
 /* Protection body pour la navbar */
 body {
-  padding-top: 0 !important;
-  margin-top: 0 !important;
+  margin: 0;
 }
 
 /* Navbar base - FIXE en permanence */
 .navbar {
-  position: fixed !important; /* Force fixed */
-  top: 0 !important; /* Force top */
-  left: 0;
-  right: 0;
-  height: 70px;
-  background: rgba(15, 11, 61, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(184, 181, 232, 0.2);
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 80px; /* On définit une hauteur fixe */
+  z-index: 9999 !important; /* Pour être sûr qu'elle passe au-dessus de tout */
+  background: var(--deep-navy); /* Assure-toi qu'elle n'est pas transparente */
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0 5%;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  transform: translateZ(0); /* Force GPU acceleration */
-  will-change: transform; /* Optimisation */
+  border-bottom: 1px solid rgba(184, 181, 232, 0.1);
 }
 
 /* Desktop navigation */

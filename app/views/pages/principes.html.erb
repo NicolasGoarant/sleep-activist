@@ -1,4 +1,4 @@
-<%# Principes Header %>
+<%# On commence directement par la section Hero comme dans equipe.erb %>
 <%= content_tag :section, class: "hero", style: "min-height: 60vh; padding-top: 100px;" do %>
   <%= content_tag :div, class: "hero-content" do %>
     <%= content_tag :div, "📜 Philosophie", class: "hero-tag" %>
@@ -10,145 +10,73 @@
   <% end %>
 <% end %>
 
-<%# Nos 3 objectifs %>
-<%= content_tag :section, class: "content-grid" do %>
-  <%= content_tag :div, class: "section-header" do %>
-    <%= content_tag :h2, "Nos trois objectifs" %>
+<%# Section 1 : Nos 3 objectifs (Organisation spatiale préservée) %>
+<%= content_tag :section, class: "content-grid", style: "padding: 4rem 5%;" do %>
+  <%= content_tag :div, class: "section-header", style: "text-align: center; margin-bottom: 4rem;" do %>
+    <%= content_tag :h2, "Nos trois objectifs", style: "font-size: 2.5rem; color: var(--warm-cream);" %>
   <% end %>
 
   <%= content_tag :div, style: "max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;" do %>
+    <%# Objectif Politque %>
     <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2); padding: 2.5rem; text-align: center;" do %>
       <%= content_tag :div, "🏛️", style: "font-size: 4rem; margin-bottom: 1.5rem;" %>
       <%= content_tag :h3, "Le sommeil, c'est politique", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.8rem; margin-bottom: 1.5rem;" %>
-      <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8;" do %>
-        Montrer que le sommeil n'est pas qu'une affaire de cerveau et de synapses.
-        Bien plus qu'un phénomène biologique, notre repos relève de notre civilisation
-        et de ses bouleversements.
-      <% end %>
+      <%= content_tag :p, "Montrer que le sommeil n'est pas qu'une affaire de cerveau et de synapses. Bien plus qu'un phénomène biologique, notre repos relève de notre civilisation.", style: "color: var(--soft-lavender); line-height: 1.8;" %>
     <% end %>
 
+    <%# Objectif Vision %>
     <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2); padding: 2.5rem; text-align: center;" do %>
       <%= content_tag :div, "🌍", style: "font-size: 4rem; margin-bottom: 1.5rem;" %>
       <%= content_tag :h3, "Élargir notre vision", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.8rem; margin-bottom: 1.5rem;" %>
-      <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8;" do %>
-        Le sommeil embrasse la littérature, le sport, le tourisme, la ville, la société.
-        C'est un continent qui reste à défricher et à découvrir, bien au-delà des
-        seules prescriptions médicales.
-      <% end %>
+      <%= content_tag :p, "Le sommeil embrasse la littérature, le sport, l'urbanisme. C'est un continent qui reste à défricher bien au-delà des seules prescriptions médicales.", style: "color: var(--soft-lavender); line-height: 1.8;" %>
     <% end %>
 
+    <%# Objectif Communauté %>
     <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2); padding: 2.5rem; text-align: center;" do %>
       <%= content_tag :div, "💤", style: "font-size: 4rem; margin-bottom: 1.5rem;" %>
       <%= content_tag :h3, "Créer une communauté", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.8rem; margin-bottom: 1.5rem;" %>
-      <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8;" do %>
-        Si dormir appartient à l'individu, le plaisir à le faire et l'engagement à le
-        défendre sont partagés. Créer une communauté des amoureux du sommeil.
-      <% end %>
+      <%= content_tag :p, "Si dormir appartient à l'individu, le plaisir à le faire et l'engagement à le défendre sont partagés. Créer une communauté des amoureux du sommeil.", style: "color: var(--soft-lavender); line-height: 1.8;" %>
     <% end %>
   <% end %>
 <% end %>
 
-<%# Les bouleversements du sommeil %>
-<%= content_tag :section, class: "mission", style: "background: linear-gradient(135deg, rgba(26, 20, 100, 0.3), rgba(15, 11, 61, 0.5));" do %>
-  <%= content_tag :div, class: "section-header", style: "margin-bottom: 4rem;" do %>
-    <%= content_tag :h2, "Les bouleversements du sommeil" %>
-    <%= content_tag :p, "Pourquoi dort-on si mal ?" %>
-  <% end %>
+<%# Section 2 : Version "Sécurisée" pour la Navbar %>
+<section class="mission" style="background: rgba(26, 20, 100, 0.2); padding: 6rem 5%; border-top: 1px solid rgba(184, 181, 232, 0.1);">
+  <div style="max-width: 800px; margin: 0 auto; text-align: center; margin-bottom: 4rem;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--warm-cream);">Les bouleversements du sommeil</h2>
+    <p style="color: var(--moon-yellow); font-size: 1.2rem;">Pourquoi dort-on si mal ?</p>
+  </div>
 
-  <%= content_tag :div, style: "max-width: 800px; margin: 0 auto; margin-bottom: 4rem;" do %>
-    <%= content_tag :p, style: "color: var(--soft-lavender); font-size: 1.2rem; line-height: 1.8; text-align: center;" do %>
-      Selon le baromètre de Santé Publique France, la durée moyenne de sommeil en France
-      s'est nettement dégradée : <strong style="color: var(--moon-yellow);">8h en 1986, 7h45 en 2010, moins de 7h en 2017</strong>.
-    <% end %>
-    <%= content_tag :p, style: "color: var(--soft-lavender); font-size: 1.1rem; line-height: 1.8; text-align: center; margin-top: 2rem;" do %>
-      Les raisons de cette dégradation sont avant tout dues aux évolutions de notre société.
-      À nos yeux, les responsables sont nombreux.
-    <% end %>
-  <% end %>
-
-  <%= content_tag :div, style: "max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;" do %>
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
     <% [
-      ["🔊", "Le bruit", "Transports, voisinage : 1 Français sur 2 est gêné par des nuisances sonores à domicile."],
-      ["🧠", "La charge mentale", "Conjuguer vie pro, tâches ménagères, éducation : synonyme de fatigue, voire d'épuisement."],
-      ["🌃", "Le travail de nuit", "4,3 millions de personnes en France. Dépression, anxiété, burn-out parmi les risques."],
-      ["🎉", "Les nuits blanches", "Le discours d'une modernité qui encourage le sacrifice du sommeil au profit de la production."],
-      ["💊", "Les somnifères", "Des dizaines de millions de boîtes vendues chaque année, malgré une efficacité limitée."],
-      ["🤐", "Les non-dits", "Le sommeil semble délaissé par la puissance publique, une 'colonne absente' du discours politique."],
-      ["📱", "Les écrans", "Lumière bleue détraque le sommeil : plus d'1 Français sur 2 a un téléphone au lit."],
-      ["🌡️", "Le réchauffement climatique", "Nos nuits n'échappent pas au climat : nous n'avons pas fini de connaître des nuits caniculaires."]
-    ].each do |emoji, titre, description| %>
-      <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border-radius: 15px; border: 1px solid rgba(184, 181, 232, 0.15); padding: 1.5rem; text-align: center;" do %>
-        <%= content_tag :div, emoji, style: "font-size: 2.5rem; margin-bottom: 1rem;" %>
-        <%= content_tag :h4, titre, style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.3rem; margin-bottom: 1rem;" %>
-        <%= content_tag :p, description, style: "color: var(--soft-lavender); font-size: 0.95rem; line-height: 1.6;" %>
-      <% end %>
+      ["🔊", "Le bruit", "Transports, voisinage : 1 Français sur 2 est gêné par des nuisances sonores."],
+      ["🧠", "La charge mentale", "Conjuguer vie pro et perso : synonyme de fatigue, voire d'épuisement."],
+      ["🌃", "Le travail de nuit", "4,3 millions de personnes en France. Dépression et anxiété parmi les risques."],
+      ["📱", "Les écrans", "La lumière bleue détraque le sommeil : plus d'1 Français sur 2 a un téléphone au lit."]
+    ].each do |emoji, titre, desc| %>
+      <div style="flex: 1 1 250px; background: rgba(255, 255, 255, 0.03); border-radius: 15px; border: 1px solid rgba(184, 181, 232, 0.15); padding: 1.5rem; text-align: center; max-width: 280px;">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem;"><%= emoji %></div>
+        <h4 style="color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.3rem; margin-bottom: 0.5rem;"><%= titre %></h4>
+        <p style="color: var(--soft-lavender); font-size: 0.95rem;"><%= desc %></p>
+      </div>
     <% end %>
-  <% end %>
-<% end %>
+  </div>
+</section>
 
-<%# Les solutions %>
-<%= content_tag :section, class: "content-grid" do %>
-  <%= content_tag :div, class: "section-header" do %>
-    <%= content_tag :h2, "Mieux dormir : les solutions" %>
-    <%= content_tag :p, "Hygiène de vie... et choix collectifs" %>
-  <% end %>
-
-  <%= content_tag :div, style: "max-width: 900px; margin: 0 auto; margin-bottom: 4rem;" do %>
-    <%= content_tag :p, style: "color: var(--soft-lavender); font-size: 1.2rem; line-height: 1.8; text-align: center; font-style: italic;" do %>
-      "Si le sommeil est avant tout une question de civilisation, alors il existe des solutions.
-      Quand il s'agit de dormir, oublions les synapses, pensons à la société."
-    <% end %>
-  <% end %>
-
-  <%= content_tag :div, style: "max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;" do %>
-    <% [
-      ["🏃", "Les vertus du sport", "La fatigue physique, puissante alliée pour un repos de qualité."],
-      ["📚", "Prévention & éducation", "Apprenons à limiter les écrans, à respecter les rythmes."],
-      ["🌳", "Adoucir nos villes", "Mobilités douces, lutte contre la pollution lumineuse et sonore."],
-      ["❤️", "La sexualité", "Les vertus d'une sexualité épanouie pour rejoindre Morphée."],
-      ["🛏️", "Une literie de qualité", "Matelas et sommier adaptés : une étape simple mais indispensable."],
-      ["⏰", "Des rythmes réguliers", "Se coucher et se réveiller à heures fixes : habitude vertueuse."],
-      ["🌡️", "Une bonne température", "Régler sa chambre autour de 18-19°C toute la nuit."],
-      ["🏖️", "S'occuper de soi", "Voyager, se ressourcer, lâcher prise dans des lieux de repos."],
-      ["👨‍⚕️", "Parler à son médecin", "Fatigue persistante ? C'est peut-être le signe d'une pathologie."],
-      ["🥗", "Bien manger", "Alimentation équilibrée, variée : elle fait la différence."],
-      ["😴", "La sieste", "Ce moment de repos correspond à nos rythmes biologiques."],
-      ["📣", "Se mobiliser", "Convaincre les élus, les journalistes : le sommeil est une question de société."]
-    ].each do |emoji, titre, description| %>
-      <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border-radius: 15px; border: 1px solid rgba(184, 181, 232, 0.15); padding: 1.5rem;" do %>
-        <%= content_tag :div, emoji, style: "font-size: 2.5rem; margin-bottom: 1rem;" %>
-        <%= content_tag :h4, titre, style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.2rem; margin-bottom: 0.8rem;" %>
-        <%= content_tag :p, description, style: "color: var(--soft-lavender); font-size: 0.9rem; line-height: 1.6;" %>
-      <% end %>
-    <% end %>
-  <% end %>
-<% end %>
-
-<%# Notre approche %>
-<%= content_tag :section, class: "mission" do %>
+<%# Section 3 : Notre approche (Style minimaliste de equipe.erb) %>
+<%= content_tag :section, class: "mission", style: "padding: 6rem 5%;" do %>
   <%= content_tag :div, style: "max-width: 800px; margin: 0 auto; text-align: center;" do %>
-    <%= content_tag :h2, "Notre approche", style: "margin-bottom: 2rem;" %>
-    <%= content_tag :p, style: "color: var(--soft-lavender); font-size: 1.2rem; line-height: 1.9; margin-bottom: 1.5rem;" do %>
-      Sleep Activists ne donne pas de leçons. Nous ne disons pas "dormez 8 heures",
-      "méditez avant de dormir" ou "éteignez vos écrans". Nous ne culpabilisons personne.
-    <% end %>
-    <%= content_tag :p, style: "color: var(--moon-yellow); font-size: 1.3rem; line-height: 1.9; font-weight: 500; font-style: italic;" do %>
-      Nous explorons, questionnons, racontons. Nous donnons la parole à celles et ceux
-      dont le sommeil est malmené. Nous militons pour un autre regard sur le repos.
-    <% end %>
+    <%= content_tag :h2, "Notre approche", style: "margin-bottom: 2rem; font-size: 2.5rem;" %>
+    <%= content_tag :p, "Sleep Activists ne donne pas de leçons. Nous ne disons pas 'dormez 8 heures' ou 'éteignez vos écrans'. Nous ne culpabilisons personne.", style: "color: var(--soft-lavender); font-size: 1.2rem; line-height: 1.9; margin-bottom: 1.5rem;" %>
+    <%= content_tag :p, "Nous explorons, questionnons, racontons. Nous militons pour un autre regard sur le repos.", style: "color: var(--moon-yellow); font-size: 1.3rem; font-style: italic;" %>
   <% end %>
 <% end %>
 
-<%# CTA %>
-<%= content_tag :section, class: "newsletter-cta" do %>
-  <%= content_tag :div, class: "newsletter-box" do %>
-    <%= content_tag :h2, "Rejoignez le mouvement" %>
-    <%= content_tag :p do %>
-      Vous partagez ces principes ? Vous voulez contribuer à changer le regard sur le sommeil ?
-    <% end %>
-    <%= content_tag :div, style: "margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;" do %>
-      <%= link_to "Recevoir la newsletter", newsletter_path, class: "cta-primary" %>
-      <%= link_to "Découvrir l'écosystème", root_path(anchor: "contenus"), class: "cta-secondary" %>
-    <% end %>
+<%# Section 4 : CTA (Structure newsletter de equipe.erb) %>
+<%= content_tag :section, class: "newsletter-cta", style: "padding: 4rem 5%;" do %>
+  <%= content_tag :div, class: "newsletter-box", style: "background: rgba(255, 255, 255, 0.05); border-radius: 30px; padding: 3rem; text-align: center;" do %>
+    <%= content_tag :h2, "Rejoignez le mouvement", style: "margin-bottom: 1.5rem;" %>
+    <%= content_tag :p, "Vous partagez ces principes ? Inscrivez-vous pour ne rien manquer.", style: "margin-bottom: 2rem;" %>
+    <%= link_to "Découvrir l'écosystème", root_path(anchor: "contenus"), class: "cta-primary" %>
   <% end %>
 <% end %>
