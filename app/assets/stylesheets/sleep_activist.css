@@ -410,37 +410,6 @@ h1 .highlight {
     margin-top: 1rem;
 }
 
-/* Press Section */
-.press {
-    position: relative;
-    padding: 6rem 5%;
-    z-index: 1;
-}
-
-.press-logos {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 3rem;
-    opacity: 0.6;
-}
-
-.press-logo {
-    font-family: 'Crimson Pro', serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--soft-lavender);
-    transition: all 0.3s;
-}
-
-.press-logo:hover {
-    color: var(--moon-yellow);
-    opacity: 1;
-}
-
 /* Newsletter CTA */
 .newsletter-cta {
     position: relative;
@@ -654,18 +623,7 @@ footer {
 /* --- Optimisation Média --- */
 .section-spacing { padding: 100px 5% !important; }
 
-.press-logos-container {
-    background: rgba(255, 255, 255, 0.02);
-    padding: 50px 0;
-    margin: 40px 0;
-    border-top: 1px solid rgba(184, 181, 232, 0.1);
-    border-bottom: 1px solid rgba(184, 181, 232, 0.1);
-}
 
-.press-logos {
-    display: flex; justify-content: center; align-items: center; gap: 60px;
-    filter: grayscale(1) brightness(2); opacity: 0.4;
-}
 
 /* --- Animation Mouton Améliorée --- */
 .walking-sheep {
@@ -673,19 +631,25 @@ footer {
     z-index: 9999; pointer-events: none;
 }
 
-/* Gambader de gauche à droite (avec petits sauts) */
+/* Gambader de gauche à droite (avec petits sauts) - VERSION RALENTIE */
 @keyframes sheep-gambol {
   0% {
     left: -100px;
     transform: scaleX(1) translateY(0);
   }
-  10% { transform: scaleX(1) translateY(-20px); }
-  15% { transform: scaleX(1) translateY(0); }
-  25% { transform: scaleX(1) translateY(-20px); }
-  30% { transform: scaleX(1) translateY(0); }
-  40% { transform: scaleX(1) translateY(-20px); }
-  45% { transform: scaleX(1) translateY(0); }
-  60% {
+  5% { transform: scaleX(1) translateY(-15px); }
+  8% { transform: scaleX(1) translateY(0); }
+  15% { transform: scaleX(1) translateY(-15px); }
+  18% { transform: scaleX(1) translateY(0); }
+  25% { transform: scaleX(1) translateY(-15px); }
+  28% { transform: scaleX(1) translateY(0); }
+  35% { transform: scaleX(1) translateY(-15px); }
+  38% { transform: scaleX(1) translateY(0); }
+  45% { transform: scaleX(1) translateY(-15px); }
+  48% { transform: scaleX(1) translateY(0); }
+  55% { transform: scaleX(1) translateY(-15px); }
+  58% { transform: scaleX(1) translateY(0); }
+  70% {
     left: 40%;
     transform: scaleX(1) translateY(0);
   }
@@ -710,17 +674,17 @@ footer {
   }
 }
 
-/* S'envoler (monte vers le ciel en tournant) */
+/* S'envoler (monte vers le ciel SANS rotation) */
 @keyframes sheep-fly {
   0% {
     bottom: 40px;
     opacity: 1;
-    transform: rotate(0deg);
+    transform: scale(1);
   }
   100% {
     bottom: 150vh;
     opacity: 0;
-    transform: rotate(360deg) scale(1.5);
+    transform: scale(1.5);
   }
 }
 
@@ -796,4 +760,395 @@ html, body {
     width: 100vw !important;
     right: 0 !important;
     box-sizing: border-box;
+}
+
+/* ========================================== */
+/* HOME PAGE SPECIFIC STYLES */
+/* ========================================== */
+
+/* Hero de la home : centré verticalement */
+.home-hero {
+  padding-top: 80px !important;
+  min-height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* LETTRINES (style journal) */
+.mission-text p:first-of-type::first-letter {
+  font-family: 'Crimson Pro', serif;
+  font-size: 4.5rem;
+  font-weight: 600;
+  float: left;
+  line-height: 0.85;
+  margin: 0.05em 0.15em 0 0;
+  color: var(--moon-yellow);
+}
+
+/* MICRO-INTERACTIONS DOUCES */
+.content-card {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+
+.content-card:hover {
+  transform: translateY(-10px) scale(1.02) !important;
+  box-shadow: 0 30px 60px rgba(255, 217, 61, 0.3) !important;
+}
+
+.cta-primary, .cta-secondary {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+
+.cta-primary:hover {
+  transform: translateY(-3px) !important;
+}
+
+.stat-card {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+
+/* RESPONSIVE HOME */
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  .hero .hero-content {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    padding-top: 0 !important;
+  }
+
+  .hero {
+    min-height: auto !important;
+    padding: 90px 5% 2rem !important;
+  }
+
+  .mission-container {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+  }
+
+  .mission-text {
+    order: 1 !important;
+  }
+
+  .mission-visual {
+    order: 2 !important;
+    height: 300px !important;
+  }
+
+  .mission {
+    padding-top: 3rem !important;
+  }
+
+  .mission-text h2 {
+    line-height: 1.2 !important;
+    font-size: 2.2rem !important;
+  }
+}
+
+/* ========================================== */
+/* ANIMATIONS & EFFECTS */
+/* ========================================== */
+
+/* Étoiles filantes */
+.shooting-star {
+  position: fixed;
+  font-size: 1.5rem;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+}
+
+@keyframes shooting {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(-45deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(300px) translateY(300px) rotate(-45deg);
+  }
+}
+
+/* Lunes flottantes */
+.floating-moon {
+  position: fixed;
+  font-size: 2rem;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
+  animation: float-moon 20s ease-in-out infinite;
+}
+
+@keyframes float-moon {
+  0%, 100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-30px) translateX(20px) rotate(15deg);
+  }
+}
+
+/* ========================================== */
+/* PRESS LOGOS CAROUSEL */
+/* ========================================== */
+
+.press-logos-container {
+  position: relative;
+  padding: 6rem 5%;
+  z-index: 1;
+}
+
+.press-logos-carousel {
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 2rem 0;
+}
+
+.press-logos-track {
+  display: flex !important;
+  gap: 4rem !important;
+  will-change: transform;
+  animation: scroll-logos 40s linear infinite;
+}
+
+@keyframes scroll-logos {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.press-logos-carousel:hover .press-logos-track {
+  animation-play-state: paused;
+}
+
+.press-logo-link {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  min-width: 120px;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(184, 181, 232, 0.1);
+  border-radius: 15px;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.press-logo-link:hover {
+  transform: translateY(-8px) scale(1.05);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 217, 61, 0.3);
+  box-shadow: 0 10px 30px rgba(255, 217, 61, 0.2);
+}
+
+.press-logo-img {
+  height: 50px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  filter: grayscale(1) brightness(2.5);
+  opacity: 0.7;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.press-logo-link:hover .press-logo-img {
+  opacity: 1;
+  filter: grayscale(0) brightness(1.1);
+  transform: scale(1.05);
+}
+
+.press-logos-title {
+  color: var(--soft-lavender);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.press-cta-link {
+  color: var(--moon-yellow);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.press-cta-link:hover {
+  text-decoration: underline;
+  transform: translateX(5px);
+}
+
+/* ========================================== */
+/* SHEEP ANIMATIONS */
+/* ========================================== */
+
+.sheep-container {
+  position: fixed;
+  bottom: 0px;
+  right: 30px;
+  z-index: 999;
+  transition: all 1s ease-in-out;
+  cursor: pointer;
+}
+
+.sheep-container.sheep-appear {
+  animation: sheep-popup 2s ease-out forwards;
+}
+
+@keyframes sheep-popup {
+  0% { bottom: -120px; opacity: 0; }
+  100% { bottom: 0px; opacity: 1; }
+}
+
+@keyframes sheep-walk {
+  0% {
+    transform: translateX(0) scaleX(1) translateY(0);
+  }
+  30% {
+    transform: translateX(-35px) scaleX(1) translateY(-5px);
+  }
+  60% {
+    transform: translateX(-70px) scaleX(1) translateY(0);
+  }
+  100% {
+    transform: translateX(-70px) scaleX(1) translateY(0);
+  }
+}
+
+.sheep-container.sheep-moving {
+  /* Déclenché par JS */
+}
+
+.sheep-container:hover {
+  animation: sheep-bounce 0.5s ease infinite;
+}
+
+@keyframes sheep-bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.1); }
+}
+
+@keyframes sheep-goodbye {
+  to {
+    bottom: -150px !important;
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+/* ========================================== */
+/* ZZZ ANIMATIONS (sommeil) */
+/* ========================================== */
+
+.zzz {
+  position: absolute;
+  font-size: 1.5rem;
+  color: var(--soft-lavender);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.zzz:nth-child(1) {
+  top: -30px;
+  right: 10px;
+  animation: zzz-float 3s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.zzz:nth-child(2) {
+  top: -50px;
+  right: 25px;
+  animation: zzz-float 3s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.zzz:nth-child(3) {
+  top: -70px;
+  right: 40px;
+  animation: zzz-float 3s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+@keyframes zzz-float {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.8);
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(1.2);
+  }
+}
+
+/* ========================================== */
+/* SAUT DE BARRIÈRE (troupeau) */
+/* ========================================== */
+
+.fence-jump-container {
+  position: fixed;
+  bottom: 60px;
+  left: -100px;
+  z-index: 998;
+  pointer-events: none;
+}
+
+.jumping-sheep {
+  position: absolute;
+  font-size: 3rem;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
+
+@keyframes fence-jump {
+  0% {
+    left: -100px;
+    bottom: 0;
+    transform: rotate(0deg);
+  }
+  20% {
+    left: 15%;
+    bottom: 0;
+  }
+  30% {
+    left: 22%;
+    bottom: 120px;
+    transform: rotate(-15deg);
+  }
+  40% {
+    left: 29%;
+    bottom: 0;
+    transform: rotate(0deg);
+  }
+  50% {
+    left: 36%;
+    bottom: 120px;
+    transform: rotate(-15deg);
+  }
+  60% {
+    left: 43%;
+    bottom: 0;
+    transform: rotate(0deg);
+  }
+  70% {
+    left: 50%;
+    bottom: 0;
+  }
+  100% {
+    left: 50%;
+    bottom: 200vh;
+    opacity: 0;
+    transform: scale(1.5);
+  }
 }

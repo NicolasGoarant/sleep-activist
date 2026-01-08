@@ -1,4 +1,25 @@
 <%# Hero Section with Video %>
+
+<!-- Étoiles constellation en arrière-plan -->
+<div class="stars" id="starsContainer"></div>
+
+<script>
+// Générer les étoiles de constellation au chargement
+(function() {
+  const starsContainer = document.getElementById('starsContainer');
+  const starCount = 100; // 100 étoiles fixes qui scintillent
+
+  for (let i = 0; i < starCount; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDelay = Math.random() * 3 + 's'; // Décalage aléatoire du scintillement
+    starsContainer.appendChild(star);
+  }
+})();
+</script>
+
 <%= content_tag :section, class: "hero home-hero", style: "display: block;" do %>
   <%= content_tag :div, class: "hero-content", style: "max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;" do %>
     <%= content_tag :div do %>
@@ -210,57 +231,43 @@
   <% end %>
 <% end %>
 
-<%# Press Section %>
-<%= content_tag :section, class: "press", id: "presse", style: "padding: 4rem 5%;" do %>
-  <%= content_tag :div, class: "section-header" do %>
-    <%= content_tag :h2, "Ils nous ont interviewés" %>
-    <%= content_tag :p, "Le livre \"Le Sommeil Malmené\" dans les médias" %>
-  <% end %>
-  <%= content_tag :div, class: "press-logos-carousel" do %>
-    <%= content_tag :div, class: "press-logos-track", style: "display: flex; gap: 4rem; animation: scroll-logos 30s linear infinite;" do %>
-      <%# Première série de logos %>
-      <% [
-        ["France_2.png", "France 2", "https://www.youtube.com/embed/qBfHg9Hyehk"],
-        ["France_Culture.png", "France Culture", "https://www.radiofrance.fr/franceculture/podcasts/la-vie-mode-d-emploi/notre-sommeil-entre-l-intime-et-le-politique-8860750"],
-        ["France_Inter.png", "France Inter", "https://www.facebook.com/grandbienvousfasse/posts/retrouvez-le-podcast-de-l%C3%A9mission-sur-le-sommeil-avec-pierre-philip-nicolas-goar/1031683047245173/?locale=fr_FR"],
-        ["RTL.png", "RTL", "https://youtu.be/LtPFmPsjKak"],
-        ["Brut.png", "Brut", "https://youtu.be/Xqj8cnh1nak"],
-        ["RFI.png", "RFI", "https://www.rfi.fr/fr/podcasts/8-milliards-de-voisins/20250609-les-petits-plaisirs-de-la-sieste"],
-        ["Ouest-France.png", "Ouest-France", "https://www.ouest-france.fr/sante/dormir-moins-de-7-heures-par-nuit-se-paye-tres-cher-un-specialiste-du-sommeil-sonne-l-alarme-7083917"]
-      ].each do |logo, name, url| %>
-        <%= link_to url, target: "_blank", style: "text-decoration: none; flex-shrink: 0;" do %>
-          <%= content_tag :div, style: "text-align: center; opacity: 0.8; transition: all 0.3s; cursor: pointer;" do %>
-            <%= image_tag logo,
-                style: "height: 80px; width: auto; display: block;",
-                alt: name %>
+<%# Press Section - Version Média Prestige %>
+<section class="press-logos-container" id="presse">
+  <div style="text-align: center; margin-bottom: 40px;">
+    <p class="press-logos-title">Ils parlent de notre engagement</p>
+  </div>
+
+  <div class="press-logos-carousel">
+    <div class="press-logos-track">
+
+      <%# Liste unique de tes médias avec les noms de fichiers corrigés %>
+      <% press_items = [
+        ["france_2.png", "France 2", "https://www.youtube.com/watch?v=qBfHg9Hyehk"],
+        ["france_culture.png", "France Culture", "https://www.radiofrance.fr/franceculture/podcasts/la-vie-mode-d-emploi/notre-sommeil-entre-l-intime-et-le-politique-8860750"],
+        ["france_inter.png", "France Inter", "https://www.facebook.com/grandbienvousfasse/posts/retrouvez-le-podcast-de-l%C3%A9mission-sur-le-sommeil-avec-pierre-philip-nicolas-goar/1031683047245173/"],
+        ["rtl.png", "RTL", "https://youtu.be/LtPFmPsjKak"],
+        ["brut.png", "Brut", "https://youtu.be/Xqj8cnh1nak"],
+        ["rfi.png", "RFI", "https://www.rfi.fr/fr/podcasts/8-milliards-de-voisins/20250609-les-petits-plaisirs-de-la-sieste"],
+        ["ouest_france.png", "Ouest-France", "https://www.ouest-france.fr/sante/dormir-moins-de-7-heures-par-nuit-se-paye-tres-cher-un-specialiste-du-sommeil-sonne-l-alarme-7083917"],
+        ["usbek_et_rica.png", "Usbek et Rica", "https://usbeketrica.com/fr/article/le-sommeil-est-une-maladie-politique"]
+      ] %>
+
+      <%# On affiche la liste deux fois pour créer l'effet de boucle infinie %>
+      <% 2.times do %>
+        <% press_items.each do |logo, name, url| %>
+          <%= link_to url, target: "_blank", class: "press-logo-link" do %>
+            <img src="/images/<%= logo %>" alt="<%= name %>" class="press-logo-img" loading="lazy">
           <% end %>
         <% end %>
       <% end %>
 
-      <%# Dupliquer les logos pour l'effet infini %>
-      <% [
-        ["France_2.png", "France 2", "https://www.youtube.com/embed/qBfHg9Hyehk"],
-        ["France_Culture.png", "France Culture", "https://www.radiofrance.fr/franceculture/podcasts/la-vie-mode-d-emploi/notre-sommeil-entre-l-intime-et-le-politique-8860750"],
-        ["France_Inter.png", "France Inter", "https://www.facebook.com/grandbienvousfasse/posts/retrouvez-le-podcast-de-l%C3%A9mission-sur-le-sommeil-avec-pierre-philip-nicolas-goar/1031683047245173/?locale=fr_FR"],
-        ["RTL.png", "RTL", "https://youtu.be/LtPFmPsjKak"],
-        ["Brut.png", "Brut", "https://youtu.be/Xqj8cnh1nak"],
-        ["RFI.png", "RFI", "https://www.rfi.fr/fr/podcasts/8-milliards-de-voisins/20250609-les-petits-plaisirs-de-la-sieste"],
-        ["Ouest-France.png", "Ouest-France", "https://www.ouest-france.fr/sante/dormir-moins-de-7-heures-par-nuit-se-paye-tres-cher-un-specialiste-du-sommeil-sonne-l-alarme-7083917"]
-      ].each do |logo, name, url| %>
-        <%= link_to url, target: "_blank", style: "text-decoration: none; flex-shrink: 0;" do %>
-          <%= content_tag :div, style: "text-align: center; opacity: 0.8; transition: all 0.3s; cursor: pointer;" do %>
-            <%= image_tag logo,
-                style: "height: 80px; width: auto; display: block;",
-                alt: name %>
-          <% end %>
-        <% end %>
-      <% end %>
-    <% end %>
-  <% end %>
-  <%= content_tag :div, style: "text-align: center; margin-top: 3rem;" do %>
-    <%= link_to "Voir toutes nos interventions médias →", presse_path, class: "cta-secondary" %>
-  <% end %>
-<% end %>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 4rem;">
+    <%= link_to "Voir toutes nos interventions médias →", principes_path, class: "press-cta-link" %>
+  </div>
+</section>
 
 <%# Newsletter CTA %>
 <%= content_tag :section, class: "newsletter-cta", id: "newsletter" do %>
@@ -290,296 +297,10 @@
   <% end %>
 <% end %>
 
-<style>
-/* Hero de la home : centré verticalement SANS padding-top excessif */
-.home-hero {
-  padding-top: 80px !important;
-  min-height: 100vh !important;
-  display: flex !important;
-  align-items: center !important;
-}
-
-/* ============================================ */
-/* AMÉLIORATION 1 : LETTRINES (style journal) */
-/* ============================================ */
-.mission-text p:first-of-type::first-letter {
-  font-family: 'Crimson Pro', serif;
-  font-size: 4.5rem;
-  font-weight: 600;
-  float: left;
-  line-height: 0.85;
-  margin: 0.05em 0.15em 0 0;
-  color: var(--moon-yellow);
-}
-
-/* ================================================== */
-/* AMÉLIORATION 2 : MICRO-INTERACTIONS DOUCES */
-/* ================================================== */
-
-/* Hover cartes adouci */
-.content-card {
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
-}
-
-.content-card:hover {
-  transform: translateY(-10px) scale(1.02) !important;
-  box-shadow: 0 30px 60px rgba(255, 217, 61, 0.3) !important;
-}
-
-/* Boutons CTA plus fluides */
-.cta-primary, .cta-secondary {
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
-}
-
-.cta-primary:hover {
-  transform: translateY(-3px) !important;
-}
-
-/* Stats cards avec transition douce */
-.stat-card {
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
-}
-
-/* Hide hero-tag on mobile */
-@media (max-width: 768px) {
-  .hide-on-mobile {
-    display: none !important;
-  }
-
-  .hero .hero-content {
-    grid-template-columns: 1fr !important;
-    gap: 2rem !important;
-    padding-top: 0 !important;
-  }
-
-  .hero {
-    min-height: auto !important;
-    padding: 90px 5% 2rem !important; /* Seulement padding-top, pas de margin */
-  }
-
-  /* Mission sur mobile : remettre texte au-dessus, vidéo en-dessous */
-  .mission-container {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: auto !important;
-  }
-
-  /* Forcer l'ordre : texte puis vidéo */
-  .mission-text {
-    order: 1 !important;
-  }
-
-  .mission-visual {
-    order: 2 !important;
-    height: 300px !important;
-  }
-
-  /* Réduire l'espacement de la mission sur mobile */
-  .mission {
-    padding-top: 3rem !important;
-  }
-
-  /* Réduire l'interligne du titre mission sur mobile */
-  .mission-text h2 {
-    line-height: 1.2 !important;
-    font-size: 2.2rem !important;
-  }
-}
-
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px) scale(1); }
-  50% { transform: translateY(-20px) scale(1.05); }
-}
-
-/* Étoiles filantes aléatoires */
-.shooting-star {
-  position: fixed;
-  font-size: 1.5rem;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0;
-}
-
-@keyframes shooting {
-  0% {
-    opacity: 0;
-    transform: translateX(0) translateY(0) rotate(-45deg);
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(300px) translateY(300px) rotate(-45deg);
-  }
-}
-
-/* Petites lunes qui flottent doucement */
-.floating-moon {
-  position: fixed;
-  font-size: 2rem;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.3;
-  animation: float-moon 20s ease-in-out infinite;
-}
-
-@keyframes float-moon {
-  0%, 100% {
-    transform: translateY(0) translateX(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-30px) translateX(20px) rotate(15deg);
-  }
-}
-
-/* Press logos carousel */
-.press-logos-carousel {
-  max-width: 100%;
-  overflow: hidden;
-  position: relative;
-  padding: 2rem 0;
-}
-
-.press-logos-track {
-  will-change: transform;
-}
-
-@keyframes scroll-logos {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.press-logos-carousel:hover .press-logos-track {
-  animation-play-state: paused;
-}
-
-/* Press logos hover effect */
-.press-logos-track > a > div:hover {
-  opacity: 1 !important;
-  transform: translateY(-8px) scale(1.05);
-}
-
-/* Mouton Sleep Activists - Easter Egg amélioré */
-.sheep-container {
-  position: fixed;
-  bottom: 0px;
-  right: 30px;
-  z-index: 999;
-  transition: all 1s ease-in-out;
-  cursor: pointer;
-}
-
-/* Animation d'apparition initiale */
-.sheep-container.sheep-appear {
-  animation: sheep-popup 2s ease-out forwards;
-}
-
-@keyframes sheep-popup {
-  0% { bottom: -120px; opacity: 0; }
-  100% { bottom: 0px; opacity: 1; }
-}
-
-/* Animation de déplacement - quelques pas seulement */
-@keyframes sheep-walk {
-  0% {
-    transform: translateX(0) scaleX(1) translateY(0);
-  }
-  30% {
-    transform: translateX(-35px) scaleX(1) translateY(-5px);
-  }
-  60% {
-    transform: translateX(-70px) scaleX(1) translateY(0);
-  }
-  100% {
-    transform: translateX(-70px) scaleX(1) translateY(0); /* Reste en place */
-  }
-}
-
-.sheep-container.sheep-moving {
-  /* Pas d'animation continue, sera déclenchée par JS */
-}
-
-.sheep-container:hover {
-  animation: sheep-bounce 0.5s ease infinite;
-}
-
-@keyframes sheep-bounce {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-10px) scale(1.1); }
-}
-
-/* Animation de disparition */
-@keyframes sheep-goodbye {
-  to { bottom: -150px; opacity: 0; }
-}
-
-.zzz {
-  position: absolute;
-  top: -40px;
-  right: 80px;
-  font-size: 2rem;
-  opacity: 0;
-  animation: zzz-float 3s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes zzz-float {
-  0%, 100% { opacity: 0; transform: translateY(0px); }
-  50% { opacity: 0.7; transform: translateY(-20px); }
-}
-
-.zzz:nth-child(2) { animation-delay: 0.5s; right: 90px; }
-.zzz:nth-child(3) { animation-delay: 1s; right: 100px; }
-
-/* Version responsive : plus petit et disparaît vite */
-@media (max-width: 768px) {
-  .sheep-container {
-    right: 10px;
-    bottom: 10px;
-  }
-
-  .sheep-container div:last-child {
-    font-size: 3rem !important;
-  }
-
-  /* Animation mobile avant disparition */
-  .sheep-container.sheep-walking-mobile {
-    animation: sheep-walk-mobile 2s ease-in-out 1 forwards;
-  }
-
-  @keyframes sheep-walk-mobile {
-    0% {
-      transform: translateX(0) scaleX(1);
-    }
-    50% {
-      transform: translateX(-120px) scaleX(-1);
-    }
-    100% {
-      transform: translateX(0) scaleX(1);
-    }
-  }
-
-  .zzz {
-    font-size: 1.2rem;
-    top: -25px;
-    right: 50px;
-  }
-
-  .zzz:nth-child(2) { right: 55px; }
-  .zzz:nth-child(3) { right: 60px; }
-}
-</style>
 
 <!-- Mouton Easter Egg avec script -->
-<div class="sheep-container" id="sleepSheep">
-  <div class="zzz">z</div>
-  <div class="zzz">z</div>
-  <div class="zzz">z</div>
-  <div style="font-size: 5rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));">🐑</div>
+<div class="sheep-container" id="sleepSheep" style="position: fixed; bottom: 40px; left: -100px; z-index: 999;">
+  <div style="font-size: 4rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));">🐑</div>
 </div>
 
 <script>
@@ -589,116 +310,111 @@
 
   const isMobile = window.innerWidth <= 768;
   let isVisible = false;
+  let currentAnimation = null;
 
-  // Apparition initiale
+  // Apparition initiale après 2 secondes
   setTimeout(() => {
-    sheep.classList.add('sheep-appear');
+    initialAppearance();
+  }, 2000);
+
+  function initialAppearance() {
+    sheep.style.left = '-100px';
+    sheep.style.bottom = '40px';
+    sheep.style.display = 'block';
+
+    // Gambader (marcher avec petits sauts)
+    sheep.style.animation = 'sheep-gambol 6s ease-in-out forwards';
     isVisible = true;
 
-    // Sur mobile, gambade puis disparaît après 4 secondes
-    if (isMobile) {
-      setTimeout(() => {
-        sheep.classList.add('sheep-walking-mobile');
-        setTimeout(() => hideSheep(), 2000);
-      }, 2000);
-    } else {
-      // Sur desktop, marche de temps en temps
-      scheduleRandomWalk();
-    }
-  }, 1000);
-
-  // Fonction pour faire marcher le mouton de temps en temps
-function scheduleRandomWalk() {
-  if (!isVisible) return;
-  const walkDelay = 5000 + Math.random() * 10000;
-
-  setTimeout(() => {
-    if (isVisible) {
-      // 1. On fait sauter TOUT le conteneur (mouton + zzz)
-      sheep.classList.add('sheep-moving');
-
-      // 2. On calcule la nouvelle position horizontale
-      // On change le 'left' ou 'right' du conteneur entier
-      const currentLeft = sheep.offsetLeft;
-      const moveX = (Math.random() - 0.5) * 200;
-      sheep.style.left = (currentLeft + moveX) + 'px';
-
-      // 3. On arrête de gambader après la fin du mouvement
-      setTimeout(() => {
-        sheep.classList.remove('sheep-moving');
-        scheduleRandomWalk();
-      }, 2000);
-    }
-  }, walkDelay);
-}
-
-  // Fonction pour faire disparaître le mouton
-  function hideSheep() {
-    sheep.style.animation = 'sheep-goodbye 1s forwards';
-    isVisible = false;
+    // Après 6 secondes : dormir OU s'envoler
     setTimeout(() => {
-      sheep.style.display = 'none';
-      // Réapparition aléatoire
-      scheduleReappear();
-    }, 1000);
-  }
-
-  // Fonction pour réapparaître à un endroit aléatoire
-  function reappearSheep() {
-    if (isVisible) return;
-
-    const positions = isMobile
-      ? [{bottom: '10px', right: '10px'}, {bottom: '10px', left: '10px'}]
-      : [
-          {bottom: '0px', right: '30px'},
-          {bottom: '0px', left: '30px'},
-          {top: '80px', right: '30px'},
-          {bottom: '50%', right: '30px'}
-        ];
-
-    const pos = positions[Math.floor(Math.random() * positions.length)];
-
-    sheep.style.bottom = pos.bottom || 'auto';
-    sheep.style.top = pos.top || 'auto';
-    sheep.style.right = pos.right || 'auto';
-    sheep.style.left = pos.left || 'auto';
-    sheep.style.display = 'block';
-    sheep.style.animation = 'none';
-
-    setTimeout(() => {
-      sheep.classList.add('sheep-appear');
-      isVisible = true;
-
-      if (isMobile) {
-        setTimeout(() => hideSheep(), 4000);
+      if (Math.random() < 0.5) {
+        fallAsleep();
       } else {
-        sheep.classList.add('sheep-moving');
+        flyAway();
       }
-    }, 100);
+    }, 6000);
   }
 
-  // Programmer une réapparition aléatoire
+  function fallAsleep() {
+    // Animation de sommeil (tombe sur le côté)
+    sheep.style.animation = 'sheep-sleep 2s ease-out forwards';
+
+    // Après 3 secondes endormi, il disparaît
+    setTimeout(() => {
+      disappear();
+    }, 5000);
+  }
+
+  function flyAway() {
+    // Animation de vol (monte vers le ciel)
+    sheep.style.animation = 'sheep-fly 3s ease-in forwards';
+
+    setTimeout(() => {
+      disappear();
+    }, 3000);
+  }
+
+  function disappear() {
+    sheep.style.display = 'none';
+    isVisible = false;
+
+    // Reprogrammer une réapparition
+    scheduleReappear();
+  }
+
   function scheduleReappear() {
-    const delay = isMobile
-      ? 15000 + Math.random() * 20000  // 15-35 sec sur mobile
-      : 10000 + Math.random() * 15000; // 10-25 sec sur desktop
+    // Réapparaît entre 10 et 30 secondes plus tard
+    const delay = 10000 + Math.random() * 20000;
 
-    setTimeout(() => reappearSheep(), delay);
-  }
-
-  // Clic pour faire disparaître
-  sheep.addEventListener('click', () => {
-    if (isVisible) hideSheep();
-  });
-
-  // Sur desktop, disparition/réapparition automatique
-  if (!isMobile) {
-    setInterval(() => {
-      if (isVisible && Math.random() > 0.7) {
-        hideSheep();
+    setTimeout(() => {
+      // 70% gambade complète, 30% juste un peek
+      if (Math.random() < 0.7) {
+        initialAppearance(); // Gambade complète
+      } else {
+        peekFromSide(); // Juste passer une tête
       }
-    }, 20000);
+    }, delay);
   }
+
+  function peekFromSide() {
+    // Choisir un côté aléatoire
+    const fromLeft = Math.random() < 0.5;
+    const randomHeight = 30 + Math.random() * 40; // Entre 30% et 70% de hauteur
+
+    if (fromLeft) {
+      sheep.style.left = '-100px';
+      sheep.style.bottom = 'auto';
+      sheep.style.top = randomHeight + '%';
+      sheep.style.transform = 'scaleX(1)';
+      sheep.style.animation = 'sheep-peek-left 4s ease-in-out';
+    } else {
+      sheep.style.right = '-100px';
+      sheep.style.left = 'auto';
+      sheep.style.bottom = 'auto';
+      sheep.style.top = randomHeight + '%';
+      sheep.style.transform = 'scaleX(-1)';
+      sheep.style.animation = 'sheep-peek-right 4s ease-in-out';
+    }
+
+    sheep.style.display = 'block';
+    isVisible = true;
+
+    // Après le peek, il disparaît et reprogramme
+    setTimeout(() => {
+      disappear();
+    }, 4000);
+  }
+
+  // Clic sur le mouton : il s'envole immédiatement
+  sheep.addEventListener('click', () => {
+    if (isVisible) {
+      sheep.style.animation = 'sheep-fly 2s ease-in forwards';
+      setTimeout(() => {
+        disappear();
+      }, 2000);
+    }
+  });
 })();
 </script>
 
@@ -793,13 +509,3 @@ function scheduleRandomWalk() {
   createBackgroundStars();
 })();
 </script>
-
-<style>
-@keyframes sheep-goodbye {
-  to {
-    bottom: -150px !important;
-    opacity: 0;
-    transform: scale(0.5);
-  }
-}
-</style>
