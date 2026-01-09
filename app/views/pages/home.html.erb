@@ -389,3 +389,59 @@
   createBackgroundStars();
 })();
 </script>
+
+<!-- Script mouton simple -->
+<script>
+(function() {
+  function showSheep() {
+    const sheep = document.createElement('div');
+    sheep.className = 'simple-sheep';
+    sheep.textContent = '🐑';
+    document.body.appendChild(sheep);
+
+    // Après 10 secondes, commencer à générer des Z (le mouton "dort")
+    setTimeout(() => {
+      createSleepingZs(sheep, 5000); // Générer des Z pendant 5 secondes
+    }, 10000);
+
+    // Supprimer après l'animation (18 secondes)
+    setTimeout(() => {
+      sheep.remove();
+    }, 18000);
+  }
+
+  function createSleepingZs(sheepElement, duration) {
+    const startTime = Date.now();
+    let zCount = 0;
+
+    const zInterval = setInterval(() => {
+      if (Date.now() - startTime > duration || zCount >= 6) {
+        clearInterval(zInterval);
+        return;
+      }
+
+      const z = document.createElement('div');
+      z.className = 'sleep-z';
+      z.textContent = '💤'; // Uniquement le gros emoji
+
+      // Position au-dessus du mouton (très proche)
+      const sheepRect = sheepElement.getBoundingClientRect();
+      z.style.left = `${sheepRect.left + sheepRect.width / 2 + (Math.random() * 30 - 15)}px`;
+      z.style.bottom = `${window.innerHeight - sheepRect.top - 10}px`; // -10 pour être juste au-dessus
+
+      document.body.appendChild(z);
+
+      // Supprimer le Z après son animation (3s)
+      setTimeout(() => z.remove(), 3000);
+
+      zCount++;
+    }, 1000); // Un Z toutes les secondes
+  }
+
+  // Première apparition 2 secondes après le chargement
+  setTimeout(showSheep, 2000);
+
+  // Réapparition toutes les 45 secondes
+  setInterval(showSheep, 45000);
+})();
+</script>

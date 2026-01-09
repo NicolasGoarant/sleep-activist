@@ -778,6 +778,90 @@ html, body {
 }
 
 /* ========================================== */
+/* MOUTON ANIMATION SIMPLE */
+/* ========================================== */
+
+.sleeping-sheep {
+  position: fixed;
+  font-size: 5rem;
+  bottom: 60px;
+  left: -150px;
+  pointer-events: none;
+  z-index: 5;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  animation: sheep-life-cycle 20s ease-in-out forwards;
+}
+
+@keyframes sheep-life-cycle {
+  /* 0-10% : Apparition et marche */
+  0% {
+    left: -150px;
+    opacity: 0;
+    transform: scaleX(-1) rotate(0deg);
+  }
+  5% {
+    opacity: 1;
+  }
+  10% {
+    left: 20%;
+    transform: scaleX(-1) rotate(0deg);
+  }
+
+  /* 10-20% : Bâillement (léger scale up) */
+  15% {
+    transform: scaleX(-1) rotate(0deg) scale(1.1);
+  }
+  20% {
+    transform: scaleX(-1) rotate(0deg) scale(1);
+  }
+
+  /* 20-40% : Se roule en boule (rotation 360°) */
+  25% {
+    transform: scaleX(-1) rotate(90deg);
+  }
+  30% {
+    transform: scaleX(-1) rotate(180deg);
+  }
+  35% {
+    transform: scaleX(-1) rotate(270deg);
+  }
+  40% {
+    bottom: 50px;
+    transform: scaleX(-1) rotate(360deg) scale(0.9);
+  }
+
+  /* 40-75% : Dort paisiblement en boule */
+  75% {
+    bottom: 50px;
+    transform: scaleX(-1) rotate(360deg) scale(0.9);
+  }
+
+  /* 75-100% : Disparaît */
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(-1) rotate(360deg) scale(0.9);
+  }
+}
+
+/* Animation de respiration pendant le sommeil */
+.sleeping-sheep.sleeping {
+  animation: sheep-life-cycle 20s ease-in-out forwards,
+             breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scaleX(-1) rotate(360deg) scale(0.9);
+  }
+  50% {
+    transform: scaleX(-1) rotate(360deg) scale(0.95);
+  }
+}
+
+/* ========================================== */
 /* PRESS LOGOS CAROUSEL */
 /* ========================================== */
 
@@ -841,4 +925,191 @@ html, body {
 .press-cta-link:hover {
   text-decoration: underline;
   transform: translateX(5px);
+}
+
+
+
+
+/* ========================================== */
+/* MOUTON – VIDÉO ANIMÉE (LEONARDO) */
+/* ========================================== */
+
+/* ========================================== */
+/* MOUTON – VIDÉO (anti-rectangle + anti-vert) */
+/* ========================================== */
+
+.sheep-video-container {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+  width: 260px;
+  pointer-events: none;
+  z-index: 4;
+
+  opacity: 0;
+  animation: sheep-fade-in 2s ease forwards;
+
+  /* Fond identique au site derrière la vidéo */
+  background: var(--deep-navy);
+
+  /* IMPORTANT : évite tout débordement */
+  overflow: hidden;
+  isolation: isolate;
+
+  /* 1) Casse le rectangle (super robuste) */
+  clip-path: ellipse(62% 55% at 45% 58%);
+  -webkit-clip-path: ellipse(62% 55% at 45% 58%);
+
+  /* 2) Feather optionnel (si supporté) */
+  -webkit-mask-image: radial-gradient(circle at 45% 60%, #000 55%, rgba(0,0,0,0.0) 78%);
+  mask-image: radial-gradient(circle at 45% 60%, #000 55%, rgba(0,0,0,0.0) 78%);
+}
+
+.sheep-video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+
+  /* Fusion */
+  mix-blend-mode: screen;
+  opacity: 0.92;
+
+  /* ANTI-FOND VERDÂTRE :
+     - hue-rotate pour tirer le vert vers le bleu
+     - saturate down pour calmer la dominante
+  */
+  filter: hue-rotate(-35deg) saturate(0.75) brightness(0.82) contrast(1.1);
+}
+
+/* Voile bleu (plus fort) pour matcher le deep navy */
+.sheep-video-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 11, 61, 0.32); /* augmente l’intégration */
+  pointer-events: none;
+}
+
+/* Apparition douce */
+@keyframes sheep-fade-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .sheep-video-container {
+    width: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+  }
+}
+
+
+
+
+/* Apparition douce */
+@keyframes sheep-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile : plus petit et centré */
+@media (max-width: 768px) {
+  .sheep-video-container {
+    width: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+  }
+}
+
+/* ========================================== */
+/* MOUTON SIMPLE EMOJI */
+/* ========================================== */
+
+.simple-sheep {
+  position: fixed;
+  bottom: 60px;
+  left: -120px; /* Part de la gauche */
+  font-size: 5rem;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  transform: scaleX(-1); /* Retourne pour qu'il regarde vers le centre/gauche */
+  animation: sheep-journey 18s ease-in-out forwards;
+}
+
+@keyframes sheep-journey {
+  /* 0-20% : Apparition lente */
+  0% {
+    left: -120px;
+    opacity: 0;
+  }
+  20% {
+    left: 15%;
+    opacity: 1;
+  }
+
+  /* 20-75% : Reste visible */
+  75% {
+    left: 15%;
+    opacity: 1;
+  }
+
+  /* 75-100% : Disparition douce */
+  90% {
+    left: 15%;
+    opacity: 0.5;
+  }
+  100% {
+    left: 15%;
+    opacity: 0;
+  }
+}
+
+/* Z qui flottent au-dessus du mouton */
+.sleep-z {
+  position: fixed;
+  font-size: 2rem;
+  color: var(--soft-lavender); /* Bleu lavande au lieu de jaune */
+  pointer-events: none;
+  z-index: 11;
+  opacity: 0;
+  animation: z-float 3s ease-out forwards;
+}
+
+@keyframes z-float {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-80px) scale(1.2);
+  }
+}
+
+@media (max-width: 768px) {
+  .simple-sheep {
+    font-size: 3.5rem;
+    bottom: 40px;
+  }
+  .sleep-z {
+    font-size: 1.5rem;
+  }
 }
