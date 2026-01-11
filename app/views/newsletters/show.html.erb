@@ -1,0 +1,14 @@
+<div class="newsletter-page">
+  <!-- Retour -->
+  <%= link_to "← Retour aux newsletters", newsletters_path, class: "back-link" %>
+
+  <!-- En-tête -->
+  <div class="newsletter-header">
+    <div class="newsletter-badge">🌙 <%= @newsletter[:title] %> • Édition #<%= @newsletter[:number] %></div>
+    <h1 class="newsletter-title"><%= @newsletter[:subtitle] %></h1>
+    <p class="newsletter-meta">Sleep Activists • <%= @newsletter[:date] %></p>
+  </div>
+
+  <!-- Contenu spécifique selon l'ID -->
+  <%= render partial: "newsletters/#{@newsletter_id}" %>
+</div>
