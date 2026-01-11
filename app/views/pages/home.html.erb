@@ -393,16 +393,15 @@
 <!-- Script mouton simple -->
 <script>
 (function() {
+  // Fonction pour créer le mouton
   function showSheep() {
     const sheep = document.createElement('div');
     sheep.className = 'simple-sheep';
     sheep.textContent = '🐑';
     document.body.appendChild(sheep);
 
-    // Après 10 secondes, commencer à générer des Z (le mouton "dort")
-    setTimeout(() => {
-      createSleepingZs(sheep, 5000); // Générer des Z pendant 5 secondes
-    }, 10000);
+    // Ajouter l'événement clic
+    sheep.addEventListener('click', () => handleSheepClick(sheep));
 
     // Supprimer après l'animation (18 secondes)
     setTimeout(() => {
@@ -410,38 +409,108 @@
     }, 18000);
   }
 
-  function createSleepingZs(sheepElement, duration) {
-    const startTime = Date.now();
-    let zCount = 0;
+  // Fonction au clic sur le mouton
+  function handleSheepClick(sheepElement) {
+    // Animation de saut
+    sheepElement.classList.add('sheep-jump');
 
-    const zInterval = setInterval(() => {
-      if (Date.now() - startTime > duration || zCount >= 6) {
-        clearInterval(zInterval);
-        return;
-      }
+    // Créer des étoiles qui éclatent
+    createSparkles(sheepElement);
 
-      const z = document.createElement('div');
-      z.className = 'sleep-z';
-      z.textContent = '💤'; // Uniquement le gros emoji
-
-      // Position au-dessus du mouton (très proche)
-      const sheepRect = sheepElement.getBoundingClientRect();
-      z.style.left = `${sheepRect.left + sheepRect.width / 2 + (Math.random() * 30 - 15)}px`;
-      z.style.bottom = `${window.innerHeight - sheepRect.top - 10}px`; // -10 pour être juste au-dessus
-
-      document.body.appendChild(z);
-
-      // Supprimer le Z après son animation (3s)
-      setTimeout(() => z.remove(), 3000);
-
-      zCount++;
-    }, 1000); // Un Z toutes les secondes
+    // Retirer la classe après l'animation
+    setTimeout(() => {
+      sheepElement.classList.remove('sheep-jump');
+    }, 600);
   }
 
-  // Première apparition 2 secondes après le chargement
+  // Fonction pour créer les étoiles au clic sur le mouton
+  function createSparkles(sheepElement) {
+    // Position fixe au centre de l'écran
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    for (let i = 0; i < 8; i++) { // 8 étoiles au lieu de 6
+      const sparkle = document.createElement('div');
+      sparkle.textContent = ['✨', '💫', '⭐'][Math.floor(Math.random() * 3)];
+
+      // Style complet en inline
+      sparkle.style.cssText = `
+        position: fixed;
+        left: ${centerX}px;
+        top: ${centerY}px;
+        font-size: 1.5rem;
+        pointer-events: none;
+        z-index: 999;
+        opacity: 0;
+      `;
+
+      const angle = (Math.PI * 2 * i) / 8;
+      const distance = 100 + Math.random() * 60;
+      const tx = Math.cos(angle) * distance;
+      const ty = Math.sin(angle) * distance;
+
+      sparkle.style.setProperty('--tx', `${tx}px`);
+      sparkle.style.setProperty('--ty', `${ty}px`);
+
+      // Animation manuelle
+      sparkle.style.animation = 'sparkle-burst 0.8s ease-out forwards';
+
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 800);
+    }
+  }
+
+// Fonction pour les étincelles au clic
+  function createClickSparkle(e) {
+    // On récupère la position précise du clic
+    const x = e.clientX;
+    const y = e.clientY;
+
+    for (let i = 0; i < 8; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'click-sparkle';
+      sparkle.textContent = ['✨', '⭐', '💫'][Math.floor(Math.random() * 3)];
+
+      // Positionnement initial au point de clic
+      sparkle.style.left = `${x}px`;
+      sparkle.style.top = `${y}px`;
+
+      // Direction aléatoire de l'explosion
+      const tx = (Math.random() - 0.5) * 200;
+      const ty = (Math.random() - 0.5) * 200;
+      sparkle.style.setProperty('--tx', `${tx}px`);
+      sparkle.style.setProperty('--ty', `${ty}px`);
+
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 8000);
+    }
+  }
+
+  // Fonction pour le message "Bonne nuit"
+  // Fonction pour créer des Z indépendants (occasionnellement)
+  function createFloatingZ() {
+    const z = document.createElement('div');
+    z.className = 'sleep-z';
+    z.textContent = '💤';
+
+    // Position aléatoire sur l'écran
+    z.style.left = `${Math.random() * 80 + 10}%`;
+    z.style.bottom = `${Math.random() * 30 + 10}%`;
+
+    document.body.appendChild(z);
+    setTimeout(() => z.remove(), 3000);
+  }
+
+  // Première apparition du mouton : 2 secondes après le chargement
   setTimeout(showSheep, 2000);
 
-  // Réapparition toutes les 45 secondes
+  // Réapparition du mouton toutes les 45 secondes
   setInterval(showSheep, 45000);
+
+  // Z indépendants qui apparaissent occasionnellement (toutes les 20 secondes)
+  setInterval(createFloatingZ, 20000);
+
+  // Premier Z indépendant après 10 secondes
+  setTimeout(createFloatingZ, 10000);
 })();
 </script>
