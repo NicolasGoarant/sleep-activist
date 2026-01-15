@@ -25,10 +25,9 @@
     <%= content_tag :div do %>
       <%= content_tag :div, "✨ Un média vivant • Podcast, Blog, Instagram", class: "hero-tag hide-on-mobile" %>
       <%= content_tag :h1 do %>
-        Dormir est un <%= content_tag :span, "plaisir", class: "highlight" %>
+        Le média du <%= content_tag :span, "sommeil", class: "highlight" %>
       <% end %>
-      <%= content_tag :p, "Le média du sommeil", style: "color: var(--moon-yellow); font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; font-family: 'Crimson Pro', serif; letter-spacing: 1px; text-transform: uppercase;" %>
-      <%= content_tag :p, class: "hero-subtitle" do %>
+            <%= content_tag :p, class: "hero-subtitle" do %>
         Un média qui milite pour un sommeil libre, joyeux et réparateur.
         Sans injonctions. Sans culpabilisation. Avec curiosité, humour et engagement.
       <% end %>
@@ -183,7 +182,7 @@
       <%= content_tag :div, class: "content-card", style: "cursor: pointer;" do %>
         <%= content_tag :div, "💌", class: "card-image" %>
         <%= content_tag :div, class: "card-content" do %>
-          <%= content_tag :span, "Newsletter", class: "card-tag" %>
+          <%= content_tag :span, "Newsletters", class: "card-tag" %>
           <%= content_tag :h3, "Sleep Stories" %>
           <%= content_tag :p, "Chaque lundi : une histoire inspirante, des clés pour agir, zéro moralisation." %>
           <%= content_tag :span, "→ S'abonner", style: "color: var(--moon-yellow); text-decoration: none;" %>
@@ -417,9 +416,15 @@
     // Créer des étoiles qui éclatent
     createSparkles(sheepElement);
 
-    // Retirer la classe après l'animation
+    // Faire disparaître le mouton progressivement après le saut
     setTimeout(() => {
-      sheepElement.classList.remove('sheep-jump');
+      sheepElement.style.transition = 'opacity 0.5s ease-out';
+      sheepElement.style.opacity = '0';
+
+      // Supprimer complètement après la disparition
+      setTimeout(() => {
+        sheepElement.remove();
+      }, 500);
     }, 600);
   }
 
