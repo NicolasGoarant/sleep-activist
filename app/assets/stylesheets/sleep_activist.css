@@ -1820,3 +1820,73 @@ html, body {
     font-size: 1.5rem;
   }
 }
+
+/* Styles supplémentaires pour les newsletters 2 et 3 */
+
+.ritual-steps {
+  display: grid;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.ritual-step {
+  background: rgba(15, 11, 61, 0.3);
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 3px solid var(--moon-yellow);
+}
+
+.ritual-step h3 {
+  color: var(--moon-yellow);
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.ritual-step p {
+  color: var(--soft-lavender);
+  line-height: 1.6;
+}
+
+.recipe-card {
+  background: rgba(15, 11, 61, 0.3);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.recipe-card h3 {
+  color: var(--moon-yellow);
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.recipe-card p {
+  color: var(--soft-lavender);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.recipe-card strong {
+  color: var(--cream-white);
+}
+
+/* ========================================== */
+/* MOBILE SPACING ADJUSTMENTS */
+/* ========================================== */
+
+@media (max-width: 768px) {
+  /* Réduire l'espace au-dessus de "À qui s'adressent les Sleep Activists" */
+  .mission {
+    padding: 4rem 5% !important;
+  }
+
+  /* Réduire l'espace au-dessus de "Un écosystème complet" */
+  .content-grid {
+    padding: 3rem 5% !important;
+  }
+
+  /* Ajuster aussi la première section mission */
+  .mission[style*="padding-top: 10rem"] {
+    padding-top: 4rem !important;
+  }
+}
