@@ -1925,4 +1925,14 @@ html, body {
     margin-top: 2rem !important;
     padding: 40px 0 !important;
   }
+
+  /* Réduire l'espace au-dessus de "Rejoignez les Sleep Activists" */
+  .newsletter-cta {
+    padding: 4rem 5% !important;
+  }
+
+  /* Réduire l'espace au-dessus de la citation Pessoa */
+  .mission[style*="padding: 6rem 5%"] {
+    padding: 3rem 5% !important;
+  }
 }
