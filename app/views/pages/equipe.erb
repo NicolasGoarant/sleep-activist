@@ -17,23 +17,23 @@
     <%# Nicolas %>
     <%= content_tag :div, style: "margin-bottom: 6rem; display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: start;" do %>
       <%= content_tag :div, style: "text-align: center;" do %>
-        <%= content_tag :div, style: "width: 200px; height: 200px; border-radius: 50%; background: linear-gradient(135deg, var(--moon-yellow), var(--soft-lavender)); margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 5rem;" do %>
-          👤
+        <%= content_tag :div, style: "width: 200px; height: 200px; border-radius: 50%; overflow: hidden; margin: 0 auto 1.5rem; border: 3px solid var(--moon-yellow);" do %>
+          <%= image_tag "nicolas.jpg", style: "width: 100%; height: 100%; object-fit: cover; object-position: center; transform: scale(1.2);" %>
         <% end %>
         <%= content_tag :p, "📧 nicolas@sleep-activist.fr", style: "color: var(--soft-lavender); font-size: 0.9rem; margin-top: 0.5rem;" %>
       <% end %>
       <%= content_tag :div do %>
         <%= content_tag :h2, "Nicolas Goarant", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 2.5rem; margin-bottom: 1rem;" %>
-        <%= content_tag :p, "Co-fondateur • Auteur • Analyste financier", style: "color: var(--moon-yellow); font-size: 1.2rem; margin-bottom: 2rem;" %>
+        <%= content_tag :p, "Co-fondateur • Auteur", style: "color: var(--moon-yellow); font-size: 1.2rem; margin-bottom: 2rem;" %>
         <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8; margin-bottom: 1.5rem;" do %>
           Auteur du livre <em>Le Sommeil Malmené</em> (Éditions de l'Aube, 2020), Nicolas a été interviewé
           par une quinzaine de médias nationaux (France 2, RTL, RFI, Brut, Ouest-France...) sur le sommeil
           comme enjeu de société.
         <% end %>
         <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8; margin-bottom: 1.5rem;" do %>
-          Le jour, il travaille comme analyste financier pour les collectivités locales à Nancy, où il évalue
-          la santé financière des associations et organisations. Cette double casquette — auteur engagé et
-          analyste rigoureux — nourrit sa vision du sommeil comme phénomène à la fois intime et collectif.
+          Ayant travaillé et travaillant avec des élus, c'est surtout une passion profonde pour le sommeil
+          qui l'anime. Pour lui, le sommeil n'est pas qu'une question biologique : c'est un marqueur social,
+          culturel et politique qu'il explore sans relâche.
         <% end %>
         <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8;" do %>
           Avec Sleep Activists, Nicolas souhaite aller plus loin que le livre : créer un véritable écosystème
@@ -45,15 +45,18 @@
     <%# Sofiia %>
     <%= content_tag :div, style: "margin-bottom: 4rem; display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: start;" do %>
       <%= content_tag :div, style: "text-align: center;" do %>
-        <%= content_tag :div, style: "width: 200px; height: 200px; border-radius: 50%; background: linear-gradient(135deg, var(--soft-lavender), var(--moon-yellow)); margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 5rem;" do %>
-          👤
+        <%= content_tag :div, style: "width: 200px; height: 200px; border-radius: 50%; overflow: hidden; margin: 0 auto 1.5rem; border: 3px solid var(--soft-lavender);" do %>
+          <%= image_tag "sofiia.jpg", style: "width: 100%; height: 100%; object-fit: cover; object-position: center; transform: scale(1.2);" %>
         <% end %>
+        <%= content_tag :p, "📧 sofiia@sleep-activist.fr", style: "color: var(--soft-lavender); font-size: 0.9rem; margin-top: 0.5rem;" %>
       <% end %>
       <%= content_tag :div do %>
         <%= content_tag :h2, "Sofiia Popova", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 2.5rem; margin-bottom: 1rem;" %>
-        <%= content_tag :p, "Co-fondatrice", style: "color: var(--moon-yellow); font-size: 1.2rem; margin-bottom: 2rem;" %>
+        <%= content_tag :p, "Co-fondatrice • Spécialiste communication", style: "color: var(--moon-yellow); font-size: 1.2rem; margin-bottom: 2rem;" %>
         <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8; margin-bottom: 1.5rem;" do %>
-          Sofiia est co-fondatrice de Sleep Activists et apporte une perspective internationale au projet.
+          Réfugiée ukrainienne et polyglotte, Sofiia est co-fondatrice de Sleep Activists et apporte
+          une perspective internationale au projet. Spécialiste de la communication, elle partage avec
+          Nicolas une passion profonde pour les questions de sommeil.
         <% end %>
         <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.8; margin-bottom: 1.5rem;" do %>
           Son expérience de l'Ukraine en temps de guerre — où le sommeil devient un temps de vulnérabilité,
