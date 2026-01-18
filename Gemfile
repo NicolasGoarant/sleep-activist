@@ -53,3 +53,15 @@ group :development do
 end
 
 gem 'letter_opener', group: :development
+
+
+
+# Gardez sqlite pour le développement local
+group :development, :test do
+  gem "sqlite3", ">= 1.4"
+end
+
+# Ajoutez PostgreSQL pour la production (Heroku)
+group :production do
+  gem "pg"
+end
