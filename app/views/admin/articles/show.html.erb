@@ -15,9 +15,7 @@
     <% end %>
   <% end %>
 
-  <%= content_tag :div, class: "article-content", style: "background: rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 3rem; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
-    <%# REMPLACEMENT ICI : render_markdown au lieu de simple_format %>
-    <%= render_markdown(@article.content) %>
+  <%= content_tag :div, class: "article-content", style: "background: rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 3rem; border: 1px solid rgba(184, 181, 232, 0.2); color: var(--soft-lavender); line-height: 1.8;" do %>
+    <%= markdown(@article.content) %>
   <% end %>
-
 <% end %>
