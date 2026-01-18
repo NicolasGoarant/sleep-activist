@@ -34,7 +34,7 @@
   
   <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 4rem; border: 1px solid rgba(184, 181, 232, 0.1);" do %>
     <%= content_tag :div, style: "color: var(--soft-lavender); line-height: 1.9; font-size: 1.1rem;" do %>
-      <%= simple_format(@article.content) %>
+      <%= markdown(@article.content) %>
     <% end %>
   <% end %>
 
@@ -42,9 +42,9 @@
   <%= content_tag :div, style: "margin-top: 4rem; padding: 2rem; background: rgba(255, 217, 61, 0.05); border: 1px solid rgba(255, 217, 61, 0.2); border-radius: 15px; text-align: center;" do %>
     <%= content_tag :h3, "Partager cet article", style: "color: var(--moon-yellow); margin-bottom: 1rem; font-family: 'Crimson Pro', serif;" %>
     <%= content_tag :div, style: "display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;" do %>
-      <%= link_to "🐦 Twitter", "https://twitter.com/intent/tweet?text=#{CGI.escape(@article.title)}&url=#{CGI.escape(request.original_url)}", target: "_blank", style: "padding: 0.8rem 1.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.2); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; font-weight: 500;" %>
-      <%= link_to "📘 Facebook", "https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape(request.original_url)}", target: "_blank", style: "padding: 0.8rem 1.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.2); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; font-weight: 500;" %>
-      <%= link_to "🔗 LinkedIn", "https://www.linkedin.com/sharing/share-offsite/?url=#{CGI.escape(request.original_url)}", target: "_blank", style: "padding: 0.8rem 1.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.2); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; font-weight: 500;" %>
+      <%= link_to "🐦 Twitter", "https://twitter.com/intent/tweet?text=#{CGI.escape(@article.title)}&url=#{CGI.escape(request.original_url)}", target: \"_blank\", style: \"padding: 0.8rem 1.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.2); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; font-weight: 500;\" %>
+      <%= link_to "📘 Facebook", "https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape(request.original_url)}", target: \"_blank\", style: \"padding: 0.8rem 1.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.2); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; font-weight: 500;\" %>
+      <%= link_to "🔗 LinkedIn", "https://www.linkedin.com/sharing/share-offsite/?url=#{CGI.escape(request.original_url)}", target: \"_blank\", style: \"padding: 0.8rem 1.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.2); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; font-weight: 500;\" %>
     <% end %>
   <% end %>
 
@@ -52,21 +52,21 @@
 
 <%# Articles liés %>
 <% if @related_articles.any? %>
-  <%= content_tag :section, style: "padding: 4rem 5%; background: linear-gradient(to bottom, rgba(26, 20, 100, 0.3), transparent);" do %>
-    <%= content_tag :div, style: "max-width: 1200px; margin: 0 auto;" do %>
+  <%= content_tag :section, style: \"padding: 4rem 5%; background: linear-gradient(to bottom, rgba(26, 20, 100, 0.3), transparent);\" do %>
+    <%= content_tag :div, style: \"max-width: 1200px; margin: 0 auto;\" do %>
       
-      <%= content_tag :h2, "Articles similaires", style: "text-align: center; color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 2.5rem; margin-bottom: 3rem;" %>
+      <%= content_tag :h2, \"Articles similaires\", style: \"text-align: center; color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 2.5rem; margin-bottom: 3rem;\" %>
       
-      <%= content_tag :div, style: "display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;" do %>
+      <%= content_tag :div, style: \"display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;\" do %>
         <% @related_articles.each do |related| %>
-          <%= link_to article_path(related), class: "article-card", style: "text-decoration: none; display: block;" do %>
-            <%= content_tag :article, style: "background: rgba(255, 255, 255, 0.03); border-radius: 15px; overflow: hidden; border: 1px solid rgba(184, 181, 232, 0.2); transition: all 0.3s;" do %>
-              <%= content_tag :div, style: "height: 200px; background: #{related.cover_gradient_style}; display: flex; align-items: center; justify-content: center; font-size: 4rem;" do %>
+          <%= link_to article_path(related), class: \"article-card\", style: \"text-decoration: none; display: block;\" do %>
+            <%= content_tag :article, style: \"background: rgba(255, 255, 255, 0.03); border-radius: 15px; overflow: hidden; border: 1px solid rgba(184, 181, 232, 0.2); transition: all 0.3s;\" do %>
+              <%= content_tag :div, style: \"height: 200px; background: #{related.cover_gradient_style}; display: flex; align-items: center; justify-content: center; font-size: 4rem;\" do %>
                 <%= related.emoji %>
               <% end %>
-              <%= content_tag :div, style: "padding: 1.5rem;" do %>
-                <%= content_tag :h3, related.title, style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.3rem; margin-bottom: 1rem; line-height: 1.4;" %>
-                <%= content_tag :div, "Lire →", style: "color: var(--moon-yellow); font-weight: 500;" %>
+              <%= content_tag :div, style: \"padding: 1.5rem;\" do %>
+                <%= content_tag :h3, related.title, style: \"color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.3rem; margin-bottom: 1rem; line-height: 1.4;\" %>
+                <%= content_tag :div, \"Lire →\", style: \"color: var(--moon-yellow); font-weight: 500;\" %>
               <% end %>
             <% end %>
           <% end %>
@@ -77,63 +77,10 @@
   <% end %>
 <% end %>
 
-<%# CTA Newsletter %>
-<%= content_tag :section, class: "newsletter-cta" do %>
-  <%= content_tag :div, class: "newsletter-box" do %>
-    <%= content_tag :h2, "Ne manquez aucun article" %>
-    <%= content_tag :p, "Recevez nos nouvelles analyses directement dans votre boîte mail." %>
-    <%= content_tag :div, style: "margin-top: 2rem;" do %>
-      <%= link_to "📧 S'inscrire à la newsletter", newsletters_path, class: "cta-primary" %>
-    <% end %>
-  <% end %>
-<% end %>
-
 <style>
-.article-content h2 {
-  color: var(--moon-yellow);
-  font-family: 'Crimson Pro', serif;
-  font-size: 2rem;
-  margin: 3rem 0 1.5rem;
-}
-
-.article-content h3 {
-  color: var(--warm-cream);
-  font-family: 'Crimson Pro', serif;
-  font-size: 1.6rem;
-  margin: 2.5rem 0 1rem;
-}
-
-.article-content p {
-  margin-bottom: 1.5rem;
-}
-
-.article-content strong {
-  color: var(--moon-yellow);
-  font-weight: 600;
-}
-
-.article-content em {
-  color: var(--soft-lavender);
-  font-style: italic;
-}
-
-.article-content ul, .article-content ol {
-  margin: 1.5rem 0;
-  padding-left: 2rem;
-}
-
-.article-content li {
-  margin-bottom: 0.8rem;
-  line-height: 1.8;
-}
-
-.article-card article:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 40px rgba(255, 217, 61, 0.3);
-  border-color: var(--moon-yellow);
-}
-
-.article-card:hover h3 {
-  color: var(--moon-yellow);
-}
+.article-content h2 { color: var(--moon-yellow); font-family: 'Crimson Pro', serif; font-size: 2rem; margin: 3rem 0 1.5rem; }
+.article-content h3 { color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.6rem; margin: 2.5rem 0 1rem; }
+.article-content p { margin-bottom: 1.5rem; }
+.article-content strong { color: var(--moon-yellow) !important; font-weight: 700 !important; }
+.article-content em { color: var(--soft-lavender); font-style: italic; }
 </style>
