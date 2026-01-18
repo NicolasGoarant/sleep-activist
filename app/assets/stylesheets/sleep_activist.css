@@ -1936,3 +1936,8 @@ html, body {
     padding: 3rem 5% !important;
   }
 }
+
+.article-content strong, .article-content b {
+  color: var(--moon-yellow); /* Ou var(--warm-cream) */
+  font-weight: bold;
+}

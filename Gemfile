@@ -54,6 +54,7 @@ gem 'letter_opener', group: :development
 
 gem 'redcarpet'
 
+gem 'kramdown'
 # Gardez sqlite pour le développement local
 group :development, :test do
   gem "sqlite3", ">= 1.4"
