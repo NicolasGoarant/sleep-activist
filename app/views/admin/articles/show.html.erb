@@ -1,0 +1,21 @@
+<%= content_tag :section, style: "padding: 4rem 5%; max-width: 1200px; margin: 0 auto;" do %>
+  <%= content_tag :div, style: "text-align: center; margin-bottom: 3rem;" do %>
+    <%= content_tag :h1, @article.title, style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; margin-bottom: 1rem;" %>
+
+    <%= content_tag :div, style: "display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;" do %>
+      <%= link_to "✏️ Modifier", edit_admin_article_path(@article), style: "padding: 0.8rem 1.5rem; background: var(--moon-yellow); border-radius: 10px; color: var(--deep-indigo); text-decoration: none; font-weight: 600;" %>
+
+      <% if @article.published? %>
+        <%= button_to "📥 Dépublier", unpublish_admin_article_path(@article), method: :post, style: "padding: 0.8rem 1.5rem; background: rgba(255, 100, 100, 0.2); border: 1px solid rgba(255, 100, 100, 0.5); border-radius: 10px; color: #ff6b6b; font-weight: 600; cursor: pointer;" %>
+      <% else %>
+        <%= button_to "📤 Publier", publish_admin_article_path(@article), method: :post, style: "padding: 0.8rem 1.5rem; background: rgba(100, 255, 100, 0.2); border: 1px solid rgba(100, 255, 100, 0.5); border-radius: 10px; color: #4ade80; font-weight: 600; cursor: pointer;" %>
+      <% end %>
+
+      <%= link_to "🔙 Retour", admin_articles_path, style: "padding: 0.8rem 1.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--soft-lavender); text-decoration: none;" %>
+    <% end %>
+  <% end %>
+
+  <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 3rem; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
+    <%= simple_format(@article.content, style: "color: var(--soft-lavender); line-height: 1.8;") %>
+  <% end %>
+<% end %>

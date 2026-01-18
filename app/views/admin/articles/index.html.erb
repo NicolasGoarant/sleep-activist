@@ -1,0 +1,98 @@
+<%# app/views/admin/articles/index.html.erb %>
+<%= content_tag :section, style: "padding: 4rem 5%; min-height: 100vh;" do %>
+  <%= content_tag :div, style: "max-width: 1400px; margin: 0 auto;" do %>
+    
+    <%# Header %>
+    <%= content_tag :div, style: "display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;" do %>
+      <%= content_tag :h1, "Gestion des articles", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 2.5rem;" %>
+      <%= link_to "➕ Nouvel article", new_admin_article_path, style: "padding: 1rem 2rem; background: var(--moon-yellow); border-radius: 10px; color: var(--deep-indigo); font-weight: 600; text-decoration: none;" %>
+    <% end %>
+
+    <%# Stats %>
+    <%= content_tag :div, style: "display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 3rem;" do %>
+      <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(184, 181, 232, 0.2); border-radius: 15px; padding: 1.5rem; text-align: center;" do %>
+        <%= content_tag :div, Article.count, style: "font-size: 2.5rem; color: var(--moon-yellow); font-weight: 600; margin-bottom: 0.5rem;" %>
+        <%= content_tag :div, "Total", style: "color: var(--soft-lavender);" %>
+      <% end %>
+
+      <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(184, 181, 232, 0.2); border-radius: 15px; padding: 1.5rem; text-align: center;" do %>
+        <%= content_tag :div, Article.published.count, style: "font-size: 2.5rem; color: var(--moon-yellow); font-weight: 600; margin-bottom: 0.5rem;" %>
+        <%= content_tag :div, "Publiés", style: "color: var(--soft-lavender);" %>
+      <% end %>
+
+      <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(184, 181, 232, 0.2); border-radius: 15px; padding: 1.5rem; text-align: center;" do %>
+        <%= content_tag :div, Article.drafts.count, style: "font-size: 2.5rem; color: var(--moon-yellow); font-weight: 600; margin-bottom: 0.5rem;" %>
+        <%= content_tag :div, "Brouillons", style: "color: var(--soft-lavender);" %>
+      <% end %>
+
+      <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(184, 181, 232, 0.2); border-radius: 15px; padding: 1.5rem; text-align: center;" do %>
+        <%= content_tag :div, Article.sum(:views_count), style: "font-size: 2.5rem; color: var(--moon-yellow); font-weight: 600; margin-bottom: 0.5rem;" %>
+        <%= content_tag :div, "Vues", style: "color: var(--soft-lavender);" %>
+      <% end %>
+    <% end %>
+
+    <%# Liste des articles %>
+    <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(184, 181, 232, 0.2); border-radius: 15px; overflow: hidden;" do %>
+      <%= content_tag :table, style: "width: 100%; border-collapse: collapse;" do %>
+        <%= content_tag :thead do %>
+          <%= content_tag :tr, style: "background: rgba(255, 255, 255, 0.05);" do %>
+            <%= content_tag :th, "📝", style: "padding: 1rem; text-align: left; color: var(--soft-lavender); font-weight: 500;" %>
+            <%= content_tag :th, "Titre", style: "padding: 1rem; text-align: left; color: var(--soft-lavender); font-weight: 500;" %>
+            <%= content_tag :th, "Catégorie", style: "padding: 1rem; text-align: left; color: var(--soft-lavender); font-weight: 500;" %>
+            <%= content_tag :th, "Statut", style: "padding: 1rem; text-align: left; color: var(--soft-lavender); font-weight: 500;" %>
+            <%= content_tag :th, "👁️ Vues", style: "padding: 1rem; text-align: center; color: var(--soft-lavender); font-weight: 500;" %>
+            <%= content_tag :th, "Date", style: "padding: 1rem; text-align: left; color: var(--soft-lavender); font-weight: 500;" %>
+            <%= content_tag :th, "Actions", style: "padding: 1rem; text-align: right; color: var(--soft-lavender); font-weight: 500;" %>
+          <% end %>
+        <% end %>
+
+        <%= content_tag :tbody do %>
+          <% @articles.each do |article| %>
+            <%= content_tag :tr, style: "border-top: 1px solid rgba(184, 181, 232, 0.1);" do %>
+              <%= content_tag :td, article.emoji, style: "padding: 1rem; font-size: 1.5rem;" %>
+              
+              <%= content_tag :td, style: "padding: 1rem;" do %>
+                <%= link_to article.title, admin_article_path(article), style: "color: var(--warm-cream); text-decoration: none; font-weight: 500;" %>
+              <% end %>
+              
+              <%= content_tag :td, style: "padding: 1rem;" do %>
+                <% if article.category.present? %>
+                  <%= content_tag :span, article.category, style: "background: rgba(255, 217, 61, 0.15); padding: 0.3rem 0.8rem; border-radius: 12px; color: var(--moon-yellow); font-size: 0.85rem;" %>
+                <% else %>
+                  <%= content_tag :span, "-", style: "color: var(--soft-lavender); opacity: 0.5;" %>
+                <% end %>
+              <% end %>
+              
+              <%= content_tag :td, style: "padding: 1rem;" do %>
+                <% if article.published? %>
+                  <%= content_tag :span, "✅ Publié", style: "color: #4ade80;" %>
+                <% else %>
+                  <%= content_tag :span, "📝 Brouillon", style: "color: var(--soft-lavender); opacity: 0.7;" %>
+                <% end %>
+              <% end %>
+              
+              <%= content_tag :td, article.views_count, style: "padding: 1rem; text-align: center; color: var(--soft-lavender);" %>
+              
+              <%= content_tag :td, style: "padding: 1rem; color: var(--soft-lavender); font-size: 0.9rem;" do %>
+                <%= article.published_at&.strftime("%d/%m/%Y") || article.created_at.strftime("%d/%m/%Y") %>
+              <% end %>
+              
+              <%= content_tag :td, style: "padding: 1rem; text-align: right;" do %>
+                <%= link_to "✏️", edit_admin_article_path(article), style: "color: var(--moon-yellow); text-decoration: none; margin: 0 0.5rem;" %>
+                <%= link_to "🗑️", admin_article_path(article), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, style: "color: #ff6b6b; text-decoration: none; margin: 0 0.5rem;" %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%# Pagination %>
+    <% if @articles.respond_to?(:total_pages) && @articles.total_pages > 1 %>
+      <%= content_tag :div, style: "margin-top: 2rem; text-align: center;" do %>
+        <%= paginate @articles %>
+      <% end %>
+    <% end %>
+
+  <% end %>
+<% end %>

@@ -1,0 +1,111 @@
+<%# app/views/admin/articles/_form.html.erb %>
+<%= form_with(model: [:admin, @article], local: true, style: "max-width: 900px; margin: 0 auto;") do |f| %>
+  <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 3rem; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
+    
+    <%# Erreurs %>
+    <% if @article.errors.any? %>
+      <%= content_tag :div, style: "background: rgba(255, 100, 100, 0.1); border: 1px solid rgba(255, 100, 100, 0.3); border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem;" do %>
+        <%= content_tag :h3, "#{pluralize(@article.errors.count, 'erreur')} :", style: "color: #ff6b6b; margin-bottom: 1rem;" %>
+        <%= content_tag :ul, style: "list-style: none; padding: 0;" do %>
+          <% @article.errors.full_messages.each do |message| %>
+            <%= content_tag :li, "• #{message}", style: "color: #ff6b6b; margin-bottom: 0.5rem;" %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%# Titre %>
+    <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
+      <%= f.label :title, "Titre de l'article", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
+      <%= f.text_field :title, 
+          placeholder: "Ex: L'apnée du sommeil : au-delà du diagnostic médical",
+          style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1rem;" %>
+    <% end %>
+
+    <%# Slug %>
+    <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
+      <%= f.label :slug, "Slug (URL)", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
+      <%= f.text_field :slug, 
+          placeholder: "Ex: apnee-du-sommeil-diagnostic-medical (laissez vide pour génération auto)",
+          style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--soft-lavender); font-size: 0.9rem;" %>
+    <% end %>
+
+    <%# Extrait %>
+    <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
+      <%= f.label :excerpt, "Extrait (preview)", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
+      <%= f.text_area :excerpt, 
+          rows: 3,
+          placeholder: "Court résumé de l'article (2-3 phrases)",
+          style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1rem; resize: vertical;" %>
+    <% end %>
+
+    <%# Contenu %>
+    <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
+      <%= f.label :content, "Contenu (Markdown supporté)", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
+      <%= f.text_area :content, 
+          rows: 20,
+          placeholder: "Écrivez votre article ici...\n\n## Titre de section\n\nVotre texte...",
+          style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1rem; font-family: monospace; resize: vertical;" %>
+    <% end %>
+
+    <%# Ligne : Emoji + Catégorie + Temps de lecture %>
+    <%= content_tag :div, style: "display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 1.5rem; margin-bottom: 2rem;" do %>
+      
+      <%# Emoji %>
+      <%= content_tag :div do %>
+        <%= f.label :emoji, "Emoji", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
+        <%= f.text_field :emoji, 
+            placeholder: "😴",
+            style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 2rem; text-align: center;" %>
+      <% end %>
+
+      <%# Catégorie %>
+      <%= content_tag :div do %>
+        <%= f.label :category, "Catégorie", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
+        <%= f.select :category, 
+            [["Santé", "Santé"], ["Conseils", "Conseils"], ["Parentalité", "Parentalité"], ["Société", "Société"]],
+            { include_blank: "Choisir une catégorie" },
+            style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1rem;" %>
+      <% end %>
+
+      <%# Temps de lecture %>
+      <%= content_tag :div do %>
+        <%= f.label :reading_time, "Temps (min)", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
+        <%= f.number_field :reading_time, 
+            placeholder: "5",
+            style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1rem;" %>
+      <% end %>
+
+    <% end %>
+
+    <%# Gradient de couverture %>
+    <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
+      <%= f.label :cover_gradient, "Gradient de couverture (CSS)", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
+      <%= f.text_field :cover_gradient, 
+          placeholder: "linear-gradient(135deg, rgba(255, 217, 61, 0.2), rgba(184, 181, 232, 0.2))",
+          style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--soft-lavender); font-size: 0.9rem; font-family: monospace;" %>
+    <% end %>
+
+    <%# Auteur %>
+    <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
+      <%= f.label :author, "Auteur", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
+      <%= f.text_field :author, 
+          placeholder: "Nicolas Goarant",
+          style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1rem;" %>
+    <% end %>
+
+    <%# Publié %>
+    <%= content_tag :div, style: "margin-bottom: 2rem; padding: 1.5rem; background: rgba(255, 217, 61, 0.05); border: 1px solid rgba(255, 217, 61, 0.2); border-radius: 10px;" do %>
+      <%= f.check_box :published, style: "width: 20px; height: 20px; margin-right: 0.5rem;" %>
+      <%= f.label :published, "Publier l'article immédiatement", style: "color: var(--moon-yellow); font-size: 1.1rem;" %>
+    <% end %>
+
+    <%# Boutons d'action %>
+    <%= content_tag :div, style: "display: flex; gap: 1rem; justify-content: flex-end; margin-top: 3rem;" do %>
+      <%= link_to "Annuler", admin_articles_path, style: "padding: 1rem 2rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; font-weight: 500;" %>
+      <%= f.submit @article.new_record? ? "Créer l'article" : "Mettre à jour", 
+          style: "padding: 1rem 2rem; background: var(--moon-yellow); border: none; border-radius: 10px; color: var(--deep-indigo); font-weight: 600; cursor: pointer; font-size: 1rem;" %>
+    <% end %>
+
+  <% end %>
+<% end %>

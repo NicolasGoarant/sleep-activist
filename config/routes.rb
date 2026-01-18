@@ -7,13 +7,24 @@ Rails.application.routes.draw do
 
   # Nouvelles routes
   get 'podcast', to: 'pages#podcast'
-  get 'blog', to: 'pages#blog'
   get 'equipe', to: 'pages#equipe'
   get 'principes', to: 'pages#principes'
 
   # Routes newsletters RESTful
   resources :newsletters, only: [:index, :show]
-  # Ceci crée automatiquement :
-  # GET /newsletters          -> newsletters#index
-  # GET /newsletters/:id      -> newsletters#show
+
+  # Blog - Routes dynamiques avec articles de la BDD
+  get 'blog', to: 'articles#index', as: :blog
+  get 'blog/:slug', to: 'articles#show', as: :article
+
+  # Admin
+  namespace :admin do
+    resources :articles do
+      member do
+        post :publish
+        post :unpublish
+      end
+    end
+  end
+
 end
