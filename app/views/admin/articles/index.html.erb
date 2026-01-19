@@ -1,7 +1,7 @@
 <%# app/views/admin/articles/index.html.erb %>
 <%= content_tag :section, style: "padding: 4rem 5%; min-height: 100vh;" do %>
   <%= content_tag :div, style: "max-width: 1400px; margin: 0 auto;" do %>
-    
+
     <%# Header %>
     <%= content_tag :div, style: "display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;" do %>
       <%= content_tag :h1, "Gestion des articles", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 2.5rem;" %>
@@ -50,11 +50,11 @@
           <% @articles.each do |article| %>
             <%= content_tag :tr, style: "border-top: 1px solid rgba(184, 181, 232, 0.1);" do %>
               <%= content_tag :td, article.emoji, style: "padding: 1rem; font-size: 1.5rem;" %>
-              
+
               <%= content_tag :td, style: "padding: 1rem;" do %>
-                <%= link_to article.title, admin_article_path(article), style: "color: var(--warm-cream); text-decoration: none; font-weight: 500;" %>
+                <%= link_to article.title, edit_admin_article_path(article), style: "color: var(--warm-cream); text-decoration: none; font-weight: 500;" %>
               <% end %>
-              
+
               <%= content_tag :td, style: "padding: 1rem;" do %>
                 <% if article.category.present? %>
                   <%= content_tag :span, article.category, style: "background: rgba(255, 217, 61, 0.15); padding: 0.3rem 0.8rem; border-radius: 12px; color: var(--moon-yellow); font-size: 0.85rem;" %>
@@ -62,24 +62,28 @@
                   <%= content_tag :span, "-", style: "color: var(--soft-lavender); opacity: 0.5;" %>
                 <% end %>
               <% end %>
-              
+
               <%= content_tag :td, style: "padding: 1rem;" do %>
                 <% if article.published? %>
-                  <%= content_tag :span, "✅ Publié", style: "color: #4ade80;" %>
+                  <%= link_to unpublish_admin_article_path(article), data: { turbo_method: :post, turbo_confirm: "Mettre en brouillon ?" }, style: "text-decoration: none;" do %>
+                    <%= content_tag :span, "✅ Publié", style: "color: #4ade80; cursor: pointer; padding: 0.3rem 0.8rem; border-radius: 8px; background: rgba(74, 222, 128, 0.1); transition: all 0.2s;" %>
+                  <% end %>
                 <% else %>
-                  <%= content_tag :span, "📝 Brouillon", style: "color: var(--soft-lavender); opacity: 0.7;" %>
+                  <%= link_to publish_admin_article_path(article), data: { turbo_method: :post, turbo_confirm: "Publier l'article ?" }, style: "text-decoration: none;" do %>
+                    <%= content_tag :span, "📝 Brouillon", style: "color: var(--soft-lavender); opacity: 0.7; cursor: pointer; padding: 0.3rem 0.8rem; border-radius: 8px; background: rgba(184, 181, 232, 0.1); transition: all 0.2s;" %>
+                  <% end %>
                 <% end %>
               <% end %>
-              
+
               <%= content_tag :td, article.views_count, style: "padding: 1rem; text-align: center; color: var(--soft-lavender);" %>
-              
+
               <%= content_tag :td, style: "padding: 1rem; color: var(--soft-lavender); font-size: 0.9rem;" do %>
                 <%= article.published_at&.strftime("%d/%m/%Y") || article.created_at.strftime("%d/%m/%Y") %>
               <% end %>
-              
+
               <%= content_tag :td, style: "padding: 1rem; text-align: right;" do %>
-                <%= link_to "✏️", edit_admin_article_path(article), style: "color: var(--moon-yellow); text-decoration: none; margin: 0 0.5rem;" %>
-                <%= link_to "🗑️", admin_article_path(article), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, style: "color: #ff6b6b; text-decoration: none; margin: 0 0.5rem;" %>
+                <%= link_to "✏️", edit_admin_article_path(article), style: "color: var(--moon-yellow); text-decoration: none; margin: 0 0.5rem; font-size: 1.2rem;" %>
+                <%= link_to "🗑️", admin_article_path(article), data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cet article ?" }, style: "color: #ff6b6b; text-decoration: none; margin: 0 0.5rem; font-size: 1.2rem;" %>
               <% end %>
             <% end %>
           <% end %>
@@ -96,3 +100,11 @@
 
   <% end %>
 <% end %>
+
+<style>
+  /* Hover effect sur les statuts cliquables */
+  td a span:hover {
+    opacity: 1 !important;
+    transform: scale(1.05);
+  }
+</style>

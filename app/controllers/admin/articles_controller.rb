@@ -41,13 +41,13 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def publish
-    @article.update(published_at: Time.current) unless @article.published?
+    @article.update(published: true, published_at: Time.current)
     redirect_to admin_articles_path, notice: 'Article publié.'
   end
 
   def unpublish
-    @article.update(published_at: nil)
-    redirect_to admin_articles_path, notice: 'Article dépublié.'
+    @article.update(published: false, published_at: nil)
+    redirect_to admin_articles_path, notice: 'Article mis en brouillon.'
   end
 
   private
@@ -64,9 +64,10 @@ class Admin::ArticlesController < ApplicationController
       :content,
       :category,
       :emoji,
-      :hero_image,  # Active Storage gère automatiquement l'upload
+      :hero_image,
       :reading_time,
       :excerpt,
+      :published,
       :published_at
     )
   end
