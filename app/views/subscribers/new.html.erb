@@ -1,44 +1,84 @@
-<div class="min-h-screen bg-gray-100 flex items-center justify-center px-4 sm:px-6 lg:px-8">
-  <div class="max-w-md w-full bg-white p-8 shadow-xl rounded-xl">
-    <div class="mb-6 text-center">
-      <h2 class="text-3xl font-extrabold text-gray-900">
-        Connexion à <span class="text-green-600">LeLocal</span>
-      </h2>
-      <p class="mt-2 text-sm text-gray-500">
-        ou
-        <%= link_to "créer un compte", new_registration_path(resource_name), class: "text-green-600 hover:underline font-medium" %>
-      </p>
-    </div>
+<%# app/views/subscribers/new.html.erb %>
+<%= content_tag :section, style: "min-height: 100vh; padding: 8rem 5% 4rem; display: flex; align-items: center; background: linear-gradient(to bottom, rgba(26, 20, 100, 0.95), rgba(15, 11, 61, 1));" do %>
+  <%= content_tag :div, style: "max-width: 600px; margin: 0 auto; width: 100%;" do %>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="space-y-5">
-        <div>
-          <%= f.label :email, "Adresse email", class: "block text-sm font-medium text-gray-700" %>
-          <%= f.email_field :email, autofocus: true, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500" %>
-        </div>
-
-        <div>
-          <%= f.label :password, "Mot de passe", class: "block text-sm font-medium text-gray-700" %>
-          <%= f.password_field :password, autocomplete: "current-password", class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500" %>
-        </div>
-
-        <div class="flex items-center justify-between">
-          <div class="flex items-center">
-            <%= f.check_box :remember_me, class: "h-4 w-4 text-green-600 border-gray-300 rounded" %>
-            <%= f.label :remember_me, "Se souvenir de moi", class: "ml-2 text-sm text-gray-700" %>
-          </div>
-          <%= link_to "Mot de passe oublié ?", new_password_path(resource_name), class: "text-sm text-green-600 hover:underline" %>
-        </div>
-
-        <div>
-          <%= f.submit "Se connecter", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 font-semibold" %>
-        </div>
-      </div>
+    <%# Header %>
+    <%= content_tag :div, style: "text-align: center; margin-bottom: 3rem;" do %>
+      <%= content_tag :h1, "📧 Inscris-toi à la newsletter", style: "font-family: 'Crimson Pro', serif; font-size: 2.5rem; color: var(--warm-cream); margin-bottom: 1rem;" %>
+      <%= content_tag :p, style: "font-size: 1.1rem; color: var(--soft-lavender); line-height: 1.6;" do %>
+        Reçois chaque mois nos conseils, découvertes et témoignages sur le sommeil. <br>
+        <%= content_tag :strong, "Sans spam, promis.", style: "color: var(--moon-yellow);" %>
+      <% end %>
     <% end %>
-  </div>
-</div>
 
+    <%# Formulaire %>
+    <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 20px; padding: 3rem; backdrop-filter: blur(10px);" do %>
 
+      <%= form_with model: @subscriber, url: subscribers_path, local: true do |f| %>
 
+        <%# Affichage des erreurs %>
+        <% if @subscriber.errors.any? %>
+          <%= content_tag :div, style: "background: rgba(255, 107, 107, 0.1); border: 1px solid rgba(255, 107, 107, 0.3); border-radius: 10px; padding: 1rem; margin-bottom: 2rem;" do %>
+            <%= content_tag :h3, "⚠️ Oups, il y a #{@subscriber.errors.count} erreur(s) :", style: "color: #ff6b6b; font-size: 1rem; margin-bottom: 0.5rem;" %>
+            <%= content_tag :ul, style: "color: #ff6b6b; margin-left: 1.5rem;" do %>
+              <% @subscriber.errors.full_messages.each do |message| %>
+                <%= content_tag :li, message %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
 
+        <%# Champ Email (requis) %>
+        <%= content_tag :div, style: "margin-bottom: 1.5rem;" do %>
+          <%= f.label :email, "Email *", style: "display: block; color: var(--soft-lavender); margin-bottom: 0.5rem; font-weight: 500;" %>
+          <%= f.email_field :email,
+              required: true,
+              placeholder: "ton-email@exemple.fr",
+              style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1rem; transition: all 0.3s;",
+              onfocus: "this.style.borderColor='var(--moon-yellow)'; this.style.background='rgba(255, 255, 255, 0.15)';",
+              onblur: "this.style.borderColor='rgba(184, 181, 232, 0.3)'; this.style.background='rgba(255, 255, 255, 0.1)';" %>
+        <% end %>
 
+        <%# Champ Prénom (optionnel) %>
+        <%= content_tag :div, style: "margin-bottom: 1.5rem;" do %>
+          <%= f.label :first_name, "Prénom (optionnel)", style: "display: block; color: var(--soft-lavender); margin-bottom: 0.5rem; font-weight: 500;" %>
+          <%= f.text_field :first_name,
+              placeholder: "Ton prénom",
+              style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1rem; transition: all 0.3s;",
+              onfocus: "this.style.borderColor='var(--moon-yellow)'; this.style.background='rgba(255, 255, 255, 0.15)';",
+              onblur: "this.style.borderColor='rgba(184, 181, 232, 0.3)'; this.style.background='rgba(255, 255, 255, 0.1)';" %>
+        <% end %>
+
+        <%# Champ Nom (optionnel) %>
+        <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
+          <%= f.label :last_name, "Nom (optionnel)", style: "display: block; color: var(--soft-lavender); margin-bottom: 0.5rem; font-weight: 500;" %>
+          <%= f.text_field :last_name,
+              placeholder: "Ton nom",
+              style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1rem; transition: all 0.3s;",
+              onfocus: "this.style.borderColor='var(--moon-yellow)'; this.style.background='rgba(255, 255, 255, 0.15)';",
+              onblur: "this.style.borderColor='rgba(184, 181, 232, 0.3)'; this.style.background='rgba(255, 255, 255, 0.1)';" %>
+        <% end %>
+
+        <%# Bouton Submit %>
+        <%= content_tag :div, style: "text-align: center;" do %>
+          <%= f.submit "✨ M'inscrire gratuitement",
+              style: "padding: 1.2rem 3rem; background: var(--moon-yellow); border: none; border-radius: 50px; color: var(--deep-indigo); font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 30px rgba(255, 217, 61, 0.3);",
+              onmouseover: "this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 40px rgba(255, 217, 61, 0.5)';",
+              onmouseout: "this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(255, 217, 61, 0.3)';" %>
+        <% end %>
+
+      <% end %>
+
+      <%# Note de confidentialité %>
+      <%= content_tag :p, style: "text-align: center; color: var(--soft-lavender); font-size: 0.9rem; margin-top: 2rem; opacity: 0.7;" do %>
+        🔒 Tes données sont protégées. Tu peux te désinscrire à tout moment.
+      <% end %>
+    <% end %>
+
+    <%# Lien retour %>
+    <%= content_tag :div, style: "text-align: center; margin-top: 2rem;" do %>
+      <%= link_to "← Retour à l'accueil", root_path, style: "color: var(--soft-lavender); text-decoration: none; transition: color 0.3s;", onmouseover: "this.style.color='var(--moon-yellow)';", onmouseout: "this.style.color='var(--soft-lavender)';" %>
+    <% end %>
+
+  <% end %>
+<% end %>

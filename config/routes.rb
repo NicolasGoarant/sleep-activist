@@ -17,6 +17,13 @@ Rails.application.routes.draw do
   get 'blog', to: 'articles#index', as: :blog
   get 'blog/:slug', to: 'articles#show', as: :article
 
+    # Newsletter subscribers - AJOUTER CES LIGNES ICI
+  resources :subscribers, only: [:new, :create] do
+    collection do
+      get :thank_you
+    end
+  end
+
   # Admin
   namespace :admin do
     resources :articles do
