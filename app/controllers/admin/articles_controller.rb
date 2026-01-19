@@ -53,7 +53,8 @@ class Admin::ArticlesController < ApplicationController
   private
 
   def set_article
-    @article = Article.find(params[:id])
+    # CORRECTION : Chercher par slug au lieu de par id
+    @article = Article.find_by!(slug: params[:id])
   end
 
   def article_params
