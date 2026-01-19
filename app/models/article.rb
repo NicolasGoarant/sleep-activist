@@ -1,11 +1,14 @@
 # app/models/article.rb
 class Article < ApplicationRecord
+  # Active Storage
+  has_one_attached :hero_image
+
   # Validations
   validates :title, presence: true
   validates :slug, presence: true, uniqueness: true
   validates :content, presence: true
   validates :category, inclusion: { in: %w[Santé Conseils Parentalité Société], allow_nil: true }
-  validates :reading_time, numericality: { only_integer: true, greater_than: 0 }
+  validates :reading_time, numericality: { only_integer: true, greater_than: 0, allow_nil: true }
 
   # Callbacks
   before_validation :generate_slug, if: -> { slug.blank? }
@@ -17,8 +20,7 @@ class Article < ApplicationRecord
   scope :by_category, ->(category) { where(category: category) }
   scope :recent, -> { order(created_at: :desc) }
 
-  has_one_attached :hero_image
-  # Après les scopes, avant les méthodes d'instance
+  # Méthodes de classe
   def self.friendly_find(param)
     # Essaie de trouver par ID d'abord (si numérique), sinon par slug
     param.to_i.to_s == param ? find(param) : find_by!(slug: param)
