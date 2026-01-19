@@ -1,81 +1,189 @@
-<%# app/views/articles/show.html.erb %>
-<%# Hero article %>
-<%= content_tag :section, class: "hero", style: "min-height: 60vh; padding-top: 8rem; display: flex; align-items: center; background: #{@article.cover_gradient_style};" do %>
-  <%= content_tag :div, class: "hero-content", style: "max-width: 900px; margin: 0 auto; text-align: center;" do %>
-    
-    <%= content_tag :div, style: "display: flex; gap: 1rem; justify-content: center; align-items: center; margin-bottom: 2rem;" do %>
+<%# app/views/articles/show.html.erb - Page d'un article avec image uploadée %>
+
+<%# Hero de l'article avec image de fond %>
+<%= content_tag :section, style: "position: relative; min-height: 60vh; display: flex; align-items: center; padding-top: 6rem;" do %>
+
+  <%# Image de fond avec overlay %>
+  <% if @article.hero_image.attached? %>
+    <%= content_tag :div, style: "position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0;" do %>
+      <%= image_tag @article.hero_image,
+          alt: @article.title,
+          style: "width: 100%; height: 100%; object-fit: cover;" %>
+      <%= content_tag :div, "", style: "position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(15, 11, 61, 0.7), rgba(15, 11, 61, 0.95));" %>
+    <% end %>
+  <% else %>
+    <%= content_tag :div, "", style: "position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(26, 20, 100, 0.8), rgba(15, 11, 61, 0.95)); z-index: 0;" %>
+  <% end %>
+
+  <%# Contenu du hero %>
+  <%= content_tag :div, style: "position: relative; z-index: 2; max-width: 800px; margin: 0 auto; padding: 0 5%; text-align: center;" do %>
+
+    <%# Catégorie et temps de lecture %>
+    <%= content_tag :div, style: "display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap;" do %>
       <% if @article.category.present? %>
-        <%= content_tag :span, @article.category, style: "background: rgba(255, 217, 61, 0.2); padding: 0.5rem 1.2rem; border-radius: 15px; color: var(--moon-yellow); font-size: 0.95rem; font-weight: 500;" %>
+        <%= content_tag :span, @article.category, style: "background: rgba(255, 217, 61, 0.2); padding: 0.5rem 1.2rem; border-radius: 15px; color: var(--moon-yellow); font-weight: 500; font-size: 0.9rem; border: 1px solid rgba(255, 217, 61, 0.4);" %>
       <% end %>
-      <%= content_tag :span, "⏱️ #{@article.reading_time} min", style: "color: var(--soft-lavender); font-size: 0.95rem;" %>
-      <%= content_tag :span, "👁️ #{@article.views_count} vues", style: "color: var(--soft-lavender); font-size: 0.95rem;" %>
-    <% end %>
-
-    <%= content_tag :div, @article.emoji, style: "font-size: 5rem; margin-bottom: 2rem;" %>
-    
-    <%= content_tag :h1, @article.title, style: "font-size: 3.5rem; margin-bottom: 1.5rem; line-height: 1.2;" %>
-    
-    <% if @article.excerpt.present? %>
-      <%= content_tag :p, class: "hero-subtitle", style: "font-size: 1.3rem; line-height: 1.7; max-width: 700px; margin: 0 auto;" do %>
-        <%= @article.excerpt %>
+      <% if @article.reading_time.present? %>
+        <%= content_tag :span, "⏱️ #{@article.reading_time} min de lecture", style: "color: var(--soft-lavender); font-size: 0.9rem; padding: 0.5rem 1.2rem; background: rgba(255, 255, 255, 0.05); border-radius: 15px;" %>
       <% end %>
     <% end %>
 
-    <%= content_tag :div, style: "margin-top: 2rem; color: var(--soft-lavender); font-size: 0.95rem;" do %>
-      Par <%= @article.author %> • 
-      <%= @article.published_at&.strftime("%d %B %Y") %>
+    <%# Titre %>
+    <%= content_tag :h1, @article.title, style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 3rem; margin-bottom: 1.5rem; line-height: 1.2; text-shadow: 0 4px 20px rgba(0,0,0,0.5);" %>
+
+    <%# Date de publication %>
+    <% if @article.published_at.present? %>
+      <%= content_tag :p, style: "color: var(--soft-lavender); opacity: 0.8; font-size: 0.95rem;" do %>
+        Publié le <%= @article.published_at.strftime("%d %B %Y") %>
+      <% end %>
     <% end %>
 
   <% end %>
 <% end %>
 
 <%# Contenu de l'article %>
-<%= content_tag :article, class: "article-content", style: "padding: 6rem 5%; max-width: 800px; margin: 0 auto;" do %>
-  
-  <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 4rem; border: 1px solid rgba(184, 181, 232, 0.1);" do %>
-    <%= content_tag :div, style: "color: var(--soft-lavender); line-height: 1.9; font-size: 1.1rem;" do %>
-      <%= markdown(@article.content) %>
-    <% end %>
+<%= content_tag :article, style: "max-width: 800px; margin: -4rem auto 6rem; padding: 0 5%; position: relative; z-index: 3;" do %>
+
+  <%= content_tag :div, class: "article-content", style: "background: rgba(15, 11, 61, 0.95); border-radius: 20px; padding: 4rem; border: 1px solid rgba(184, 181, 232, 0.3); backdrop-filter: blur(10px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);" do %>
+    <%= markdown(@article.content) %>
   <% end %>
 
-  <%# Partage social %>
-  <%= content_tag :div, style: "margin-top: 4rem; padding: 2rem; background: rgba(255, 217, 61, 0.05); border: 1px solid rgba(255, 217, 61, 0.2); border-radius: 15px; text-align: center;" do %>
-    <%= content_tag :h3, "Partager cet article", style: "color: var(--moon-yellow); margin-bottom: 1rem; font-family: 'Crimson Pro', serif;" %>
-    <%= content_tag :div, style: "display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;" do %>
-      <%= link_to "🐦 Twitter", "https://twitter.com/intent/tweet?text=#{CGI.escape(@article.title)}&url=#{CGI.escape(request.original_url)}", target: "_blank", style: "padding: 0.8rem 1.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.2); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; font-weight: 500;" %>
-      <%= link_to "📘 Facebook", "https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape(request.original_url)}", target: "_blank", style: "padding: 0.8rem 1.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.2); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; font-weight: 500;" %>
-      <%= link_to "🔗 LinkedIn", "https://www.linkedin.com/sharing/share-offsite/?url=#{CGI.escape(request.original_url)}", target: "_blank", style: "padding: 0.8rem 1.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.2); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; font-weight: 500;" %>
-    <% end %>
-  <% end %>
+  <%# Pied de l'article %>
+  <%= content_tag :div, style: "margin-top: 4rem; padding-top: 2rem; border-top: 2px solid rgba(184, 181, 232, 0.2); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;" do %>
 
-<% end %>
-
-<%# Articles liés %>
-<% if @related_articles.any? %>
-  <%= content_tag :section, style: "padding: 4rem 5%; background: linear-gradient(to bottom, rgba(26, 20, 100, 0.3), transparent);" do %>
-    <%= content_tag :div, style: "max-width: 1200px; margin: 0 auto;" do %>
-      <%= content_tag :h2, "Articles similaires", style: "text-align: center; color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 2.5rem; margin-bottom: 3rem;" %>
-      <%= content_tag :div, style: "display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;" do %>
-        <% @related_articles.each do |related| %>
-          <%= link_to article_path(related), class: "article-card", style: "text-decoration: none; display: block;" do %>
-            <%= content_tag :article, style: "background: rgba(255, 255, 255, 0.03); border-radius: 15px; overflow: hidden; border: 1px solid rgba(184, 181, 232, 0.2); transition: all 0.3s;" do %>
-              <%= content_tag :div, style: "height: 200px; background: #{related.cover_gradient_style}; display: flex; align-items: center; justify-content: center; font-size: 4rem;" do %>
-                <%= related.emoji %>
-              <% end %>
-              <%= content_tag :div, style: "padding: 1.5rem;" do %>
-                <%= content_tag :h3, related.title, style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.3rem; margin-bottom: 1rem; line-height: 1.4;" %>
-                <%= content_tag :div, "Lire →", style: "color: var(--moon-yellow); font-weight: 500;" %>
-              <% end %>
-            <% end %>
-          <% end %>
-        <% end %>
+    <%# Partage %>
+    <%= content_tag :div do %>
+      <%= content_tag :p, "Partager cet article :", style: "color: var(--soft-lavender); margin-bottom: 1rem; font-weight: 500;" %>
+      <%= content_tag :div, style: "display: flex; gap: 1rem;" do %>
+        <%= link_to "🐦 Twitter", "https://twitter.com/intent/tweet?url=#{request.original_url}&text=#{@article.title}", target: "_blank", style: "padding: 0.8rem 1.5rem; background: rgba(184, 181, 232, 0.15); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; transition: all 0.3s;" %>
+        <%= link_to "📘 Facebook", "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", target: "_blank", style: "padding: 0.8rem 1.5rem; background: rgba(184, 181, 232, 0.15); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; transition: all 0.3s;" %>
+        <%= link_to "💼 LinkedIn", "https://www.linkedin.com/sharing/share-offsite/?url=#{request.original_url}", target: "_blank", style: "padding: 0.8rem 1.5rem; background: rgba(184, 181, 232, 0.15); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; transition: all 0.3s;" %>
       <% end %>
     <% end %>
+
+    <%# Retour au blog %>
+    <%= link_to blog_path, style: "padding: 1rem 2rem; background: var(--moon-yellow); border-radius: 12px; color: var(--deep-indigo); font-weight: 600; text-decoration: none; transition: all 0.3s; display: inline-block;" do %>
+      ← Retour au blog
+    <% end %>
+
   <% end %>
 <% end %>
 
-<style>
-.article-content h2 { color: var(--moon-yellow); font-family: 'Crimson Pro', serif; font-size: 2rem; margin: 3rem 0 1.5rem; }
-.article-content h3 { color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.6rem; margin: 2.5rem 0 1rem; }
-.article-content strong { color: var(--moon-yellow) !important; font-weight: 700 !important; }
-</style>
+<%# CTA Newsletter %>
+<%= content_tag :section, class: "newsletter-cta", style: "margin-top: 6rem;" do %>
+  <%= content_tag :div, class: "newsletter-box" do %>
+    <%= content_tag :h2, "Vous avez aimé cet article ?" %>
+    <%= content_tag :p do %>
+      Recevez nos prochaines analyses directement dans votre boîte mail.
+      Une fois par semaine, sans spam.
+    <% end %>
+    <%= content_tag :div, style: "margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;" do %>
+      <%= link_to "📧 S'inscrire à la newsletter", newsletters_path, class: "cta-primary" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= content_tag :style, type: "text/css" do %>
+  /* Style du contenu markdown */
+  .article-content {
+    color: var(--soft-lavender);
+    line-height: 1.9;
+  }
+
+  .article-content h2 {
+    color: var(--warm-cream);
+    font-family: 'Crimson Pro', serif;
+    font-size: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(255, 217, 61, 0.3);
+  }
+
+  .article-content h3 {
+    color: var(--warm-cream);
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .article-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .article-content strong {
+    color: var(--warm-cream);
+    font-weight: 600;
+  }
+
+  .article-content em {
+    font-style: italic;
+    color: var(--moon-yellow);
+  }
+
+  .article-content a {
+    color: var(--moon-yellow);
+    text-decoration: underline;
+    transition: opacity 0.3s;
+  }
+
+  .article-content a:hover {
+    opacity: 0.8;
+  }
+
+  .article-content ul, .article-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+
+  .article-content li {
+    margin-bottom: 0.8rem;
+  }
+
+  .article-content blockquote {
+    border-left: 4px solid var(--moon-yellow);
+    padding-left: 2rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--warm-cream);
+    background: rgba(255, 217, 61, 0.05);
+    padding: 1.5rem 2rem;
+    border-radius: 0 10px 10px 0;
+  }
+
+  .article-content code {
+    background: rgba(255, 217, 61, 0.1);
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    color: var(--moon-yellow);
+  }
+
+  .article-content pre {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1.5rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem !important;
+    }
+
+    .article-content {
+      padding: 2rem !important;
+    }
+
+    .article-content h2 {
+      font-size: 1.5rem;
+    }
+
+    .article-content p {
+      font-size: 1rem;
+    }
+  }
+<% end %>

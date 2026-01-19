@@ -1,111 +1,171 @@
 <%# app/views/admin/articles/_form.html.erb %>
-<%= form_with(model: [:admin, @article], local: true, style: "max-width: 900px; margin: 0 auto;") do |f| %>
-  <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 3rem; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
-    
-    <%# Erreurs %>
-    <% if @article.errors.any? %>
-      <%= content_tag :div, style: "background: rgba(255, 100, 100, 0.1); border: 1px solid rgba(255, 100, 100, 0.3); border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem;" do %>
-        <%= content_tag :h3, "#{pluralize(@article.errors.count, 'erreur')} :", style: "color: #ff6b6b; margin-bottom: 1rem;" %>
-        <%= content_tag :ul, style: "list-style: none; padding: 0;" do %>
-          <% @article.errors.full_messages.each do |message| %>
-            <%= content_tag :li, "• #{message}", style: "color: #ff6b6b; margin-bottom: 0.5rem;" %>
-          <% end %>
+<%= form_with(model: [:admin, @article], local: true, style: "max-width: 900px; margin: 0 auto;") do |form| %>
+
+  <%# Erreurs %>
+  <% if @article.errors.any? %>
+    <%= content_tag :div, style: "background: rgba(255, 100, 100, 0.1); border: 1px solid rgba(255, 100, 100, 0.3); border-radius: 10px; padding: 1.5rem; margin-bottom: 2rem;" do %>
+      <%= content_tag :h2, "#{pluralize(@article.errors.count, 'erreur')} :", style: "color: #ff6b6b; margin-bottom: 1rem;" %>
+      <%= content_tag :ul, style: "color: #ff6b6b; padding-left: 1.5rem;" do %>
+        <% @article.errors.full_messages.each do |message| %>
+          <%= content_tag :li, message %>
         <% end %>
       <% end %>
     <% end %>
+  <% end %>
+
+  <%# Conteneur principal %>
+  <%= content_tag :div, style: "background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(184, 181, 232, 0.2); border-radius: 15px; padding: 3rem;" do %>
 
     <%# Titre %>
     <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
-      <%= f.label :title, "Titre de l'article", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
-      <%= f.text_field :title, 
-          placeholder: "Ex: L'apnée du sommeil : au-delà du diagnostic médical",
-          style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1rem;" %>
+      <%= form.label :title, "Titre de l'article", style: "display: block; color: var(--soft-lavender); margin-bottom: 0.5rem; font-weight: 500;" %>
+      <%= form.text_field :title, style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1.1rem;", placeholder: "Ex: L'apnée du sommeil : au-delà du diagnostic médical" %>
     <% end %>
 
     <%# Slug %>
     <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
-      <%= f.label :slug, "Slug (URL)", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
-      <%= f.text_field :slug, 
-          placeholder: "Ex: apnee-du-sommeil-diagnostic-medical (laissez vide pour génération auto)",
-          style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--soft-lavender); font-size: 0.9rem;" %>
+      <%= form.label :slug, "URL (slug)", style: "display: block; color: var(--soft-lavender); margin-bottom: 0.5rem; font-weight: 500;" %>
+      <%= form.text_field :slug, style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream);", placeholder: "apnee-du-sommeil-diagnostic" %>
+      <%= content_tag :small, "Laisser vide pour générer automatiquement depuis le titre", style: "color: var(--soft-lavender); opacity: 0.7; font-size: 0.85rem;" %>
+    <% end %>
+
+    <%# Catégorie %>
+    <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
+      <%= form.label :category, "Catégorie", style: "display: block; color: var(--soft-lavender); margin-bottom: 0.5rem; font-weight: 500;" %>
+      <%= form.select :category,
+          options_for_select([
+            ['Santé', 'Santé'],
+            ['Société', 'Société'],
+            ['Parentalité', 'Parentalité'],
+            ['Conseils', 'Conseils'],
+            ['Science', 'Science']
+          ], @article.category),
+          { include_blank: 'Sélectionner une catégorie' },
+          style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream);" %>
+    <% end %>
+
+    <%# Upload d'image de une - avec protection complète %>
+    <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
+      <%= form.label :hero_image, "Image de une", style: "display: block; color: var(--soft-lavender); margin-bottom: 0.5rem; font-weight: 500;" %>
+
+      <%# Prévisualisation si une image existe déjà - avec triple vérification %>
+      <% begin %>
+        <% if @article.respond_to?(:hero_image) && @article.hero_image.present? && @article.hero_image.attached? %>
+          <%= content_tag :div, style: "margin-bottom: 1rem; position: relative; border-radius: 10px; overflow: hidden; max-width: 400px;" do %>
+            <%= image_tag @article.hero_image, style: "width: 100%; height: auto; display: block;" %>
+            <%= content_tag :div, "✓ Image actuelle", style: "position: absolute; top: 0.5rem; right: 0.5rem; background: rgba(74, 222, 128, 0.9); padding: 0.5rem 1rem; border-radius: 8px; color: white; font-size: 0.85rem; font-weight: 600;" %>
+          <% end %>
+        <% end %>
+      <% rescue %>
+        <%# En cas d'erreur, on ne fait rien %>
+      <% end %>
+
+      <%= form.file_field :hero_image,
+          accept: "image/png,image/jpeg,image/jpg,image/webp",
+          style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 2px dashed rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); cursor: pointer;",
+          onchange: "previewImage(event)" %>
+
+      <%= content_tag :small, style: "color: var(--soft-lavender); opacity: 0.7; font-size: 0.85rem; display: block; margin-top: 0.5rem;" do %>
+        Formats acceptés : JPG, PNG, WEBP • Taille recommandée : 1200x800px • Max 5MB
+      <% end %>
+
+      <%= content_tag :div, style: "margin-top: 0.5rem; padding: 0.8rem; background: rgba(255, 217, 61, 0.1); border-radius: 8px; border: 1px solid rgba(255, 217, 61, 0.3);" do %>
+        <%= content_tag :small, style: "color: var(--moon-yellow); font-size: 0.85rem;" do %>
+          ⚠️ Si le champ d'upload ne fonctionne pas, assurez-vous d'avoir configuré Active Storage (voir GUIDE_COMPLET.md)
+        <% end %>
+      <% end %>
+
+      <%# Zone de prévisualisation pour la nouvelle image %>
+      <%= content_tag :div, id: "image-preview", style: "margin-top: 1rem; display: none;" do %>
+        <%= image_tag "", id: "preview-img", style: "width: 100%; max-width: 400px; height: auto; border-radius: 10px; border: 1px solid rgba(184, 181, 232, 0.3);" %>
+      <% end %>
+    <% end %>
+
+    <%# Emoji (conservé pour compatibilité et liste admin) %>
+    <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
+      <%= form.label :emoji, "Emoji (optionnel, pour la liste admin)", style: "display: block; color: var(--soft-lavender); margin-bottom: 0.5rem; font-weight: 500;" %>
+      <%= form.text_field :emoji, style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1.5rem;", placeholder: "😴" %>
+    <% end %>
+
+    <%# Temps de lecture %>
+    <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
+      <%= form.label :reading_time, "Temps de lecture (en minutes)", style: "display: block; color: var(--soft-lavender); margin-bottom: 0.5rem; font-weight: 500;" %>
+      <%= form.number_field :reading_time, style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream);", placeholder: "8" %>
     <% end %>
 
     <%# Extrait %>
     <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
-      <%= f.label :excerpt, "Extrait (preview)", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
-      <%= f.text_area :excerpt, 
-          rows: 3,
-          placeholder: "Court résumé de l'article (2-3 phrases)",
-          style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1rem; resize: vertical;" %>
+      <%= form.label :excerpt, "Extrait (pour la liste des articles)", style: "display: block; color: var(--soft-lavender); margin-bottom: 0.5rem; font-weight: 500;" %>
+      <%= form.text_area :excerpt, rows: 3, style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); line-height: 1.6; resize: vertical;", placeholder: "Bref résumé de l'article..." %>
     <% end %>
 
     <%# Contenu %>
     <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
-      <%= f.label :content, "Contenu (Markdown supporté)", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
-      <%= f.text_area :content, 
-          rows: 20,
-          placeholder: "Écrivez votre article ici...\n\n## Titre de section\n\nVotre texte...",
-          style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1rem; font-family: monospace; resize: vertical;" %>
+      <%= form.label :content, "Contenu (Markdown)", style: "display: block; color: var(--soft-lavender); margin-bottom: 0.5rem; font-weight: 500;" %>
+      <%= form.text_area :content, rows: 20, style: "width: 100%; padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-family: 'Courier New', monospace; line-height: 1.8; resize: vertical;", placeholder: "Rédigez votre article en Markdown..." %>
+      <%= content_tag :small, style: "color: var(--soft-lavender); opacity: 0.7; font-size: 0.85rem; display: block; margin-top: 0.5rem;" do %>
+        Utilisez Markdown pour formater le texte : **gras**, *italique*, # Titre, etc.
+      <% end %>
     <% end %>
 
-    <%# Ligne : Emoji + Catégorie + Temps de lecture %>
-    <%= content_tag :div, style: "display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 1.5rem; margin-bottom: 2rem;" do %>
-      
-      <%# Emoji %>
-      <%= content_tag :div do %>
-        <%= f.label :emoji, "Emoji", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
-        <%= f.text_field :emoji, 
-            placeholder: "😴",
-            style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 2rem; text-align: center;" %>
-      <% end %>
-
-      <%# Catégorie %>
-      <%= content_tag :div do %>
-        <%= f.label :category, "Catégorie", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
-        <%= f.select :category, 
-            [["Santé", "Santé"], ["Conseils", "Conseils"], ["Parentalité", "Parentalité"], ["Société", "Société"]],
-            { include_blank: "Choisir une catégorie" },
-            style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1rem;" %>
-      <% end %>
-
-      <%# Temps de lecture %>
-      <%= content_tag :div do %>
-        <%= f.label :reading_time, "Temps (min)", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
-        <%= f.number_field :reading_time, 
-            placeholder: "5",
-            style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1rem;" %>
-      <% end %>
-
-    <% end %>
-
-    <%# Gradient de couverture %>
+    <%# Date de publication %>
     <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
-      <%= f.label :cover_gradient, "Gradient de couverture (CSS)", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
-      <%= f.text_field :cover_gradient, 
-          placeholder: "linear-gradient(135deg, rgba(255, 217, 61, 0.2), rgba(184, 181, 232, 0.2))",
-          style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--soft-lavender); font-size: 0.9rem; font-family: monospace;" %>
-    <% end %>
-
-    <%# Auteur %>
-    <%= content_tag :div, style: "margin-bottom: 2rem;" do %>
-      <%= f.label :author, "Auteur", style: "color: var(--warm-cream); font-size: 1.1rem; display: block; margin-bottom: 0.5rem;" %>
-      <%= f.text_field :author, 
-          placeholder: "Nicolas Goarant",
-          style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream); font-size: 1rem;" %>
-    <% end %>
-
-    <%# Publié %>
-    <%= content_tag :div, style: "margin-bottom: 2rem; padding: 1.5rem; background: rgba(255, 217, 61, 0.05); border: 1px solid rgba(255, 217, 61, 0.2); border-radius: 10px;" do %>
-      <%= f.check_box :published, style: "width: 20px; height: 20px; margin-right: 0.5rem;" %>
-      <%= f.label :published, "Publier l'article immédiatement", style: "color: var(--moon-yellow); font-size: 1.1rem;" %>
+      <%= form.label :published_at, "Date de publication", style: "display: block; color: var(--soft-lavender); margin-bottom: 0.5rem; font-weight: 500;" %>
+      <%= form.datetime_local_field :published_at, style: "width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--warm-cream);" %>
     <% end %>
 
     <%# Boutons d'action %>
-    <%= content_tag :div, style: "display: flex; gap: 1rem; justify-content: flex-end; margin-top: 3rem;" do %>
+    <%= content_tag :div, style: "display: flex; gap: 1rem; justify-content: flex-end; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(184, 181, 232, 0.2);" do %>
       <%= link_to "Annuler", admin_articles_path, style: "padding: 1rem 2rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; font-weight: 500;" %>
-      <%= f.submit @article.new_record? ? "Créer l'article" : "Mettre à jour", 
-          style: "padding: 1rem 2rem; background: var(--moon-yellow); border: none; border-radius: 10px; color: var(--deep-indigo); font-weight: 600; cursor: pointer; font-size: 1rem;" %>
+
+      <%= form.submit "Enregistrer le brouillon", name: "draft", style: "padding: 1rem 2rem; background: rgba(184, 181, 232, 0.15); border: 1px solid rgba(184, 181, 232, 0.3); border-radius: 10px; color: var(--soft-lavender); font-weight: 600; cursor: pointer;" %>
+
+      <%= form.submit "Publier l'article", name: "publish", style: "padding: 1rem 2rem; background: var(--moon-yellow); border: none; border-radius: 10px; color: var(--deep-indigo); font-weight: 600; cursor: pointer;" %>
     <% end %>
 
   <% end %>
+
+<% end %>
+
+<script>
+// Prévisualisation de l'image avant upload
+function previewImage(event) {
+  const input = event.target;
+  const preview = document.getElementById('image-preview');
+  const previewImg = document.getElementById('preview-img');
+
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      previewImg.src = e.target.result;
+      preview.style.display = 'block';
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+</script>
+
+<%= content_tag :style, type: "text/css" do %>
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--moon-yellow);
+    box-shadow: 0 0 0 3px rgba(255, 217, 61, 0.1);
+  }
+
+  input[type="file"]::-webkit-file-upload-button {
+    background: var(--moon-yellow);
+    color: var(--deep-indigo);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 1rem;
+  }
+
+  input[type="file"]::-webkit-file-upload-button:hover {
+    opacity: 0.9;
+  }
 <% end %>

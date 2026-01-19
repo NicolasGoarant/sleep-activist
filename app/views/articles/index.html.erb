@@ -1,71 +1,67 @@
-<%# app/views/articles/index.html.erb %>
+<%# app/views/articles/index.html.erb - Page du blog avec images uploadées %>
+
 <%# Blog Hero %>
-<%= content_tag :section, class: "hero", style: "min-height: 50vh; padding-top: 8rem; display: flex; align-items: center; background: linear-gradient(to bottom, rgba(26, 20, 100, 0.6), rgba(15, 11, 61, 0.9));" do %>
-  <%= content_tag :div, class: "hero-content", style: "max-width: 800px; margin: 0 auto; text-align: center;" do %>
-    <%= content_tag :h1, "Articles", style: "font-size: 3.5rem; margin-bottom: 1.5rem;" %>
-    <%= content_tag :p, class: "hero-subtitle", style: "font-size: 1.3rem; line-height: 1.8;" do %>
+<%= content_tag :section, class: "hero", style: "min-height: 60vh; padding-top: 8rem; display: flex; align-items: center; background: linear-gradient(to bottom, rgba(26, 20, 100, 0.85), rgba(15, 11, 61, 0.95)); position: relative;" do %>
+  <%= content_tag :div, class: "hero-content", style: "max-width: 800px; margin: 0 auto; text-align: center; z-index: 2; position: relative;" do %>
+    <%= content_tag :h1, "Articles", style: "font-size: 3.5rem; margin-bottom: 1.5rem; text-shadow: 0 4px 20px rgba(0,0,0,0.3);" %>
+    <%= content_tag :p, class: "hero-subtitle", style: "font-size: 1.3rem; line-height: 1.8; text-shadow: 0 2px 10px rgba(0,0,0,0.3);" do %>
       Découvrez nos réflexions et analyses sur le sommeil comme enjeu de société
     <% end %>
   <% end %>
 <% end %>
 
-<%# Grille d'articles dynamique %>
+<%# Grille d'articles avec images uploadées %>
 <%= content_tag :section, style: "padding: 6rem 5%; max-width: 1400px; margin: 0 auto;" do %>
-  
-  <% if @articles.any? %>
-    <%= content_tag :div, style: "display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 3rem;" do %>
-      
-      <% @articles.each do |article| %>
-        <%= link_to article_path(article), class: "article-card", style: "text-decoration: none; display: block;" do %>
-          <%= content_tag :article, style: "background: rgba(255, 255, 255, 0.03); border-radius: 15px; overflow: hidden; border: 1px solid rgba(184, 181, 232, 0.2); transition: all 0.3s;" do %>
-            
-            <%# Image de couverture %>
-            <%= content_tag :div, style: "height: 250px; background: #{article.cover_gradient_style}; display: flex; align-items: center; justify-content: center; font-size: 5rem;" do %>
-              <%= article.emoji %>
+
+  <%# Grille 2 colonnes %>
+  <%= content_tag :div, style: "display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 3rem;" do %>
+
+    <% @articles.each do |article| %>
+      <%= link_to article_path(article.slug), class: "article-card", style: "text-decoration: none; display: block;" do %>
+        <%= content_tag :article, style: "background: rgba(255, 255, 255, 0.03); border-radius: 15px; overflow: hidden; border: 1px solid rgba(184, 181, 232, 0.2); transition: all 0.3s; height: 100%; display: flex; flex-direction: column;" do %>
+
+          <%# Image de l'article %>
+          <%= content_tag :div, style: "height: 280px; overflow: hidden; position: relative;" do %>
+            <% if article.hero_image.attached? %>
+              <%= image_tag article.hero_image,
+                  alt: article.title,
+                  style: "width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;",
+                  class: "article-hero-image" %>
+            <% else %>
+              <%# Fallback avec gradient et emoji si pas d'image %>
+              <%= content_tag :div, style: "height: 100%; background: linear-gradient(135deg, rgba(255, 217, 61, 0.2), rgba(184, 181, 232, 0.2)); display: flex; align-items: center; justify-content: center; font-size: 5rem;" do %>
+                <%= article.emoji || "😴" %>
+              <% end %>
             <% end %>
-            
-            <%# Contenu %>
-            <%= content_tag :div, style: "padding: 2rem;" do %>
-              <%= content_tag :div, style: "display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;" do %>
-                <% if article.category.present? %>
-                  <%= content_tag :span, article.category, style: "background: rgba(255, 217, 61, 0.15); padding: 0.3rem 0.8rem; border-radius: 12px; color: #{article.category_color}; font-size: 0.8rem;" %>
-                <% end %>
+          <% end %>
+
+          <%# Contenu %>
+          <%= content_tag :div, style: "padding: 2rem; flex: 1; display: flex; flex-direction: column;" do %>
+            <%= content_tag :div, style: "display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;" do %>
+              <% if article.category.present? %>
+                <%= content_tag :span, article.category, style: "background: rgba(255, 217, 61, 0.15); padding: 0.3rem 0.8rem; border-radius: 12px; color: var(--moon-yellow); font-size: 0.8rem;" %>
+              <% end %>
+              <% if article.reading_time.present? %>
                 <%= content_tag :span, "#{article.reading_time} min", style: "color: var(--soft-lavender); font-size: 0.8rem; opacity: 0.7;" %>
               <% end %>
-              
-              <%= content_tag :h3, article.title, style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.5rem; margin-bottom: 1rem; line-height: 1.4;" %>
-              
-              <%= content_tag :p, style: "color: var(--soft-lavender); line-height: 1.7; font-size: 0.95rem; margin-bottom: 1.5rem; opacity: 0.9;" do %>
-                <%= truncate(article.excerpt || article.content, length: 150) %>
-              <% end %>
-              
-              <%= content_tag :div, style: "display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid rgba(184, 181, 232, 0.1);" do %>
-                <%= content_tag :span, "Lire l'article", style: "color: var(--moon-yellow); font-weight: 500; font-size: 0.9rem;" %>
-                <%= content_tag :span, "→", style: "color: var(--moon-yellow); font-size: 1.2rem;" %>
-              <% end %>
             <% end %>
-            
+
+            <%= content_tag :h3, article.title, style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.5rem; margin-bottom: 1rem; line-height: 1.4; transition: color 0.3s;" %>
+
+            <% if article.excerpt.present? %>
+              <%= content_tag :p, article.excerpt, style: "color: var(--soft-lavender); line-height: 1.7; font-size: 0.95rem; margin-bottom: 1.5rem; opacity: 0.9; flex: 1;" %>
+            <% end %>
+
+            <%= content_tag :div, style: "display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid rgba(184, 181, 232, 0.1); margin-top: auto;" do %>
+              <%= content_tag :span, "Lire l'article", style: "color: var(--moon-yellow); font-weight: 500; font-size: 0.9rem;" %>
+              <%= content_tag :span, "→", style: "color: var(--moon-yellow); font-size: 1.2rem;" %>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>
-      
     <% end %>
 
-    <%# Pagination %>
-    <% if @articles.respond_to?(:total_pages) && @articles.total_pages > 1 %>
-      <%= content_tag :div, style: "margin-top: 4rem; text-align: center;" do %>
-        <%= paginate @articles %>
-      <% end %>
-    <% end %>
-
-  <% else %>
-    <%# Message si aucun article %>
-    <%= content_tag :div, style: "text-align: center; padding: 4rem; background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
-      <%= content_tag :h2, "📝 Aucun article publié pour le moment", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 2rem; margin-bottom: 1rem;" %>
-      <%= content_tag :p, "Revenez bientôt pour découvrir nos premiers articles !", style: "color: var(--soft-lavender); font-size: 1.1rem;" %>
-    <% end %>
   <% end %>
-  
 <% end %>
 
 <%# CTA Newsletter %>
@@ -73,7 +69,7 @@
   <%= content_tag :div, class: "newsletter-box" do %>
     <%= content_tag :h2, "Ne manquez aucun article" %>
     <%= content_tag :p do %>
-      Recevez nos nouvelles analyses directement dans votre boîte mail. 
+      Recevez nos nouvelles analyses directement dans votre boîte mail.
       Une fois par semaine, sans spam.
     <% end %>
     <%= content_tag :div, style: "margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;" do %>
@@ -83,20 +79,30 @@
   <% end %>
 <% end %>
 
-<style>
-.article-card article:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 50px rgba(255, 217, 61, 0.3);
-  border-color: var(--moon-yellow);
-}
-
-.article-card:hover h3 {
-  color: var(--moon-yellow);
-}
-
-@media (max-width: 768px) {
-  section > div:first-child {
-    grid-template-columns: 1fr !important;
+<%= content_tag :style, type: "text/css" do %>
+  .article-card article:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 50px rgba(255, 217, 61, 0.3);
+    border-color: var(--moon-yellow);
   }
-}
-</style>
+
+  .article-card:hover h3 {
+    color: var(--moon-yellow);
+  }
+
+  .article-card:hover .article-hero-image {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    section > div:first-child {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .article-card article > div:first-child {
+      height: 220px !important;
+    }
+  }
+<% end %>

@@ -84,6 +84,7 @@ class Admin::ArticlesController < ApplicationController
       :cover_image_url,
       :cover_gradient,
       :published,
+      :hero_image,
       :author
     )
   end

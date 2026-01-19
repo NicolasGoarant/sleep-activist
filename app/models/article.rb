@@ -17,6 +17,7 @@ class Article < ApplicationRecord
   scope :by_category, ->(category) { where(category: category) }
   scope :recent, -> { order(created_at: :desc) }
 
+  has_one_attached :hero_image
   # Après les scopes, avant les méthodes d'instance
   def self.friendly_find(param)
     # Essaie de trouver par ID d'abord (si numérique), sinon par slug
