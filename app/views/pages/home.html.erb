@@ -278,10 +278,12 @@
       Chaque lundi, recevez une Sleep Story inspirante, des extraits de podcast,
       des analyses sans moralisation et des pistes pour repenser votre sommeil.
     <% end %>
-    <%= form_with url: "#", method: :post, class: "newsletter-form", local: true do |f| %>
-      <%= f.email_field :email, placeholder: "Votre email", required: true %>
-      <%= f.submit "S'inscrire" %>
-    <% end %>
+
+<%= form_with model: Subscriber.new, url: subscribers_path, method: :post, class: "newsletter-form", local: true do |f| %>
+  <%= f.email_field :email, placeholder: "Votre email", required: true %>
+  <%= f.submit "S'inscrire" %>
+<% end %>
+
     <%= content_tag :p, style: "margin-top: 2rem; font-size: 0.9rem;" do %>
       💌 Pas de spam. Désinscription en un clic. Vos données restent privées.
     <% end %>
