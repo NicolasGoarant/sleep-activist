@@ -1,2 +1,736 @@
-<h1>Pages#presse</h1>
-<p>Find me in app/views/pages/presse.html.erb</p>
+<%# Page Presse - Sleep Activists %>
+
+<section class="press-hero">
+  <div class="container">
+    <h1>💤 Presse & Médias</h1>
+    <p class="subtitle">Ils parlent de notre engagement pour un sommeil libre, joyeux et réparateur</p>
+  </div>
+</section>
+
+<%# Communiqué de presse %>
+<section class="press-release">
+  <div class="container">
+    <div class="press-release-header">
+      <span class="badge">📰 Communiqué de presse</span>
+      <p class="date">Mercredi 10 septembre 2025</p>
+    </div>
+
+    <h2>Lancement de Sleep Activists : un nouveau média qui milite pour un sommeil libre, joyeux et réparateur</h2>
+
+    <div class="press-content">
+      <p class="lead">
+        Dans un monde qui valorise l'urgence, la productivité et la performance, un nouveau média propose de ralentir… et de dormir.
+      </p>
+
+      <p>
+        <strong>Les Sleep Activists sont nés avec une conviction forte : dormir est un droit, un plaisir et parfois une affaire de conviction.</strong>
+      </p>
+
+      <h3>🌙 Un média doux… mais engagé</h3>
+
+      <p>
+        Le sommeil est partout dans nos vies, mais rarement considéré comme il le mérite. Souvent réduit à une donnée biologique ou à un problème médical, il est pourtant un marqueur social, culturel et émotionnel.
+      </p>
+
+      <p>
+        Les Sleep Activists proposent d'en changer le récit : parler du sommeil sans injonctions, sans moralisation, mais avec <strong>curiosité, humour et liberté de ton</strong>.
+      </p>
+
+      <div class="target-audience">
+        <h4>Ce nouveau média s'adressera :</h4>
+        <ul>
+          <li>👶 Aux jeunes parents épuisés</li>
+          <li>😴 Aux insomniaques</li>
+          <li>🐌 Aux militantes et militants du repos et du slow living</li>
+          <li>🌃 Aux travailleurs de nuit</li>
+          <li>📚 Et à toutes les curieuses et curieux du sommeil comme objet d'étude et de poésie</li>
+        </ul>
+      </div>
+
+      <h3>📱 Un écosystème éditorial riche et vivant</h3>
+
+      <div class="ecosystem-grid">
+        <div class="ecosystem-item">
+          <div class="icon">📱</div>
+          <h4>Instagram & TikTok</h4>
+          <p>Carrousels doux, reels incarnés, formats viraux</p>
+        </div>
+
+        <div class="ecosystem-item">
+          <div class="icon">💬</div>
+          <h4>Un site, un blog & une newsletter</h4>
+          <p>Analyses, récits, interviews, pratiques concrètes</p>
+        </div>
+
+        <div class="ecosystem-item">
+          <div class="icon">🎙️</div>
+          <h4>Un podcast en préparation</h4>
+          <p>Sommeil vécu, ressenti, raconté</p>
+        </div>
+
+        <div class="ecosystem-item">
+          <div class="icon">🤝</div>
+          <h4>Des ateliers, rencontres et événements</h4>
+          <p>Dès 2026 : pour penser le repos ensemble</p>
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <p class="quote">"Dormir est un plaisir"</p>
+        <p class="quote-description">
+          Plus qu'un média, Sleep Activists revendique une posture : celle du corps qui dit stop, de l'esprit qui a besoin de nuit, du temps qu'on reprend.<br>
+          <strong>Nous croyons qu'un autre sommeil est possible : apaisé, désirable, collectif.</strong>
+        </p>
+      </div>
+
+      <div class="discover-section">
+        <h4>À découvrir dès maintenant :</h4>
+        <p>🌐 Site : <%= link_to "www.sleep-activist.fr", root_path, class: "link-highlight" %></p>
+        <p>📱 Instagram : <%= link_to "@sleep_activists", "https://instagram.com/sleep_activists", target: "_blank", class: "link-highlight" %></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# Contact presse %>
+<section class="press-contact">
+  <div class="container">
+    <h2>📧 Contact presse</h2>
+
+    <div class="contacts-grid">
+      <div class="contact-card">
+        <%= image_tag "nicolas.jpg", alt: "Nicolas Goarant", class: "contact-photo", onerror: "this.style.display='none'" %>
+        <h3>Nicolas Goarant</h3>
+        <p class="role">Co-fondateur</p>
+        <p class="bio">
+          Auteur du livre « Le Sommeil Malmené » (éd. De l'Aube, 2020), diplômé de Sciences Po, âgé de 44 ans, Nicolas Goarant est un Sleep Activist revendiqué.
+        </p>
+        <div class="contact-info">
+          <p>📧 <%= mail_to "nicolas@sleep-activist.fr" %></p>
+          <p>📱 06 67 06 31 79</p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <%= image_tag "sofiia.jpg", alt: "Sofiia Popova", class: "contact-photo", onerror: "this.style.display='none'" %>
+        <h3>Sofiia Popova</h3>
+        <p class="role">Co-fondatrice</p>
+        <p class="bio">
+          Étudiante en communication et relations internationales, réfugiée ukrainienne arrivée en France en 2022, âgée de 20 ans, Sofiia est passionnée par les sujets du sommeil.
+        </p>
+        <div class="contact-info">
+          <p>📧 <%= mail_to "sofiia.popova@sleep-activist.fr" %></p>
+          <p>📱 +380 99 325 1450</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# Apparitions médias %>
+<section class="media-appearances">
+  <div class="container">
+    <h2>🎤 Ils ont parlé de nous</h2>
+
+    <div class="media-grid">
+      <% [
+        {
+          media: "France 2",
+          logo: "france_2.png",
+          title: "Interview chez Élise Lucet",
+          date: "2021",
+          url: "https://www.youtube.com/watch?v=OouGZyTz8dU",
+          type: "Télévision"
+        },
+        {
+          media: "France Culture",
+          logo: "france_culture.png",
+          title: "Notre sommeil, entre l'intime et le politique",
+          date: "2024",
+          url: "https://www.radiofrance.fr/franceculture/podcasts/la-vie-mode-d-emploi/notre-sommeil-entre-l-intime-et-le-politique-8860750",
+          type: "Radio"
+        },
+        {
+          media: "France Inter",
+          logo: "france_inter.png",
+          title: "Grand Bien Vous Fasse",
+          date: "2023",
+          url: "https://www.facebook.com/grandbienvousfasse/posts/1031683047245173/",
+          type: "Radio"
+        },
+        {
+          media: "RTL",
+          logo: "rtl.png",
+          title: "Interview sommeil",
+          date: "2023",
+          url: "https://youtu.be/LtPFmPsjKak",
+          type: "Radio"
+        },
+        {
+          media: "Brut",
+          logo: "brut.png",
+          title: "Le sommeil malmené",
+          date: "2021",
+          url: "https://youtu.be/Xqj8cnh1nak",
+          type: "Web"
+        },
+        {
+          media: "RFI",
+          logo: "rfi.png",
+          title: "Les petits plaisirs de la sieste",
+          date: "2025",
+          url: "https://www.rfi.fr/fr/podcasts/8-milliards-de-voisins/20250609-les-petits-plaisirs-de-la-sieste",
+          type: "Radio"
+        },
+        {
+          media: "Ouest-France",
+          logo: "ouest_france.png",
+          title: "Dormir moins de 7 heures se paye très cher",
+          date: "2024",
+          url: "https://www.ouest-france.fr/sante/dormir-moins-de-7-heures-par-nuit-se-paye-tres-cher-un-specialiste-du-sommeil-sonne-l-alarme-7083917",
+          type: "Presse écrite"
+        },
+        {
+          media: "Usbek & Rica",
+          logo: "usbek_et_rica.png",
+          title: "Le sommeil est une maladie politique",
+          date: "2023",
+          url: "https://usbeketrica.com/fr/article/le-sommeil-est-une-maladie-politique",
+          type: "Presse écrite"
+        }
+      ].each do |item| %>
+        <%= link_to item[:url], target: "_blank", class: "media-card" do %>
+          <div class="media-header">
+            <%= image_tag item[:logo], alt: item[:media], class: "media-logo", onerror: "this.style.display='none'" %>
+            <span class="media-type"><%= item[:type] %></span>
+          </div>
+          <h3><%= item[:title] %></h3>
+          <p class="media-source"><%= item[:media] %> • <%= item[:date] %></p>
+          <span class="read-more">→ Voir l'interview</span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# Kit presse %>
+<section class="press-kit">
+  <div class="container">
+    <h2>📦 Kit presse</h2>
+
+    <div class="kit-grid">
+      <div class="kit-item">
+        <div class="icon">📄</div>
+        <h3>Communiqué de presse</h3>
+        <p>Format PDF à télécharger</p>
+        <%= link_to "Télécharger", "#", class: "btn-download", download: true %>
+      </div>
+
+      <div class="kit-item">
+        <div class="icon">🖼️</div>
+        <h3>Photos haute résolution</h3>
+        <p>Logos et visuels officiels</p>
+        <%= link_to "Télécharger", "#", class: "btn-download", download: true %>
+      </div>
+
+      <div class="kit-item">
+        <div class="icon">📚</div>
+        <h3>Biographies</h3>
+        <p>Nicolas Goarant & Sofiia Popova</p>
+        <%= link_to "Télécharger", "#", class: "btn-download", download: true %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# Newsletter pour journalistes %>
+<section class="journalist-newsletter">
+  <div class="container">
+    <h2>📬 Vous êtes journaliste ?</h2>
+    <p>Recevez nos actualités et ressources presse en avant-première</p>
+
+    <%= form_with model: Subscriber.new, url: subscribers_path, method: :post, class: "newsletter-form", local: true do |f| %>
+      <%= f.email_field :email, placeholder: "Votre email professionnel", required: true, class: "newsletter-input" %>
+      <%= f.submit "M'inscrire", class: "cta-button" %>
+    <% end %>
+  </div>
+</section>
+
+<style>
+/* Styles spécifiques à la page presse */
+.press-hero {
+  padding: 8rem 5% 4rem;
+  text-align: center;
+  background: linear-gradient(to bottom, rgba(26, 20, 100, 0.3), transparent);
+}
+
+.press-hero h1 {
+  font-family: 'Crimson Pro', serif;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  color: var(--warm-cream);
+}
+
+.press-hero .subtitle {
+  font-size: 1.3rem;
+  color: var(--soft-lavender);
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Communiqué de presse */
+.press-release {
+  padding: 4rem 5%;
+}
+
+.press-release-header {
+  margin-bottom: 2rem;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--moon-yellow);
+  color: var(--deep-navy);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.date {
+  color: var(--soft-lavender);
+  font-style: italic;
+}
+
+.press-release h2 {
+  font-family: 'Crimson Pro', serif;
+  font-size: 2.5rem;
+  color: var(--warm-cream);
+  margin-bottom: 2rem;
+  line-height: 1.3;
+}
+
+.press-content {
+  color: var(--soft-lavender);
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.press-content .lead {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--warm-cream);
+  margin-bottom: 2rem;
+}
+
+.press-content h3 {
+  color: var(--warm-cream);
+  font-size: 1.8rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.press-content h4 {
+  color: var(--warm-cream);
+  font-size: 1.3rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.target-audience {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 15px;
+  margin: 2rem 0;
+  border-left: 4px solid var(--moon-yellow);
+}
+
+.target-audience ul {
+  list-style: none;
+  padding: 0;
+}
+
+.target-audience li {
+  padding: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.ecosystem-item {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 15px;
+  border: 1px solid rgba(184, 181, 232, 0.2);
+}
+
+.ecosystem-item .icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.ecosystem-item h4 {
+  color: var(--warm-cream);
+  margin-bottom: 0.5rem;
+}
+
+.quote-block {
+  background: linear-gradient(135deg, rgba(26, 20, 100, 0.5), rgba(45, 45, 95, 0.3));
+  padding: 3rem;
+  border-radius: 20px;
+  margin: 3rem 0;
+  text-align: center;
+  border: 2px solid var(--moon-yellow);
+}
+
+.quote {
+  font-family: 'Crimson Pro', serif;
+  font-size: 2rem;
+  font-style: italic;
+  color: var(--moon-yellow);
+  margin-bottom: 1.5rem;
+}
+
+.quote-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.discover-section {
+  background: rgba(255, 215, 0, 0.1);
+  padding: 2rem;
+  border-radius: 15px;
+  margin-top: 3rem;
+}
+
+.link-highlight {
+  color: var(--moon-yellow);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.link-highlight:hover {
+  text-decoration: underline;
+}
+
+/* Contact presse */
+.press-contact {
+  padding: 4rem 5%;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.press-contact h2 {
+  text-align: center;
+  font-family: 'Crimson Pro', serif;
+  font-size: 2.5rem;
+  color: var(--warm-cream);
+  margin-bottom: 3rem;
+}
+
+.contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(184, 181, 232, 0.2);
+  text-align: center;
+}
+
+.contact-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  border: 3px solid var(--moon-yellow);
+}
+
+.contact-card h3 {
+  color: var(--warm-cream);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-card .role {
+  color: var(--moon-yellow);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.contact-card .bio {
+  color: var(--soft-lavender);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.contact-info {
+  border-top: 1px solid rgba(184, 181, 232, 0.2);
+  padding-top: 1.5rem;
+}
+
+.contact-info p {
+  margin: 0.5rem 0;
+  color: var(--soft-lavender);
+}
+
+.contact-info a {
+  color: var(--moon-yellow);
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* Apparitions médias */
+.media-appearances {
+  padding: 4rem 5%;
+}
+
+.media-appearances h2 {
+  text-align: center;
+  font-family: 'Crimson Pro', serif;
+  font-size: 2.5rem;
+  color: var(--warm-cream);
+  margin-bottom: 3rem;
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.media-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 15px;
+  border: 1px solid rgba(184, 181, 232, 0.2);
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.media-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--moon-yellow);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.media-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.media-logo {
+  max-width: 80px;
+  max-height: 40px;
+  object-fit: contain;
+}
+
+.media-type {
+  font-size: 0.8rem;
+  background: rgba(255, 215, 0, 0.2);
+  color: var(--moon-yellow);
+  padding: 0.3rem 0.8rem;
+  border-radius: 10px;
+}
+
+.media-card h3 {
+  color: var(--warm-cream);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.media-source {
+  color: var(--soft-lavender);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.read-more {
+  color: var(--moon-yellow);
+  font-weight: 600;
+}
+
+/* Kit presse */
+.press-kit {
+  padding: 4rem 5%;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.press-kit h2 {
+  text-align: center;
+  font-family: 'Crimson Pro', serif;
+  font-size: 2.5rem;
+  color: var(--warm-cream);
+  margin-bottom: 3rem;
+}
+
+.kit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.kit-item {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border: 1px solid rgba(184, 181, 232, 0.2);
+}
+
+.kit-item .icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.kit-item h3 {
+  color: var(--warm-cream);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.kit-item p {
+  color: var(--soft-lavender);
+  margin-bottom: 1.5rem;
+}
+
+.btn-download {
+  display: inline-block;
+  background: var(--moon-yellow);
+  color: var(--deep-navy);
+  padding: 0.8rem 2rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-download:hover {
+  background: #ffed4e;
+  transform: translateY(-2px);
+}
+
+/* Newsletter journalistes */
+.journalist-newsletter {
+  padding: 4rem 5%;
+  text-align: center;
+}
+
+.journalist-newsletter h2 {
+  font-family: 'Crimson Pro', serif;
+  font-size: 2.5rem;
+  color: var(--warm-cream);
+  margin-bottom: 1rem;
+}
+
+.journalist-newsletter p {
+  font-size: 1.2rem;
+  color: var(--soft-lavender);
+  margin-bottom: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .press-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .press-release h2 {
+    font-size: 2rem;
+  }
+
+  .contacts-grid,
+  .media-grid,
+  .kit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ecosystem-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<style>
+/* Styles pour le formulaire newsletter */
+.newsletter-form {
+  display: flex;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.newsletter-input {
+  flex: 1;
+  min-width: 250px;
+  padding: 1rem 1.5rem;
+  border-radius: 25px;
+  border: 2px solid rgba(184, 181, 232, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--warm-cream);
+  font-size: 1rem;
+}
+
+.newsletter-input::placeholder {
+  color: var(--soft-lavender);
+  opacity: 0.7;
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: var(--moon-yellow);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cta-button {
+  padding: 1rem 2.5rem;
+  background: var(--moon-yellow);
+  color: var(--deep-navy);
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #ffed4e;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+@media (max-width: 600px) {
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .newsletter-input {
+    width: 100%;
+  }
+}
+</style>
