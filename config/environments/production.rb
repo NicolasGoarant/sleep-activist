@@ -93,16 +93,16 @@ Rails.application.configure do
     protocol: 'https'
   }
 
-  # Use SMTP with SendGrid
+  # Use SMTP with Brevo (ex-Sendinblue)
   config.action_mailer.delivery_method = :smtp
 
-  # SendGrid SMTP settings
+  # Brevo SMTP settings
   config.action_mailer.smtp_settings = {
-    address: 'smtp.sendgrid.net',
+    address: 'smtp-relay.brevo.com',
     port: 587,
     domain: 'sleep-activist.fr',
-    user_name: 'apikey',
-    password: ENV['SENDGRID_API_KEY'],
+    user_name: ENV['BREVO_SMTP_LOGIN'],
+    password: ENV['BREVO_SMTP_KEY'],
     authentication: 'plain',
     enable_starttls_auto: true
   }
