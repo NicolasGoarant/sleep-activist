@@ -75,19 +75,17 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "sleep_activist_production"
 
   # ============================================================================
-  # ACTION MAILER CONFIGURATION
+  # ACTION MAILER CONFIGURATION - SendGrid
   # ============================================================================
 
-  # Disable caching for Action Mailer templates even if Action Controller
-  # caching is enabled.
+  # Disable caching for Action Mailer templates
   config.action_mailer.perform_caching = false
 
-  # Enable email delivery in production
+  # IMPORTANT: Enable email delivery in production
   config.action_mailer.perform_deliveries = true
 
-  # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  config.action_mailer.raise_delivery_errors = false
+  # IMPORTANT: Raise errors so we can see what's wrong
+  config.action_mailer.raise_delivery_errors = true
 
   # Set default URL options for mailer
   config.action_mailer.default_url_options = {
@@ -95,10 +93,10 @@ Rails.application.configure do
     protocol: 'https'
   }
 
-  # SMTP Configuration - SendGrid (Recommandé pour production)
-  # Inscription gratuite : https://signup.sendgrid.com/
-  # Gratuit jusqu'à 100 emails/jour
+  # Use SMTP with SendGrid
   config.action_mailer.delivery_method = :smtp
+
+  # SendGrid SMTP settings
   config.action_mailer.smtp_settings = {
     address: 'smtp.sendgrid.net',
     port: 587,
@@ -108,48 +106,6 @@ Rails.application.configure do
     authentication: 'plain',
     enable_starttls_auto: true
   }
-
-  # Alternative 1 : Configuration avec Gmail (non recommandé en production)
-  # Limite de 500 emails/jour
-  # Nécessite un mot de passe d'application : https://myaccount.google.com/apppasswords
-  #
-  # config.action_mailer.smtp_settings = {
-  #   address: 'smtp.gmail.com',
-  #   port: 587,
-  #   domain: 'sleep-activist.fr',
-  #   user_name: ENV['GMAIL_USERNAME'],
-  #   password: ENV['GMAIL_APP_PASSWORD'],
-  #   authentication: 'plain',
-  #   enable_starttls_auto: true
-  # }
-
-  # Alternative 2 : Configuration avec Mailgun
-  # Inscription : https://signup.mailgun.com/
-  # Gratuit jusqu'à 5000 emails/mois les 3 premiers mois
-  #
-  # config.action_mailer.smtp_settings = {
-  #   address: 'smtp.eu.mailgun.org', # ou smtp.mailgun.org pour US
-  #   port: 587,
-  #   domain: 'sleep-activist.fr',
-  #   user_name: ENV['MAILGUN_SMTP_LOGIN'],
-  #   password: ENV['MAILGUN_SMTP_PASSWORD'],
-  #   authentication: 'plain',
-  #   enable_starttls_auto: true
-  # }
-
-  # Alternative 3 : Configuration avec Brevo (ex-Sendinblue)
-  # Inscription : https://www.brevo.com/
-  # Gratuit jusqu'à 300 emails/jour
-  #
-  # config.action_mailer.smtp_settings = {
-  #   address: 'smtp-relay.brevo.com',
-  #   port: 587,
-  #   domain: 'sleep-activist.fr',
-  #   user_name: ENV['BREVO_SMTP_LOGIN'],
-  #   password: ENV['BREVO_SMTP_KEY'],
-  #   authentication: 'plain',
-  #   enable_starttls_auto: true
-  # }
 
   # ============================================================================
   # END ACTION MAILER CONFIGURATION
