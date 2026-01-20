@@ -37,15 +37,16 @@
       <% end %>
     <% end %>
 
-    <%# Vidéo Élise Lucet à droite %>
+    <%# Vidéo France 2 locale à droite %>
     <%= content_tag :div do %>
-      <%= content_tag :div, style: "position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.4);" do %>
-        <%= content_tag :iframe, "",
-            src: "https://www.youtube.com/watch?v=OouGZyTz8dU",
-            style: "position: absolute; top: 0; left: 0; width: 100%; height: 100%;",
-            frameborder: "0",
-            allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-            allowfullscreen: true %>
+      <%= content_tag :div, style: "position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4);" do %>
+        <%= content_tag :video,
+            controls: true,
+            preload: "metadata",
+            style: "width: 100%; height: 100%; display: block;" do %>
+          <%= tag :source, src: "/videos/france2.mp4", type: "video/mp4" %>
+          Votre navigateur ne supporte pas la lecture de vidéos.
+        <% end %>
       <% end %>
       <%= content_tag :p, style: "color: var(--soft-lavender); font-size: 0.9rem; margin-top: 1rem; text-align: center; font-style: italic;" do %>
         📺 Nicolas Goarant chez Élise Lucet (France 2, 2021)
