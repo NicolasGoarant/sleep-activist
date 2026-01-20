@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .header {
+        background: linear-gradient(135deg, #1a1a3e 0%, #2d2d5f 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px 10px 0 0;
+        text-align: center;
+      }
+      .content {
+        background: #f9f9f9;
+        padding: 30px;
+        border-radius: 0 0 10px 10px;
+      }
+      .subscriber-info {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+        border-left: 4px solid #ffd700;
+      }
+      .info-row {
+        margin: 10px 0;
+      }
+      .label {
+        font-weight: bold;
+        color: #1a1a3e;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+        color: #666;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>💤 Nouvelle inscription !</h1>
+    </div>
+
+    <div class="content">
+      <p>Salut Nicolas,</p>
+
+      <p>Bonne nouvelle ! Une nouvelle personne vient de rejoindre la communauté Sleep Activists 🎉</p>
+
+      <div class="subscriber-info">
+        <div class="info-row">
+          <span class="label">📧 Email :</span> <%= @subscriber.email %>
+        </div>
+        <% if @subscriber.first_name.present? %>
+          <div class="info-row">
+            <span class="label">👤 Prénom :</span> <%= @subscriber.first_name %>
+          </div>
+        <% end %>
+        <% if @subscriber.last_name.present? %>
+          <div class="info-row">
+            <span class="label">👤 Nom :</span> <%= @subscriber.last_name %>
+          </div>
+        <% end %>
+        <div class="info-row">
+          <span class="label">📅 Date d'inscription :</span> <%= @subscriber.created_at.strftime("%d/%m/%Y à %H:%M") %>
+        </div>
+      </div>
+
+      <p>La communauté grandit doucement mais sûrement ! 🌙</p>
+    </div>
+
+    <div class="footer">
+      <p>Sleep Activists - Le média du sommeil libre, joyeux et réparateur</p>
+      <p><a href="https://www.sleep-activist.fr">www.sleep-activist.fr</a></p>
+    </div>
+  </body>
+</html>

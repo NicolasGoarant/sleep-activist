@@ -1,0 +1,13 @@
+class SubscriberMailer < ApplicationMailer
+  default from: 'nicolas.goarant@hotmail.fr'  # Utiliser l'email vérifié
+
+  def new_subscriber_notification(subscriber)
+    @subscriber = subscriber
+
+    mail(
+      to: 'nicolas.goarant@hotmail.fr',  # Vous recevrez les notifications ici
+      subject: "🎉 Nouvelle inscription Sleep Activists - #{subscriber.email}",
+      reply_to: 'nicolas.goarant@hotmail.fr'
+    )
+  end
+end

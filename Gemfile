@@ -64,3 +64,8 @@ end
 group :production do
   gem "pg"
 end
+
+# Dans votre Gemfile
+group :development do
+  gem 'letter_opener'
+end

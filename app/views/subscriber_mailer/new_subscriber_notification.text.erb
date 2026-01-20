@@ -1,0 +1,19 @@
+💤 NOUVELLE INSCRIPTION - SLEEP ACTIVISTS
+==========================================
+
+Salut Nicolas,
+
+Bonne nouvelle ! Une nouvelle personne vient de rejoindre la communauté Sleep Activists 🎉
+
+INFORMATIONS DU NOUVEAU SUBSCRIBER :
+------------------------------------
+📧 Email : <%= @subscriber.email %>
+<% if @subscriber.first_name.present? %>👤 Prénom : <%= @subscriber.first_name %><% end %>
+<% if @subscriber.last_name.present? %>👤 Nom : <%= @subscriber.last_name %><% end %>
+📅 Date d'inscription : <%= @subscriber.created_at.strftime("%d/%m/%Y à %H:%M") %>
+
+La communauté grandit doucement mais sûrement ! 🌙
+
+---
+Sleep Activists - Le média du sommeil libre, joyeux et réparateur
+www.sleep-activist.fr

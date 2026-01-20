@@ -74,13 +74,86 @@ Rails.application.configure do
   # config.active_job.queue_adapter = :resque
   # config.active_job.queue_name_prefix = "sleep_activist_production"
 
+  # ============================================================================
+  # ACTION MAILER CONFIGURATION
+  # ============================================================================
+
   # Disable caching for Action Mailer templates even if Action Controller
   # caching is enabled.
   config.action_mailer.perform_caching = false
 
+  # Enable email delivery in production
+  config.action_mailer.perform_deliveries = true
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = false
+
+  # Set default URL options for mailer
+  config.action_mailer.default_url_options = {
+    host: 'sleep-activist.fr',
+    protocol: 'https'
+  }
+
+  # SMTP Configuration - SendGrid (Recommandé pour production)
+  # Inscription gratuite : https://signup.sendgrid.com/
+  # Gratuit jusqu'à 100 emails/jour
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    domain: 'sleep-activist.fr',
+    user_name: 'apikey',
+    password: ENV['SENDGRID_API_KEY'],
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
+
+  # Alternative 1 : Configuration avec Gmail (non recommandé en production)
+  # Limite de 500 emails/jour
+  # Nécessite un mot de passe d'application : https://myaccount.google.com/apppasswords
+  #
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.gmail.com',
+  #   port: 587,
+  #   domain: 'sleep-activist.fr',
+  #   user_name: ENV['GMAIL_USERNAME'],
+  #   password: ENV['GMAIL_APP_PASSWORD'],
+  #   authentication: 'plain',
+  #   enable_starttls_auto: true
+  # }
+
+  # Alternative 2 : Configuration avec Mailgun
+  # Inscription : https://signup.mailgun.com/
+  # Gratuit jusqu'à 5000 emails/mois les 3 premiers mois
+  #
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.eu.mailgun.org', # ou smtp.mailgun.org pour US
+  #   port: 587,
+  #   domain: 'sleep-activist.fr',
+  #   user_name: ENV['MAILGUN_SMTP_LOGIN'],
+  #   password: ENV['MAILGUN_SMTP_PASSWORD'],
+  #   authentication: 'plain',
+  #   enable_starttls_auto: true
+  # }
+
+  # Alternative 3 : Configuration avec Brevo (ex-Sendinblue)
+  # Inscription : https://www.brevo.com/
+  # Gratuit jusqu'à 300 emails/jour
+  #
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp-relay.brevo.com',
+  #   port: 587,
+  #   domain: 'sleep-activist.fr',
+  #   user_name: ENV['BREVO_SMTP_LOGIN'],
+  #   password: ENV['BREVO_SMTP_KEY'],
+  #   authentication: 'plain',
+  #   enable_starttls_auto: true
+  # }
+
+  # ============================================================================
+  # END ACTION MAILER CONFIGURATION
+  # ============================================================================
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -103,8 +176,8 @@ Rails.application.configure do
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
-
-config.hosts << "sleep-activist.fr"
-config.hosts << "www.sleep-activist.fr"
-config.hosts << "sleep-activists-b9898658a9c0.herokuapp.com"
+  # Autoriser les requêtes depuis vos domaines
+  config.hosts << "sleep-activist.fr"
+  config.hosts << "www.sleep-activist.fr"
+  config.hosts << "sleep-activists-b9898658a9c0.herokuapp.com"
 end
