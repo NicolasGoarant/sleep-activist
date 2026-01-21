@@ -99,32 +99,56 @@
   <% end %>
 <% end %>
 
-<%# Community Section - À qui s'adresse le média %>
+<%# Community Section - À qui s'adresse le média - AVEC BOUTON WHATSAPP %>
 <%= content_tag :section, class: "mission", style: "background: linear-gradient(to bottom, rgba(26, 20, 100, 0.3), transparent);" do %>
   <%= content_tag :div, class: "section-header", style: "margin-bottom: 4rem;" do %>
     <%= content_tag :h2, "À qui s'adressent les Sleep Activists ?" %>
   <% end %>
 
   <%= content_tag :div, style: "max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;" do %>
+
+    <%# CARTE 1 : PARENTS ÉPUISÉS - LIEN DIRECT WHATSAPP %>
     <%= content_tag :div, style: "text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
       <%= content_tag :div, "👶", style: "font-size: 3rem; margin-bottom: 1rem;" %>
       <%= content_tag :h3, "Aux parents épuisés", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; margin-bottom: 1rem;" %>
-      <%= content_tag :p, "Parce que la fatigue parentale mérite d'être reconnue sans culpabilité", style: "color: var(--soft-lavender);" %>
+      <%= content_tag :p, "Parce que la fatigue parentale mérite d'être reconnue sans culpabilité", style: "color: var(--soft-lavender); margin-bottom: 1.5rem;" %>
+
+      <%= link_to "https://chat.whatsapp.com/G153E7dT4ON7G9I0a3sD7X", target: "_blank", rel: "noopener noreferrer", class: "community-btn-subtle", style: "display: inline-block; padding: 0.7rem 1.8rem; border-radius: 20px; border: 1.5px solid var(--moon-yellow); background: rgba(255, 215, 0, 0.08); color: var(--warm-cream); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: all 0.3s ease;" do %>
+        Rejoindre le groupe
+      <% end %>
     <% end %>
+
+    <%# CARTE 2 : INSOMNIAQUES - LIEN VERS PAGE COMMUNAUTÉ %>
     <%= content_tag :div, style: "text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
       <%= content_tag :div, "😴", style: "font-size: 3rem; margin-bottom: 1rem;" %>
       <%= content_tag :h3, "Aux insomniaques", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; margin-bottom: 1rem;" %>
-      <%= content_tag :p, "Pour sortir de l'isolement et comprendre que vous n'êtes pas seuls", style: "color: var(--soft-lavender);" %>
+      <%= content_tag :p, "Pour sortir de l'isolement et comprendre que vous n'êtes pas seuls", style: "color: var(--soft-lavender); margin-bottom: 1.5rem;" %>
+
+      <%= link_to communaute_path, class: "community-btn-subtle", style: "display: inline-block; padding: 0.7rem 1.8rem; border-radius: 20px; border: 1.5px solid var(--moon-yellow); background: rgba(255, 215, 0, 0.08); color: var(--warm-cream); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: all 0.3s ease;" do %>
+        Rejoindre le groupe
+      <% end %>
     <% end %>
+
+    <%# CARTE 3 : MILITANTS DU REPOS - LIEN VERS PAGE COMMUNAUTÉ %>
     <%= content_tag :div, style: "text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
       <%= content_tag :div, "🐌", style: "font-size: 3rem; margin-bottom: 1rem;" %>
       <%= content_tag :h3, "Aux militants du repos", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; margin-bottom: 1rem;" %>
-      <%= content_tag :p, "Pour ceux qui revendiquent le droit de ralentir dans un monde qui accélère", style: "color: var(--soft-lavender);" %>
+      <%= content_tag :p, "Pour ceux qui revendiquent le droit de ralentir dans un monde qui accélère", style: "color: var(--soft-lavender); margin-bottom: 1.5rem;" %>
+
+      <%= link_to communaute_path, class: "community-btn-subtle", style: "display: inline-block; padding: 0.7rem 1.8rem; border-radius: 20px; border: 1.5px solid var(--moon-yellow); background: rgba(255, 215, 0, 0.08); color: var(--warm-cream); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: all 0.3s ease;" do %>
+        Rejoindre le groupe
+      <% end %>
     <% end %>
+
+    <%# CARTE 4 : TRAVAILLEURS DE NUIT - LIEN VERS PAGE COMMUNAUTÉ %>
     <%= content_tag :div, style: "text-align: center; padding: 2rem; background: rgba(255, 255, 255, 0.03); border-radius: 20px; border: 1px solid rgba(184, 181, 232, 0.2);" do %>
       <%= content_tag :div, "🌃", style: "font-size: 3rem; margin-bottom: 1rem;" %>
       <%= content_tag :h3, "Aux travailleurs de nuit", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; margin-bottom: 1rem;" %>
-      <%= content_tag :p, "Votre rythme est différent, mais votre sommeil compte tout autant", style: "color: var(--soft-lavender);" %>
+      <%= content_tag :p, "Votre rythme est différent, mais votre sommeil compte tout autant", style: "color: var(--soft-lavender); margin-bottom: 1.5rem;" %>
+
+      <%= link_to communaute_path, class: "community-btn-subtle", style: "display: inline-block; padding: 0.7rem 1.8rem; border-radius: 20px; border: 1.5px solid var(--moon-yellow); background: rgba(255, 215, 0, 0.08); color: var(--warm-cream); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: all 0.3s ease;" do %>
+        Rejoindre le groupe
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
@@ -245,7 +269,7 @@
       <% press_items = [
         ["france_2.png", "France 2", "https://www.youtube.com/watch?v=qBfHg9Hyehk"],
         ["france_culture.png", "France Culture", "https://www.radiofrance.fr/franceculture/podcasts/la-vie-mode-d-emploi/notre-sommeil-entre-l-intime-et-le-politique-8860750"],
-        ["france_inter.png", "France Inter", "https://www.facebook.com/grandbienvousfasse/posts/retrouvez-le-podcast-de-l%C3%A9mission-sur-le-sommeil-avec-pierre-philip-nicolas-goar/1031683047245173/"],
+        ["france_inter.png", "France Inter", "https://www.facebook.com/grandbienvousfasse/posts/1031683047245173/"],
         ["rtl.png", "RTL", "https://youtu.be/LtPFmPsjKak"],
         ["brut.png", "Brut", "https://youtu.be/Xqj8cnh1nak"],
         ["rfi.png", "RFI", "https://www.rfi.fr/fr/podcasts/8-milliards-de-voisins/20250609-les-petits-plaisirs-de-la-sieste"],
@@ -257,7 +281,7 @@
       <% 2.times do %>
         <% press_items.each do |logo, name, url| %>
           <%= link_to url, target: "_blank", class: "press-logo-link" do %>
-            <img src="/images/<%= logo %>" alt="<%= name %>" class="press-logo-img" loading="lazy">
+            <%= image_tag logo, alt: name, class: "press-logo-img", loading: "lazy" %>
           <% end %>
         <% end %>
       <% end %>
@@ -266,7 +290,7 @@
   </div>
 
   <div style="text-align: center; margin-top: 4rem;">
-    <%= link_to "Voir toutes nos interventions médias →", principes_path, class: "press-cta-link" %>
+    <%= link_to "Voir toutes nos interventions médias →", presse_path, class: "press-cta-link" %>
   </div>
 </section>
 
@@ -278,12 +302,10 @@
       Chaque lundi, recevez une Sleep Story inspirante, des extraits de podcast,
       des analyses sans moralisation et des pistes pour repenser votre sommeil.
     <% end %>
-
-<%= form_with model: Subscriber.new, url: subscribers_path, method: :post, class: "newsletter-form", local: true do |f| %>
-  <%= f.email_field :email, placeholder: "Votre email", required: true %>
-  <%= f.submit "S'inscrire" %>
-<% end %>
-
+    <%= form_with model: Subscriber.new, url: subscribers_path, method: :post, class: "newsletter-form", local: true do |f| %>
+      <%= f.email_field :email, placeholder: "Votre email", required: true %>
+      <%= f.submit "S'inscrire" %>
+    <% end %>
     <%= content_tag :p, style: "margin-top: 2rem; font-size: 0.9rem;" do %>
       💌 Pas de spam. Désinscription en un clic. Vos données restent privées.
     <% end %>
@@ -523,3 +545,14 @@
   setTimeout(createFloatingZ, 10000);
 })();
 </script>
+
+<!-- Style pour les boutons communauté -->
+<style>
+.community-btn-subtle:hover {
+  border-color: var(--moon-yellow) !important;
+  background: rgba(255, 215, 0, 0.15) !important;
+  color: var(--moon-yellow) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.25);
+}
+</style>

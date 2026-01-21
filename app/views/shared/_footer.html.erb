@@ -16,19 +16,20 @@
     <div class="footer-links">
       <h4>Découvrir</h4>
       <ul>
-        <li><%= link_to "Notre mission", mission_path %></li>
-        <li><%= link_to "Nos contenus", contenus_path %></li>
+        <li><%= link_to "Notre mission", principes_path %></li>
+        <li><%= link_to "Nos contenus", root_path(anchor: "contenus") %></li>
         <li><%= link_to "L'équipe", equipe_path %></li>
+        <li><%= link_to "Communauté", communaute_path %></li>
         <li><a href="mailto:nicolas@sleep-activist.fr">Contact</a></li>
       </ul>
     </div>
     <div class="footer-links">
       <h4>Contenus</h4>
       <ul>
-        <li><a href="#">Blog</a></li>
+        <li><%= link_to "Blog", blog_path %></li>
         <li><%= link_to "Newsletter", newsletters_path %></li>
-        <li><a href="#">Podcast</a></li>
-        <li><a href="#">Vidéos</a></li>
+        <li><%= link_to "Podcast", podcast_path %></li>
+        <li><%= link_to "Vidéos", root_path(anchor: "contenus") %></li>
       </ul>
     </div>
     <div class="footer-links">

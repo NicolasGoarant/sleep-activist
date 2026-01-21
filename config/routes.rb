@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'communaute', to: 'pages#communaute'
+
   # Admin
   namespace :admin do
     resources :articles do
