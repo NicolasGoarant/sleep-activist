@@ -417,7 +417,22 @@
 
 <!-- Script mouton simple -->
 <script>
-(function() {
+// Nettoyer et initialiser les moutons
+function initSheepAnimations() {
+  // Vérifier si les intervalles existent déjà pour éviter la duplication
+  if (window.sleepActivistsIntervals) {
+    // Nettoyer les anciens intervalles
+    window.sleepActivistsIntervals.forEach(id => clearInterval(id));
+    window.sleepActivistsTimeouts.forEach(id => clearTimeout(id));
+  }
+
+  // Nettoyer les moutons existants
+  document.querySelectorAll('.simple-sheep, .sleep-z').forEach(el => el.remove());
+
+  // Initialiser les tableaux pour stocker les IDs
+  window.sleepActivistsIntervals = [];
+  window.sleepActivistsTimeouts = [];
+
   // Fonction pour créer le mouton
   function showSheep() {
     const sheep = document.createElement('div');
@@ -429,9 +444,10 @@
     sheep.addEventListener('click', () => handleSheepClick(sheep));
 
     // Supprimer après l'animation (18 secondes)
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       sheep.remove();
     }, 18000);
+    window.sleepActivistsTimeouts.push(timeoutId);
   }
 
   // Fonction au clic sur le mouton
@@ -443,15 +459,17 @@
     createSparkles(sheepElement);
 
     // Faire disparaître le mouton progressivement après le saut
-    setTimeout(() => {
+    const timeout1 = setTimeout(() => {
       sheepElement.style.transition = 'opacity 0.5s ease-out';
       sheepElement.style.opacity = '0';
 
       // Supprimer complètement après la disparition
-      setTimeout(() => {
+      const timeout2 = setTimeout(() => {
         sheepElement.remove();
       }, 500);
+      window.sleepActivistsTimeouts.push(timeout2);
     }, 600);
+    window.sleepActivistsTimeouts.push(timeout1);
   }
 
   // Fonction pour créer les étoiles au clic sur le mouton
@@ -487,37 +505,11 @@
       sparkle.style.animation = 'sparkle-burst 0.8s ease-out forwards';
 
       document.body.appendChild(sparkle);
-      setTimeout(() => sparkle.remove(), 800);
+      const timeoutId = setTimeout(() => sparkle.remove(), 800);
+      window.sleepActivistsTimeouts.push(timeoutId);
     }
   }
 
-// Fonction pour les étincelles au clic
-  function createClickSparkle(e) {
-    // On récupère la position précise du clic
-    const x = e.clientX;
-    const y = e.clientY;
-
-    for (let i = 0; i < 8; i++) {
-      const sparkle = document.createElement('div');
-      sparkle.className = 'click-sparkle';
-      sparkle.textContent = ['✨', '⭐', '💫'][Math.floor(Math.random() * 3)];
-
-      // Positionnement initial au point de clic
-      sparkle.style.left = `${x}px`;
-      sparkle.style.top = `${y}px`;
-
-      // Direction aléatoire de l'explosion
-      const tx = (Math.random() - 0.5) * 200;
-      const ty = (Math.random() - 0.5) * 200;
-      sparkle.style.setProperty('--tx', `${tx}px`);
-      sparkle.style.setProperty('--ty', `${ty}px`);
-
-      document.body.appendChild(sparkle);
-      setTimeout(() => sparkle.remove(), 8000);
-    }
-  }
-
-  // Fonction pour le message "Bonne nuit"
   // Fonction pour créer des Z indépendants (occasionnellement)
   function createFloatingZ() {
     const z = document.createElement('div');
@@ -529,21 +521,39 @@
     z.style.bottom = `${Math.random() * 30 + 10}%`;
 
     document.body.appendChild(z);
-    setTimeout(() => z.remove(), 3000);
+    const timeoutId = setTimeout(() => z.remove(), 3000);
+    window.sleepActivistsTimeouts.push(timeoutId);
   }
 
   // Première apparition du mouton : 2 secondes après le chargement
-  setTimeout(showSheep, 2000);
+  const timeout1 = setTimeout(showSheep, 2000);
+  window.sleepActivistsTimeouts.push(timeout1);
 
   // Réapparition du mouton toutes les 45 secondes
-  setInterval(showSheep, 45000);
+  const interval1 = setInterval(showSheep, 45000);
+  window.sleepActivistsIntervals.push(interval1);
 
   // Z indépendants qui apparaissent occasionnellement (toutes les 20 secondes)
-  setInterval(createFloatingZ, 20000);
+  const interval2 = setInterval(createFloatingZ, 20000);
+  window.sleepActivistsIntervals.push(interval2);
 
   // Premier Z indépendant après 10 secondes
-  setTimeout(createFloatingZ, 10000);
-})();
+  const timeout2 = setTimeout(createFloatingZ, 10000);
+  window.sleepActivistsTimeouts.push(timeout2);
+}
+
+// Lancer au chargement initial
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSheepAnimations);
+} else {
+  initSheepAnimations();
+}
+
+// Lancer aussi sur turbo:load (navigation Turbo)
+document.addEventListener('turbo:load', initSheepAnimations);
+
+// Si vous utilisez turbolinks au lieu de turbo
+document.addEventListener('turbolinks:load', initSheepAnimations);
 </script>
 
 <!-- Style pour les boutons communauté -->
