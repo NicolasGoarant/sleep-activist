@@ -32,7 +32,16 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# Pagination
 gem 'kaminari'
+
+# Markdown rendering
+gem 'redcarpet'
+gem 'kramdown'
+
+# Cloudinary for image storage
+gem 'cloudinary'
+gem 'activestorage-cloudinary-service'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -43,29 +52,20 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Database for development
+  gem "sqlite3", ">= 1.4"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  # Preview emails in browser
+  gem 'letter_opener'
 end
 
-gem 'letter_opener', group: :development
-
-gem 'redcarpet'
-
-gem 'kramdown'
-# Gardez sqlite pour le développement local
-group :development, :test do
-  gem "sqlite3", ">= 1.4"
-end
-
-# Ajoutez PostgreSQL pour la production (Heroku)
+# PostgreSQL for production (Heroku)
 group :production do
   gem "pg"
-end
-
-# Dans votre Gemfile
-group :development do
-  gem 'letter_opener'
 end
