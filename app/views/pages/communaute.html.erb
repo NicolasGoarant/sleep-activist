@@ -11,7 +11,7 @@
 <section class="content-grid" style="padding: 4rem 5%;">
   <div style="max-width: 1000px; margin: 0 auto;">
 
-    <%# Carte Parents Épuisés - ACTIVE %>
+    <%# GROUPE 1 : Parents Épuisés - ACTIF %>
     <div style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(255, 255, 255, 0.05)); border-radius: 20px; padding: 3rem; margin-bottom: 2rem; border: 2px solid #25D366;">
       <div style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
         <div style="font-size: 4rem;">👶</div>
@@ -22,7 +22,7 @@
             Partagez vos expériences, trouvez du soutien, sans jugement ni culpabilité.
           </p>
 
-          <%= link_to "https://chat.whatsapp.com/G153E7dT4ON7G9I0a3sD7X", target: "_blank", rel: "noopener noreferrer", style: "display: inline-flex; align-items: center; gap: 0.8rem; background: #25D366; color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);" do %>
+          <%= link_to "https://chat.whatsapp.com/G153E7dT4ON7G9I0a3sD7X", target: "_blank", rel: "noopener noreferrer", class: "whatsapp-btn", style: "display: inline-flex; align-items: center; gap: 0.8rem; background: #25D366; color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);" do %>
             <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
             </svg>
@@ -40,9 +40,99 @@
       </div>
     </div>
 
+    <%# GROUPE 2 : Insomniaques - ACTIF %>
+    <div style="background: linear-gradient(135deg, rgba(147, 112, 219, 0.1), rgba(255, 255, 255, 0.05)); border-radius: 20px; padding: 3rem; margin-bottom: 2rem; border: 2px solid #9370DB;">
+      <div style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
+        <div style="font-size: 4rem;">😴</div>
+        <div style="flex: 1; min-width: 250px;">
+          <h2 style="color: var(--warm-cream); font-family: 'Crimson Pro', serif; margin-bottom: 1rem;">Insomniaques</h2>
+          <p style="color: var(--soft-lavender); margin-bottom: 1.5rem; line-height: 1.8;">
+            Pour sortir de l'isolement et comprendre que vous n'êtes pas seuls.
+            Partagez vos nuits blanches, vos techniques, votre vécu.
+          </p>
+
+          <%# REMPLACER CE LIEN PAR VOTRE NOUVEAU LIEN WHATSAPP %>
+          <%= link_to "https://chat.whatsapp.com/VOTRE_LIEN_INSOMNIAQUES", target: "_blank", rel: "noopener noreferrer", class: "whatsapp-btn", style: "display: inline-flex; align-items: center; gap: 0.8rem; background: #9370DB; color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(147, 112, 219, 0.2);" do %>
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            Rejoindre le groupe WhatsApp
+          <% end %>
+
+          <p style="color: var(--soft-lavender); font-size: 0.9rem; margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span>🌙 Discussions nocturnes</span>
+            <span>•</span>
+            <span>💜 Soutien 24/7</span>
+            <span>•</span>
+            <span>🧘 Techniques apaisantes</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <%# GROUPE 3 : Militants du repos - ACTIF %>
+    <div style="background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(255, 255, 255, 0.05)); border-radius: 20px; padding: 3rem; margin-bottom: 2rem; border: 2px solid #FFC107;">
+      <div style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
+        <div style="font-size: 4rem;">🐌</div>
+        <div style="flex: 1; min-width: 250px;">
+          <h2 style="color: var(--warm-cream); font-family: 'Crimson Pro', serif; margin-bottom: 1rem;">Militants du repos</h2>
+          <p style="color: var(--soft-lavender); margin-bottom: 1.5rem; line-height: 1.8;">
+            Pour ceux qui revendiquent le droit de ralentir dans un monde qui accélère.
+            Slow life, sieste assumée, repos politique.
+          </p>
+
+          <%# REMPLACER CE LIEN PAR VOTRE NOUVEAU LIEN WHATSAPP %>
+          <%= link_to "https://chat.whatsapp.com/VOTRE_LIEN_MILITANTS", target: "_blank", rel: "noopener noreferrer", class: "whatsapp-btn", style: "display: inline-flex; align-items: center; gap: 0.8rem; background: #FFC107; color: #1a1464; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(255, 193, 7, 0.2);" do %>
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            Rejoindre le groupe WhatsApp
+          <% end %>
+
+          <p style="color: var(--soft-lavender); font-size: 0.9rem; margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span>⏸️ Slow life</span>
+            <span>•</span>
+            <span>🪧 Repos politique</span>
+            <span>•</span>
+            <span>😌 Sieste assumée</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <%# GROUPE 4 : Travailleurs de nuit - ACTIF %>
+    <div style="background: linear-gradient(135deg, rgba(75, 0, 130, 0.1), rgba(255, 255, 255, 0.05)); border-radius: 20px; padding: 3rem; margin-bottom: 2rem; border: 2px solid #4B0082;">
+      <div style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
+        <div style="font-size: 4rem;">🌃</div>
+        <div style="flex: 1; min-width: 250px;">
+          <h2 style="color: var(--warm-cream); font-family: 'Crimson Pro', serif; margin-bottom: 1rem;">Travailleurs de nuit</h2>
+          <p style="color: var(--soft-lavender); margin-bottom: 1.5rem; line-height: 1.8;">
+            Votre rythme est différent, mais votre sommeil compte tout autant.
+            Soignants, policiers, gardiens, livreurs : cet espace est pour vous.
+          </p>
+
+          <%# REMPLACER CE LIEN PAR VOTRE NOUVEAU LIEN WHATSAPP %>
+          <%= link_to "https://chat.whatsapp.com/VOTRE_LIEN_TRAVAILLEURS_NUIT", target: "_blank", rel: "noopener noreferrer", class: "whatsapp-btn", style: "display: inline-flex; align-items: center; gap: 0.8rem; background: #4B0082; color: white; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(75, 0, 130, 0.2);" do %>
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            Rejoindre le groupe WhatsApp
+          <% end %>
+
+          <p style="color: var(--soft-lavender); font-size: 0.9rem; margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span>🩺 Soignants</span>
+            <span>•</span>
+            <span>🚔 Forces de l'ordre</span>
+            <span>•</span>
+            <span>🌆 Rythmes décalés</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
     <%# Pourquoi rejoindre %>
-    <div style="background: rgba(255, 255, 255, 0.03); border-radius: 15px; padding: 2.5rem; margin-bottom: 3rem; border: 1px solid rgba(184, 181, 232, 0.2);">
-      <h3 style="color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">Pourquoi rejoindre ce groupe ?</h3>
+    <div style="background: rgba(255, 255, 255, 0.03); border-radius: 15px; padding: 2.5rem; margin-bottom: 3rem; border: 1px solid rgba(184, 181, 232, 0.2); margin-top: 4rem;">
+      <h3 style="color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">Pourquoi rejoindre un groupe ?</h3>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
         <div style="text-align: center;">
@@ -54,7 +144,7 @@
         <div style="text-align: center;">
           <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🤗</div>
           <h4 style="color: var(--warm-cream); margin-bottom: 0.5rem;">Recevez du soutien</h4>
-          <p style="color: var(--soft-lavender); font-size: 0.95rem;">D'autres parents qui vivent la même chose</p>
+          <p style="color: var(--soft-lavender); font-size: 0.95rem;">D'autres personnes qui vivent la même chose</p>
         </div>
 
         <div style="text-align: center;">
@@ -65,7 +155,7 @@
       </div>
     </div>
 
-    <%# Règles du groupe %>
+    <%# Règles communes %>
     <div style="background: rgba(255, 215, 0, 0.05); border-radius: 15px; padding: 2.5rem; margin-bottom: 3rem; border: 2px solid var(--moon-yellow);">
       <h3 style="color: var(--moon-yellow); font-family: 'Crimson Pro', serif; font-size: 1.6rem; margin-bottom: 1.5rem; text-align: center;">📋 Les règles du groupe</h3>
 
@@ -77,45 +167,24 @@
       </ul>
     </div>
 
-    <%# Prochains groupes à venir %>
-    <div style="text-align: center; margin-top: 4rem; padding: 3rem; background: rgba(255, 255, 255, 0.02); border-radius: 15px;">
-      <h3 style="color: var(--moon-yellow); font-family: 'Crimson Pro', serif; font-size: 1.8rem; margin-bottom: 2rem;">À venir prochainement</h3>
-
-      <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;">
-        <div style="opacity: 0.6;">
-          <div style="font-size: 3rem; margin-bottom: 0.5rem;">😴</div>
-          <p style="color: var(--soft-lavender);">Insomniaques</p>
-        </div>
-
-        <div style="opacity: 0.6;">
-          <div style="font-size: 3rem; margin-bottom: 0.5rem;">🐌</div>
-          <p style="color: var(--soft-lavender);">Militants du repos</p>
-        </div>
-
-        <div style="opacity: 0.6;">
-          <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌃</div>
-          <p style="color: var(--soft-lavender);">Travailleurs de nuit</p>
-        </div>
-      </div>
-
-      <p style="color: var(--soft-lavender); margin-top: 2rem; font-style: italic;">
-        D'autres groupes ouvriront selon la demande de la communauté
-      </p>
-    </div>
-
   </div>
 </section>
 
 <style>
-a[href*="whatsapp"]:hover {
-  background: #20BA5A !important;
+/* Styles pour tous les boutons WhatsApp */
+.whatsapp-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4) !important;
+  opacity: 0.9;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
 }
 
 @media (max-width: 768px) {
   .hero h1 {
     font-size: 2.5rem !important;
+  }
+
+  section.content-grid > div > div {
+    padding: 2rem !important;
   }
 }
 </style>
