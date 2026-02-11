@@ -1,7 +1,7 @@
 <%# app/views/articles/show.html.erb - Page d'un article avec image uploadée %>
 
 <%# Hero de l'article avec image de fond %>
-<%= content_tag :section, style: "position: relative; min-height: 60vh; display: flex; align-items: center; padding-top: 6rem;" do %>
+<%= content_tag :section, class: "article-hero", style: "position: relative; min-height: 50vh; display: flex; align-items: center; padding-top: 6rem;" do %>
 
   <%# Image de fond avec overlay %>
   <% if @article.hero_image.attached? %>
@@ -16,10 +16,10 @@
   <% end %>
 
   <%# Contenu du hero %>
-  <%= content_tag :div, style: "position: relative; z-index: 2; max-width: 800px; margin: 0 auto; padding: 0 5%; text-align: center;" do %>
+  <%= content_tag :div, class: "article-hero-content", style: "position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 2rem 5%; text-align: center;" do %>
 
     <%# Catégorie et temps de lecture %>
-    <%= content_tag :div, style: "display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap;" do %>
+    <%= content_tag :div, style: "display: flex; gap: 1rem; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap;" do %>
       <% if @article.category.present? %>
         <%= content_tag :span, @article.category, style: "background: rgba(255, 217, 61, 0.2); padding: 0.5rem 1.2rem; border-radius: 15px; color: var(--moon-yellow); font-weight: 500; font-size: 0.9rem; border: 1px solid rgba(255, 217, 61, 0.4);" %>
       <% end %>
@@ -29,11 +29,11 @@
     <% end %>
 
     <%# Titre %>
-    <%= content_tag :h1, @article.title, style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 3rem; margin-bottom: 1.5rem; line-height: 1.2; text-shadow: 0 4px 20px rgba(0,0,0,0.5);" %>
+    <%= content_tag :h1, @article.title, class: "article-title", style: "color: var(--warm-cream); font-family: 'Crimson Pro', serif; font-size: 2.8rem; margin-bottom: 1rem; line-height: 1.25; text-shadow: 0 4px 20px rgba(0,0,0,0.5);" %>
 
     <%# Date de publication %>
     <% if @article.published_at.present? %>
-      <%= content_tag :p, style: "color: var(--soft-lavender); opacity: 0.8; font-size: 0.95rem;" do %>
+      <%= content_tag :p, style: "color: var(--soft-lavender); opacity: 0.8; font-size: 0.95rem; margin-bottom: 0;" do %>
         Publié le <%= @article.published_at.strftime("%d %B %Y") %>
       <% end %>
     <% end %>
@@ -42,27 +42,27 @@
 <% end %>
 
 <%# Contenu de l'article %>
-<%= content_tag :article, style: "max-width: 800px; margin: -4rem auto 6rem; padding: 0 5%; position: relative; z-index: 3;" do %>
+<%= content_tag :article, class: "article-wrapper", style: "max-width: 920px; margin: -3rem auto 4rem; padding: 0 20px; position: relative; z-index: 3;" do %>
 
-  <%= content_tag :div, class: "article-content", style: "background: rgba(15, 11, 61, 0.95); border-radius: 20px; padding: 4rem; border: 1px solid rgba(184, 181, 232, 0.3); backdrop-filter: blur(10px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);" do %>
+  <%= content_tag :div, class: "article-content", style: "background: rgba(20, 16, 70, 0.95); border-radius: 20px; padding: 3.5rem 4rem; border: 1px solid rgba(184, 181, 232, 0.25); backdrop-filter: blur(10px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);" do %>
     <%= markdown(@article.content) %>
   <% end %>
 
   <%# Pied de l'article %>
-  <%= content_tag :div, style: "margin-top: 4rem; padding-top: 2rem; border-top: 2px solid rgba(184, 181, 232, 0.2); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;" do %>
+  <%= content_tag :div, class: "article-footer", style: "margin-top: 3rem; padding-top: 2rem; border-top: 2px solid rgba(184, 181, 232, 0.2); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;" do %>
 
     <%# Partage %>
-    <%= content_tag :div do %>
-      <%= content_tag :p, "Partager cet article :", style: "color: var(--soft-lavender); margin-bottom: 1rem; font-weight: 500;" %>
-      <%= content_tag :div, style: "display: flex; gap: 1rem;" do %>
-        <%= link_to "🐦 Twitter", "https://twitter.com/intent/tweet?url=#{request.original_url}&text=#{@article.title}", target: "_blank", style: "padding: 0.8rem 1.5rem; background: rgba(184, 181, 232, 0.15); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; transition: all 0.3s;" %>
-        <%= link_to "📘 Facebook", "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", target: "_blank", style: "padding: 0.8rem 1.5rem; background: rgba(184, 181, 232, 0.15); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; transition: all 0.3s;" %>
-        <%= link_to "💼 LinkedIn", "https://www.linkedin.com/sharing/share-offsite/?url=#{request.original_url}", target: "_blank", style: "padding: 0.8rem 1.5rem; background: rgba(184, 181, 232, 0.15); border-radius: 10px; color: var(--soft-lavender); text-decoration: none; transition: all 0.3s;" %>
+    <%= content_tag :div, class: "share-buttons" do %>
+      <%= content_tag :p, "Partager cet article :", style: "color: var(--soft-lavender); margin-bottom: 0.8rem; font-weight: 500; font-size: 0.9rem;" %>
+      <%= content_tag :div, style: "display: flex; gap: 0.5rem; flex-wrap: wrap;" do %>
+        <%= link_to "🐦 Twitter", "https://twitter.com/intent/tweet?url=#{request.original_url}&text=#{@article.title}", target: "_blank", class: "share-btn", style: "padding: 0.6rem 1rem; background: rgba(184, 181, 232, 0.15); border-radius: 8px; color: var(--soft-lavender); text-decoration: none; transition: all 0.3s; font-size: 0.85rem;" %>
+        <%= link_to "📘 Facebook", "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", target: "_blank", class: "share-btn", style: "padding: 0.6rem 1rem; background: rgba(184, 181, 232, 0.15); border-radius: 8px; color: var(--soft-lavender); text-decoration: none; transition: all 0.3s; font-size: 0.85rem;" %>
+        <%= link_to "💼 LinkedIn", "https://www.linkedin.com/sharing/share-offsite/?url=#{request.original_url}", target: "_blank", class: "share-btn", style: "padding: 0.6rem 1rem; background: rgba(184, 181, 232, 0.15); border-radius: 8px; color: var(--soft-lavender); text-decoration: none; transition: all 0.3s; font-size: 0.85rem;" %>
       <% end %>
     <% end %>
 
     <%# Retour au blog %>
-    <%= link_to blog_path, style: "padding: 1rem 2rem; background: var(--moon-yellow); border-radius: 12px; color: var(--deep-indigo); font-weight: 600; text-decoration: none; transition: all 0.3s; display: inline-block;" do %>
+    <%= link_to blog_path, class: "back-btn", style: "padding: 0.8rem 1.5rem; background: var(--moon-yellow); border-radius: 10px; color: var(--deep-indigo); font-weight: 600; text-decoration: none; transition: all 0.3s; display: inline-block; font-size: 0.9rem;" do %>
       ← Retour au blog
     <% end %>
 
@@ -70,62 +70,74 @@
 <% end %>
 
 <%# CTA Newsletter %>
-<%= content_tag :section, class: "newsletter-cta", style: "margin-top: 6rem;" do %>
-  <%= content_tag :div, class: "newsletter-box" do %>
-    <%= content_tag :h2, "Vous avez aimé cet article ?" %>
-    <%= content_tag :p do %>
-      Recevez nos prochaines analyses directement dans votre boîte mail.
-      Une fois par semaine, sans spam.
+<%= content_tag :section, class: "newsletter-cta", style: "margin-top: 4rem; padding: 0 20px;" do %>
+  <%= content_tag :div, class: "newsletter-box", style: "max-width: 600px; margin: 0 auto;" do %>
+    <%= content_tag :h2, "Vous avez aimé cet article ?", style: "font-size: 1.5rem;" %>
+    <%= content_tag :p, style: "font-size: 1rem;" do %>
+      Recevez nos prochaines analyses directement dans votre boîte mail. Une fois par semaine, sans spam.
     <% end %>
-    <%= content_tag :div, style: "margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;" do %>
-      <%= link_to "📧 S'inscrire à la newsletter", newsletters_path, class: "cta-primary" %>
+    <%= content_tag :div, style: "margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;" do %>
+      <%= link_to "📧 S'inscrire à la newsletter", newsletters_path, class: "cta-primary", style: "font-size: 0.95rem; padding: 0.8rem 1.5rem;" %>
     <% end %>
   <% end %>
 <% end %>
 
 <%= content_tag :style, type: "text/css" do %>
-  /* Style du contenu markdown */
+  /* ========================================== */
+  /* STYLE ARTICLE - VERSION CORRIGÉE */
+  /* ========================================== */
+
   .article-content {
-    color: var(--soft-lavender);
-    line-height: 1.9;
+    color: #d8d6f0;
+    line-height: 1.85;
+    font-size: 1.15rem;
   }
 
+  /* Titres de section */
   .article-content h2 {
     color: var(--warm-cream);
     font-family: 'Crimson Pro', serif;
-    font-size: 2rem;
+    font-size: 1.9rem;
     margin-top: 3rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid rgba(255, 217, 61, 0.3);
+    line-height: 1.3;
   }
 
+  /* Sous-titres */
   .article-content h3 {
     color: var(--warm-cream);
     font-family: 'Crimson Pro', serif;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin-top: 2.5rem;
     margin-bottom: 1rem;
+    line-height: 1.3;
   }
 
+  /* Paragraphes - TAILLE UNIFORME */
   .article-content p {
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
+    margin-bottom: 1.4rem;
+    font-size: inherit;
   }
 
+  /* Texte en gras */
   .article-content strong {
     color: var(--warm-cream);
     font-weight: 600;
   }
 
+  /* Texte en italique */
   .article-content em {
-  font-style: italic;
-  color: inherit;  /* ← L'italique garde la même couleur que le texte */
+    font-style: italic;
+    color: inherit;
   }
 
+  /* Liens */
   .article-content a {
     color: var(--moon-yellow);
     text-decoration: underline;
+    text-underline-offset: 3px;
     transition: opacity 0.3s;
   }
 
@@ -133,26 +145,31 @@
     opacity: 0.8;
   }
 
+  /* Listes - TAILLE UNIFORME */
   .article-content ul, .article-content ol {
     margin-bottom: 1.5rem;
-    padding-left: 2rem;
+    padding-left: 1.5rem;
   }
 
   .article-content li {
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.7rem;
+    font-size: inherit;
+    line-height: 1.7;
   }
 
+  /* Citations / blockquotes */
   .article-content blockquote {
     border-left: 4px solid var(--moon-yellow);
-    padding-left: 2rem;
     margin: 2rem 0;
     font-style: italic;
     color: var(--warm-cream);
     background: rgba(255, 217, 61, 0.05);
-    padding: 1.5rem 2rem;
+    padding: 1.2rem 1.5rem;
     border-radius: 0 10px 10px 0;
+    font-size: inherit;
   }
 
+  /* Code inline */
   .article-content code {
     background: rgba(255, 217, 61, 0.1);
     padding: 0.2rem 0.5rem;
@@ -161,6 +178,7 @@
     color: var(--moon-yellow);
   }
 
+  /* Blocs de code */
   .article-content pre {
     background: rgba(0, 0, 0, 0.3);
     padding: 1.5rem;
@@ -169,21 +187,164 @@
     margin: 2rem 0;
   }
 
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 2rem !important;
-    }
+  /* Séparateur horizontal */
+  .article-content hr {
+    border: none;
+    height: 2px;
+    background: rgba(184, 181, 232, 0.2);
+    margin: 2.5rem 0;
+  }
 
+  /* ========================================== */
+  /* RESPONSIVE - TABLETTE */
+  /* ========================================== */
+
+  @media (max-width: 1024px) {
     .article-content {
-      padding: 2rem !important;
+      padding: 3rem !important;
+      font-size: 1.1rem;
     }
 
     .article-content h2 {
-      font-size: 1.5rem;
+      font-size: 1.7rem;
+    }
+
+    .article-content h3 {
+      font-size: 1.3rem;
+    }
+  }
+
+  /* ========================================== */
+  /* RESPONSIVE - MOBILE */
+  /* ========================================== */
+
+  @media (max-width: 768px) {
+    /* Hero mobile */
+    .article-hero {
+      min-height: 40vh !important;
+      padding-top: 5rem !important;
+    }
+
+    .article-hero-content {
+      padding: 1.5rem 15px !important;
+    }
+
+    .article-title {
+      font-size: 1.8rem !important;
+      line-height: 1.3 !important;
+    }
+
+    /* Article wrapper mobile */
+    .article-wrapper {
+      margin: -2rem auto 3rem !important;
+      padding: 0 15px !important;
+    }
+
+    /* Contenu mobile */
+    .article-content {
+      padding: 1.8rem 1.2rem !important;
+      font-size: 1rem;
+      border-radius: 15px !important;
+    }
+
+    .article-content h2 {
+      font-size: 1.4rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .article-content h3 {
+      font-size: 1.2rem;
+      margin-top: 1.8rem;
     }
 
     .article-content p {
-      font-size: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .article-content ul, .article-content ol {
+      padding-left: 1.2rem;
+    }
+
+    .article-content li {
+      margin-bottom: 0.6rem;
+    }
+
+    .article-content blockquote {
+      padding: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .article-content hr {
+      margin: 2rem 0;
+    }
+
+    /* Footer article mobile */
+    .article-footer {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 1.5rem !important;
+    }
+
+    .share-buttons {
+      width: 100%;
+    }
+
+    .share-btn {
+      padding: 0.5rem 0.8rem !important;
+      font-size: 0.8rem !important;
+    }
+
+    .back-btn {
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Newsletter CTA mobile */
+    .newsletter-cta {
+      padding: 0 15px !important;
+      margin-top: 3rem !important;
+    }
+
+    .newsletter-box {
+      padding: 2rem 1.5rem !important;
+      border-radius: 15px !important;
+    }
+
+    .newsletter-box h2 {
+      font-size: 1.3rem !important;
+    }
+
+    .newsletter-box p {
+      font-size: 0.95rem !important;
+    }
+  }
+
+  /* ========================================== */
+  /* TRÈS PETIT ÉCRAN (< 400px) */
+  /* ========================================== */
+
+  @media (max-width: 400px) {
+    .article-title {
+      font-size: 1.5rem !important;
+    }
+
+    .article-content {
+      padding: 1.5rem 1rem !important;
+      font-size: 0.95rem;
+    }
+
+    .article-content h2 {
+      font-size: 1.25rem;
+    }
+
+    .article-content h3 {
+      font-size: 1.1rem;
+    }
+
+    .share-btn {
+      padding: 0.4rem 0.6rem !important;
+      font-size: 0.75rem !important;
     }
   }
 <% end %>
